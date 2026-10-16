@@ -50,7 +50,7 @@ brief_id: "20261016-1559_flood-libya"
 # Headline
 Dateline. Body in AP style, 300-500 words...
 ```
-`source_urls` is a JSON array and `timestamp` is ISO-8601 UTC. Only compliance-approved stories land here. Render them with any Markdown parser (e.g. `gray-matter` + `remark`).
+`source_urls` is a JSON array and `timestamp` is ISO-8601 UTC. Only compliance-approved stories land here. The Compliance Publisher keeps a manifest at `public/stories/index.json` (served as `/stories/index.json`). The frontend should fetch the manifest to list stories, then load each `/stories/<slug>.md`, instead of listing the directory, since static hosting can't list directories. Render them with any Markdown parser (e.g. `gray-matter` + `remark`).
 
 ## Keeping data fresh (alternatives)
 1. **Commit sync** (current choice, see above).
