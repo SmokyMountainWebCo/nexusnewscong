@@ -52,11 +52,14 @@ export type MapEvent = {
   lng: number;
 };
 
+export type FeedStatus = 'ok' | 'unavailable';
+
 export type LayerParse = {
   events: MapEvent[];
   skipped: number;
   updated: string | null;
   source: string | null;
+  feedStatus: FeedStatus;
   broken: boolean;
 };
 
@@ -106,6 +109,15 @@ export function labelize(value: string | null | undefined): string {
 export function updatedLabel(raw: string | null | undefined): string | null {
   if (!raw) return null;
   return `Updated ${formatDeskDate(raw) || raw}`;
+}
+
+export function feedUnavailableLabel(layerName: string): string {
+  return `${layerName} feed temporarily unavailable`;
+}
+
+export function readFeedStatus(top: unknown, meta?: unknown): FeedStatus {
+  const primary = asString(top) ?? asString(meta);
+  return primary?.toLowerCase() === 'unavailable' ? 'unavailable' : 'ok';
 }
 
 export function formatDeskDate(raw: string | null): string | null {
@@ -216,10 +228,11 @@ export function isPublished(doc: StoryDoc | null): boolean {
 }
 
 export function parseLayerCollection(data: unknown, layer: 'conflict' | 'disaster'): LayerParse {
-  const base: LayerParse = { events: [], skipped: 0, updated: null, source: null, broken: false };
+  const base: LayerParse = { events: [], skipped: 0, updated: null, source: null, feedStatus: 'ok', broken: false };
   if (!data || typeof data !== 'object') return { ...base, broken: true };
   const record = data as Record<string, unknown>;
   const meta = record.metadata && typeof record.metadata === 'object' ? (record.metadata as Record<string, unknown>) : {};
+  const feedStatus = readFeedStatus(record.feed_status, meta.feed_status);
   const features = Array.isArray(record.features) ? record.features : [];
   const events: MapEvent[] = [];
   let skipped = 0;
@@ -261,6 +274,7 @@ export function parseLayerCollection(data: unknown, layer: 'conflict' | 'disaste
     skipped,
     updated: asString(meta.last_updated),
     source: asString(meta.source),
+    feedStatus,
     broken: false,
   };
 }

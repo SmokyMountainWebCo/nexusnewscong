@@ -250,7 +250,7 @@ export default function NexusDesk() {
             <>
               <p className="nx-kicker">War room</p>
               <h2 className="nx-title">Real-time threat intelligence</h2>
-              <p className="nx-deck">Conflict and disaster layers published as GeoJSON. An empty file stays on the desk as “No current events.”</p>
+              <p className="nx-deck">Conflict and disaster layers published as GeoJSON. An empty file with a healthy feed stays on the desk as “No current events.” A feed marked unavailable is listed in amber.</p>
               <WarMap />
             </>
           )}

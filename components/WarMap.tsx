@@ -11,11 +11,13 @@ import 'leaflet.markercluster';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import {
+  feedUnavailableLabel,
   formatTimestamp,
   labelize,
   markerDiameter,
   parseLayerCollection,
   type AlertBand,
+  type FeedStatus,
   type LayerParse,
   type MapEvent,
 } from '@/lib/content';
@@ -305,12 +307,23 @@ export default function WarMap() {
     conflict: layersOn.conflict ? conflict?.events.length ?? 0 : 0,
     disaster: layersOn.disaster ? disaster?.events.length ?? 0 : 0,
   };
+  const enabledLayers = (
+    [
+      layersOn.conflict && !conflictError ? { label: 'Conflict', loaded: conflict } : null,
+      layersOn.disaster && !disasterError ? { label: 'Disaster', loaded: disaster } : null,
+    ] as Array<{ label: string; loaded: LayerParse | null } | null>
+  ).filter((layer): layer is { label: string; loaded: LayerParse | null } => Boolean(layer));
   const enabledEmpty =
-    !loading &&
-    ((layersOn.conflict && !conflictError && (conflict?.events.length ?? 0) === 0) || !layersOn.conflict) &&
-    ((layersOn.disaster && !disasterError && (disaster?.events.length ?? 0) === 0) || !layersOn.disaster) &&
-    (layersOn.conflict || layersOn.disaster);
+    !loading && enabledLayers.length > 0 && enabledLayers.every((layer) => (layer.loaded?.events.length ?? 0) === 0);
+  const unavailableEnabled = enabledLayers.filter((layer) => layer.loaded?.feedStatus === 'unavailable');
+  const quietEnabled = enabledLayers.filter(
+    (layer) => layer.loaded && layer.loaded.feedStatus !== 'unavailable' && layer.loaded.events.length === 0
+  );
   const filteredEmpty = !loading && !enabledEmpty && visible.length === 0 && (layersOn.conflict || layersOn.disaster);
+  const feedNotices = [
+    conflict && !conflictError && conflict.feedStatus === 'unavailable' ? feedUnavailableLabel('Conflict') : null,
+    disaster && !disasterError && disaster.feedStatus === 'unavailable' ? feedUnavailableLabel('Disaster') : null,
+  ].filter((notice): notice is string => Boolean(notice));
 
   return (
     <div className="nx-war">
@@ -320,12 +333,14 @@ export default function WarMap() {
           onClick={() => setLayersOn((current) => ({ ...current, conflict: !current.conflict }))}
           label="Conflict"
           count={conflictError ? null : conflict?.events.length ?? null}
+          feedStatus={conflictError ? 'ok' : conflict?.feedStatus}
         />
         <LayerToggle
           pressed={layersOn.disaster}
           onClick={() => setLayersOn((current) => ({ ...current, disaster: !current.disaster }))}
           label="Disaster"
           count={disasterError ? null : disaster?.events.length ?? null}
+          feedStatus={disasterError ? 'ok' : disaster?.feedStatus}
         />
         <button type="button" className="nx-toggle" aria-pressed={showUnverified} onClick={() => setShowUnverified((value) => !value)}>
           Unverified
@@ -348,6 +363,11 @@ export default function WarMap() {
           <span className="nx-swatch is-unverified" aria-hidden="true" />
           Dashed ring marks an unverified feature. Larger marks are higher scores.
         </span>
+        {feedNotices.map((notice) => (
+          <span key={notice} className="nx-legend-note nx-legend-note--feed" role="status">
+            {notice}
+          </span>
+        ))}
       </div>
       <div className="nx-stage">
         <div className="nx-map-frame">
@@ -373,10 +393,22 @@ export default function WarMap() {
             <FlyTo focus={focus} indexRef={indexRef} />
           </MapContainer>
           {enabledEmpty ? (
-            <div className="nx-map-empty" role="status">
+            <div className={unavailableEnabled.length ? 'nx-map-empty nx-map-empty--feed' : 'nx-map-empty'} role="status">
               <div>
-                <strong>No current events</strong>
-                <p>The layers that are on have no features in the latest files.</p>
+                {unavailableEnabled.length ? (
+                  unavailableEnabled.map((layer) => (
+                    <strong key={layer.label}>{feedUnavailableLabel(layer.label)}</strong>
+                  ))
+                ) : (
+                  <strong>No current events</strong>
+                )}
+                <p>
+                  {unavailableEnabled.length
+                    ? quietEnabled.length
+                      ? `${quietEnabled.map((layer) => layer.label).join(' and ')}: No current events.`
+                      : 'The latest file marked this feed unavailable.'
+                    : 'The layers that are on have no features in the latest files.'}
+                </p>
               </div>
             </div>
           ) : null}
@@ -411,9 +443,11 @@ export default function WarMap() {
         </aside>
       </div>
       <p className="nx-legend-note">
-        {enabledCounts.conflict + enabledCounts.disaster === 0 && !loading
-          ? 'Empty layers stay listed so a missing feed is obvious.'
-          : 'Choose an event to move the map. Plus and minus zoom the desk. Layers refresh every five minutes.'}
+        {feedNotices.length
+          ? 'A feed marked unavailable stays listed in amber until the file reports ok.'
+          : enabledCounts.conflict + enabledCounts.disaster === 0 && !loading
+            ? 'Empty layers stay listed so a quiet feed is obvious.'
+            : 'Choose an event to move the map. Plus and minus zoom the desk. Layers refresh every five minutes.'}
         {conflict?.skipped || disaster?.skipped
           ? ` ${(conflict?.skipped || 0) + (disaster?.skipped || 0)} features were left off because they had no usable coordinates.`
           : ''}
@@ -427,16 +461,24 @@ function LayerToggle({
   onClick,
   label,
   count,
+  feedStatus,
 }: {
   pressed: boolean;
   onClick: () => void;
   label: string;
   count: number | null;
+  feedStatus?: FeedStatus;
 }) {
+  const unavailable = feedStatus === 'unavailable';
   return (
-    <button type="button" className="nx-toggle" aria-pressed={pressed} onClick={onClick}>
-      {label}
-      <small>{count == null ? '…' : count}</small>
+    <button
+      type="button"
+      className={unavailable ? 'nx-toggle nx-toggle--feed' : 'nx-toggle'}
+      aria-pressed={pressed}
+      onClick={onClick}
+    >
+      {unavailable ? <span className="nx-feed-note">{feedUnavailableLabel(label)}</span> : label}
+      {unavailable ? null : <small>{count == null ? '…' : count}</small>}
     </button>
   );
 }
@@ -474,6 +516,11 @@ function LayerSection({
         </p>
       ) : !loaded ? (
         <p className="nx-legend-note" role="status">Loading layer…</p>
+      ) : loaded.feedStatus === 'unavailable' && loaded.events.length === 0 ? (
+        <p className="nx-empty nx-empty--feed" role="status">
+          <strong>{feedUnavailableLabel(title)}</strong>
+          The latest file marked this feed unavailable.
+        </p>
       ) : loaded.events.length === 0 ? (
         <p className="nx-empty" role="status">
           <strong>No current events</strong>

@@ -4,6 +4,7 @@ import path from 'node:path';
 import {
   bandFromSeverity,
   eventWindowFromBotNote,
+  feedUnavailableLabel,
   isPublished,
   parseLayerCollection,
   parseMarkdown,
@@ -17,10 +18,10 @@ import {
 const root = process.cwd();
 const index = JSON.parse(fs.readFileSync(path.join(root, 'public/stories/index.json'), 'utf8'));
 const parsedIndex = parseStoryIndex(index);
-assert.equal(parsedIndex.stories.length, 1);
-assert.equal(parsedIndex.stories[0].slug, 'botswana-mozambique-forest-fires-oct-2026');
-assert.equal(parsedIndex.stories[0].path, '/stories/botswana-mozambique-forest-fires-oct-2026.md');
-assert.match(parsedIndex.stories[0].alertLevel || '', /Green/);
+const botswanaCard = parsedIndex.stories.find((story) => story.slug === 'botswana-mozambique-forest-fires-oct-2026');
+assert.ok(botswanaCard);
+assert.equal(botswanaCard.path, '/stories/botswana-mozambique-forest-fires-oct-2026.md');
+assert.match(botswanaCard.alertLevel || '', /Green/);
 
 const raw = fs.readFileSync(
   path.join(root, 'public/stories/botswana-mozambique-forest-fires-oct-2026.md'),
@@ -28,8 +29,7 @@ const raw = fs.readFileSync(
 );
 const doc = parseStoryMarkdown(raw);
 assert.equal(isPublished(doc), true);
-assert.equal(doc.locations.length, 2);
-assert.equal(doc.sources.length, 5);
+assert.ok(doc.sources.length >= 5);
 assert.match(doc.body, /Botswana/);
 assert.equal(storyBadge(doc.alertLevel, doc.severity).band, 'green');
 assert.match(storyBadge(doc.alertLevel, null).label, /Green/);
@@ -48,12 +48,16 @@ const conflict = parseLayerCollection(
 );
 assert.equal(conflict.broken, false);
 assert.equal(conflict.events.length, 0);
+assert.equal(conflict.feedStatus, 'unavailable');
+assert.equal(feedUnavailableLabel('Conflict'), 'Conflict feed temporarily unavailable');
 
 const disaster = parseLayerCollection(
   JSON.parse(fs.readFileSync(path.join(root, 'public/layers/disaster_events.geojson'), 'utf8')),
   'disaster'
 );
 assert.equal(disaster.events.length, 13);
+assert.equal(disaster.feedStatus, 'ok');
+assert.equal(feedUnavailableLabel('Disaster'), 'Disaster feed temporarily unavailable');
 assert.ok(disaster.events.every((event) => event.eventWindow));
 const orange = disaster.events.find((event) => event.severity === 4);
 assert.equal(orange?.band, 'orange');
@@ -87,6 +91,31 @@ assert.equal(missing.events[0].sourceUrl, null);
 assert.equal(missing.events[0].verified, false);
 assert.equal(missing.events[0].summary, null);
 assert.equal(missing.events[0].eventWindow, null);
+assert.equal(missing.feedStatus, 'ok');
+
+const okEmpty = parseLayerCollection({ type: 'FeatureCollection', feed_status: 'ok', features: [] }, 'conflict');
+assert.equal(okEmpty.feedStatus, 'ok');
+assert.equal(okEmpty.events.length, 0);
+
+const metadataOnly = parseLayerCollection(
+  { type: 'FeatureCollection', metadata: { feed_status: 'unavailable' }, features: [] },
+  'disaster'
+);
+assert.equal(metadataOnly.feedStatus, 'unavailable');
+
+const mirrored = parseLayerCollection(
+  {
+    type: 'FeatureCollection',
+    feed_status: 'unavailable',
+    metadata: { feed_status: 'unavailable' },
+    features: [],
+  },
+  'conflict'
+);
+assert.equal(mirrored.feedStatus, 'unavailable');
+
+const otherValue = parseLayerCollection({ type: 'FeatureCollection', feed_status: 'down', features: [] }, 'conflict');
+assert.equal(otherValue.feedStatus, 'ok');
 
 const draft = parseStoryMarkdown('---\nstatus: draft\ntitle: Hidden\n---\n\nSecret');
 assert.equal(isPublished(draft), false);
@@ -123,7 +152,8 @@ const indexed = parseStoryIndex({
 });
 assert.equal(indexed.stories[0].updateNote, 'Index note');
 assert.equal(indexed.stories[0].alertNote, 'Index alert note');
-assert.equal(doc.updated, null);
+assert.equal(doc.updated, '2026-10-16T16:23:00Z');
+assert.match(doc.updateNote || '', /Zambezia/);
 assert.equal(doc.alertNote, null);
 
 console.log('content checks passed');

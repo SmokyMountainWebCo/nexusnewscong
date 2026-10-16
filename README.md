@@ -77,15 +77,21 @@ The live example is `public/stories/botswana-mozambique-forest-fires-oct-2026.md
 | `public/layers/disaster_events.geojson` | `/layers/disaster_events.geojson` | Disaster |
 | `public/layers/conflict_events.geojson` | `/layers/conflict_events.geojson` | Conflict |
 
-Both files should stay present. An empty `features` array is valid and is shown as **No current events**. A failed fetch is a separate “couldn’t load” state.
+Both files should stay present. An empty `features` array with `feed_status` `ok` — or with the field missing — is shown as **No current events**. A failed fetch is a separate “couldn’t load” state.
+
+`feed_status` is optional. It sits on the collection and is mirrored in `metadata.feed_status`. The values are `ok` and `unavailable`. The desk reads the top-level field first, then the metadata copy. A missing field, or any value other than `unavailable`, is treated as `ok`.
+
+When the status is `unavailable`, the layer toggle, the legend, and that layer’s empty state say **&lt;Layer&gt; feed temporarily unavailable** in muted amber. Conflict becomes “Conflict feed temporarily unavailable.” Disaster becomes “Disaster feed temporarily unavailable.” That copy replaces “No current events” for that layer. A healthy feed with zero features still says “No current events.”
 
 ```json
 {
   "type": "FeatureCollection",
+  "feed_status": "ok",
   "metadata": {
     "source": "Grok Bot Intel Pipeline",
     "last_updated": "2026-10-16T16:00:57Z",
-    "layer": "disaster_events"
+    "layer": "disaster_events",
+    "feed_status": "ok"
   },
   "features": [
     {

@@ -14,7 +14,9 @@
   color: var(--text);
 }
 .nx-toggle[aria-pressed="true"] { border-color: #7f93b0; background: var(--surface-2); }
+.nx-toggle--feed { border-color: rgba(255, 197, 109, 0.55); }
 .nx-toggle small { color: var(--muted); margin-left: 6px; font-family: var(--mono); }
+.nx-feed-note { color: var(--orange); font-size: 13px; font-weight: 600; }
 .nx-stage {
   display: grid;
   gap: 14px;
@@ -51,7 +53,22 @@
   font-size: 1.5rem;
   font-weight: 560;
 }
+.nx-map-empty--feed { border-color: rgba(255, 197, 109, 0.55); }
+.nx-map-empty--feed strong {
+  display: block;
+  color: var(--orange);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
 .nx-map-empty p { margin: 6px 0 0; color: var(--muted); }
+.nx-empty.nx-empty--feed { border-color: rgba(255, 197, 109, 0.45); }
+.nx-empty--feed strong {
+  color: var(--orange);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
 .nx-side { display: grid; gap: 12px; align-content: start; }
 .nx-side section {
   border: 1px solid var(--line);
@@ -83,6 +100,7 @@
 .nx-event strong { display: block; font-weight: 600; }
 .nx-event span { display: block; color: var(--muted); font-size: 13px; }
 .nx-legend-note { color: var(--muted); font-size: 13px; margin: 0; }
+.nx-legend-note--feed { color: var(--orange); font-weight: 600; }
 .nx-swatch {
   width: 14px;
   height: 14px;
