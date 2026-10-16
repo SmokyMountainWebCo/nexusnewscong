@@ -1,6 +1,19 @@
 {
-  "generated_at": "2026-10-16T16:31:39Z",
+  "generated_at": "2026-10-16T21:36:41Z",
   "stories": [
+    {
+      "slug": "tropical-cyclone-wati-cook-islands-oct-2026",
+      "title": "Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert",
+      "location": "Cook Islands: Northern Group near Suwarrow (RSMC Nadi storm centre 12.1S 163.0W at 161800Z, open water); forecast track toward Aitutaki, Southern Group",
+      "severity": 4,
+      "alert_level": "Orange",
+      "timestamp": "2026-10-16T21:36:00Z",
+      "brief_id": "20261016-2050_one-26-cook-islands",
+      "event_type": "tropical_cyclone",
+      "status": "published",
+      "summary": "Tropical Cyclone Wati is strengthening as it moves southeast through the northern Cook Islands, with a cyclone warning in force for Suwarrow atoll and a cyclone alert for Aitutaki in the south.",
+      "path": "/stories/tropical-cyclone-wati-cook-islands-oct-2026.md"
+    },
     {
       "slug": "tropical-storm-champi-guam-oct-2026",
       "title": "Tropical Storm Champi heads toward Guam as governor declares emergency",
