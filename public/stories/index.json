@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-10-16T16:07:44Z",
+  "stories": [
+    {
+      "slug": "botswana-mozambique-forest-fires-oct-2026",
+      "title": "Satellite monitors flag low-impact forest fires in Botswana and Mozambique",
+      "date": "2026-10-16",
+      "event_type": "forest_fire",
+      "alert_level": "GDACS Green (lowest)",
+      "summary": "A global disaster-alert system recorded three forest fires in southern Africa this month: one in northern Botswana and two in central Mozambique. The system rated all three at its lowest alert level.",
+      "path": "/stories/botswana-mozambique-forest-fires-oct-2026.md"
+    }
+  ]
+}
