@@ -1,14 +1,91 @@
 {
-  "generated_at": "2026-10-16T16:07:44Z",
+  "generated_at": "2026-10-16T16:23:21Z",
   "stories": [
     {
       "slug": "botswana-mozambique-forest-fires-oct-2026",
       "title": "Satellite monitors flag low-impact forest fires in Botswana and Mozambique",
       "date": "2026-10-16",
       "event_type": "forest_fire",
-      "alert_level": "GDACS Green (lowest)",
-      "summary": "A global disaster-alert system recorded three forest fires in southern Africa this month: one in northern Botswana and two in central Mozambique. The system rated all three at its lowest alert level.",
-      "path": "/stories/botswana-mozambique-forest-fires-oct-2026.md"
+      "alert_level": "Green",
+      "summary": "A global disaster-alert system has recorded four forest fires in southern Africa this month: one in northern Botswana and three in central Mozambique. The system rated all four at its lowest alert level.",
+      "path": "/stories/botswana-mozambique-forest-fires-oct-2026.md",
+      "location": "Chobe District, Botswana; Zambezia province, Mozambique",
+      "severity": 3,
+      "timestamp": "2026-10-16T16:23:00Z",
+      "brief_id": "20261016-1559_forest-fire-mozambique-botswana",
+      "status": "published",
+      "updated": "2026-10-16T16:23:00Z",
+      "update_note": "Adds GDACS 1032672 (32,246 ha, Zambezia) and GDACS people-in-burned-area counts; limits burning-season context to Botswana."
+    },
+    {
+      "slug": "indonesia-forest-fires-haze-oct-2026",
+      "title": "Indonesia battles worst forest fires in over a decade as haze spreads across region",
+      "date": "2026-10-16",
+      "event_type": "forest_fire",
+      "alert_level": "GDACS Green (lowest) for all four mapped events",
+      "summary": "Indonesia is fighting its worst forest and land fires in more than a decade, The Independent reported Friday. Four members of a firefighting team died, and the government has agreed to accept foreign help.",
+      "path": "/stories/indonesia-forest-fires-haze-oct-2026.md",
+      "location": "Indonesia (national; GDACS events in South Sumatra, West Papua, South Papua, North Maluku)",
+      "severity": 3,
+      "timestamp": "2026-10-16T16:23:00Z",
+      "brief_id": "20261016-1559_forest-fire-australia-indonesia",
+      "status": "published"
+    },
+    {
+      "slug": "fiji-region-deep-earthquake-oct-2026",
+      "title": "Deep magnitude 5.9 earthquake strikes Fiji region, no tsunami threat",
+      "date": "2026-10-16",
+      "event_type": "earthquake",
+      "alert_level": "GDACS Green; USGS PAGER green",
+      "summary": "A magnitude 5.9 earthquake struck deep beneath the sea in the Fiji region at 10:49 GMT on Oct. 14, the U.S. Geological Survey reported.",
+      "path": "/stories/fiji-region-deep-earthquake-oct-2026.md",
+      "location": "Fiji region, at sea (approx. 20.99S, 178.77W)",
+      "severity": 3,
+      "timestamp": "2026-10-16T16:10:00Z",
+      "brief_id": "20261016-1559_earthquake-fiji",
+      "status": "published"
+    },
+    {
+      "slug": "northeastern-nigeria-wildfire-oct-2026",
+      "title": "Satellite alert flags low-impact wildfire in northeastern Nigeria",
+      "date": "2026-10-16",
+      "event_type": "forest_fire",
+      "alert_level": "GDACS Green",
+      "summary": "A wildfire burned about 7,464 hectares, roughly 18,400 acres, in far northeastern Nigeria from Oct. 7 to Oct. 14, according to the Global Disaster Alert and Coordination System.",
+      "path": "/stories/northeastern-nigeria-wildfire-oct-2026.md",
+      "location": "Northeastern Nigeria (approx. 12.74N, 13.92E)",
+      "severity": 2,
+      "timestamp": "2026-10-16T16:10:00Z",
+      "brief_id": "20261016-1559_forest-fire-nigeria",
+      "status": "published"
+    },
+    {
+      "slug": "tripoli-libya-flooding-oct-2026",
+      "title": "Flash flooding in Tripoli kills at least one, prompts investigation",
+      "date": "2026-10-16",
+      "event_type": "flood",
+      "alert_level": "GDACS Green",
+      "summary": "Torrential rain flooded Libya's capital, Tripoli, on Tuesday, killing at least one person, the Libya Herald reported. Some reports put the death toll at two.",
+      "path": "/stories/tripoli-libya-flooding-oct-2026.md",
+      "location": "Tripoli, Libya",
+      "severity": 2,
+      "timestamp": "2026-10-16T16:10:00Z",
+      "brief_id": "20261016-1559_flood-libya",
+      "status": "published"
+    },
+    {
+      "slug": "tropical-storm-simon-baja-oct-2026",
+      "title": "Tropical Storm Simon weakens off Mexico's Baja California coast",
+      "date": "2026-10-16",
+      "event_type": "tropical_cyclone",
+      "alert_level": "Green",
+      "summary": "Tropical Storm Simon is weakening over open water south of Mexico's Baja California peninsula, and forecasters expect it to fall apart this weekend, the U.S. National Hurricane Center said Friday.",
+      "path": "/stories/tropical-storm-simon-baja-oct-2026.md",
+      "location": "Offshore Baja California Sur, Mexico (approx. 20.6N 109.5W)",
+      "severity": 4,
+      "timestamp": "2026-10-16T16:10:00Z",
+      "brief_id": "20261016-1559_simon-26-mexico",
+      "status": "published"
     }
   ]
 }
