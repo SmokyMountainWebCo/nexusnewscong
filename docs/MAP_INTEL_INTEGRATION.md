@@ -1,15 +1,15 @@
 # Nexus map intel layers — integration notes
 
 Produced by the Grok Bot Scout (`intel_gatherer.py`, every 15 min at :00/:15/:30/:45) on the Grok Bot box.
-The files in `public/data/` are a **snapshot** from 2026-10-16 so the map can be built and tested against real data.
+The files in `public/layers/` are a **snapshot** from 2026-10-16 so the map can be built and tested against real data.
 
 ## Files
 | Path | Layer | Notes |
 |---|---|---|
-| `public/data/conflict_events.geojson` | `conflict_events` | Liveuamap. **Empty right now**: Liveuamap serves a Cloudflare challenge to headless browsers. |
-| `public/data/disaster_events.geojson` | `disaster_events` | GDACS (UN/EC JRC). Up to 13 alerts per run. |
+| `public/layers/conflict_events.geojson` | `conflict_events` | Liveuamap. **Empty right now**: Liveuamap serves a Cloudflare challenge to headless browsers. |
+| `public/layers/disaster_events.geojson` | `disaster_events` | GDACS (UN/EC JRC). Up to 13 alerts per run. |
 
-Served by Next.js at `/data/<layer>.geojson`.
+Served by Next.js at `/layers/<layer>.geojson`.
 
 ## Schema (one per layer)
 ```json
@@ -32,9 +32,29 @@ const IntelLayers = dynamic(() => import('../components/IntelLayers'), { ssr: fa
 ```
 Make sure `import 'leaflet/dist/leaflet.css'` is loaded once (e.g. in the root layout).
 
-## Keeping data fresh (pick one)
-1. **Commit sync**: the box commits the two files to a data branch on a schedule, and Netlify rebuilds. Simple, but each update is a rebuild.
-2. **Supabase Storage / table** (recommended): the Scout uploads to a public bucket, and the frontend fetches that URL instead of `/data/...`. This needs `SUPABASE_URL`/`SUPABASE_KEY` on the box. **They are not set yet.**
+## Publish path: Git static files
+The box commits refreshed layers to `public/layers/` and finished stories to `public/stories/`. The commit triggers a Netlify rebuild. The Supabase options below are optional alternatives.
+
+## Story format (`public/stories/<slug>.md`)
+Markdown with YAML-style front-matter, one file per approved story:
+```markdown
+---
+title: "Headline"
+location: "Country, Region"
+severity: 4
+source_urls: ["https://www.gdacs.org/report.aspx?eventid=..."]
+timestamp: "2026-10-16T16:00:00Z"
+brief_id: "20261016-1559_flood-libya"
+---
+
+# Headline
+Dateline. Body in AP style, 300-500 words...
+```
+`source_urls` is a JSON array and `timestamp` is ISO-8601 UTC. Only compliance-approved stories land here. Render them with any Markdown parser (e.g. `gray-matter` + `remark`).
+
+## Keeping data fresh (alternatives)
+1. **Commit sync** (current choice, see above).
+2. **Supabase Storage / table** (recommended): the Scout uploads to a public bucket, and the frontend fetches that URL instead of `/layers/...`. This needs `SUPABASE_URL`/`SUPABASE_KEY` on the box. **They are not set yet.**
 3. **Netlify Blobs or a function** that the box POSTs to.
 
 ## Known gaps

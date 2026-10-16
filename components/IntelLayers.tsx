@@ -1,5 +1,5 @@
 'use client';
-// Nexus intel map layers. Renders /data/conflict_events.geojson and /data/disaster_events.geojson.
+// Nexus intel map layers. Renders /layers/conflict_events.geojson and /layers/disaster_events.geojson.
 // Must be loaded with next/dynamic({ ssr: false }) because Leaflet needs `window`.
 import { useEffect, useState } from 'react';
 import { GeoJSON, LayersControl } from 'react-leaflet';
@@ -11,7 +11,7 @@ const color = (s: number) => (s >= 8 ? '#ef4444' : s >= 5 ? '#f97316' : '#22c55e
 function useLayer(name: string) {
   const [data, setData] = useState<Layer | null>(null);
   useEffect(() => {
-    const load = () => fetch(`/data/${name}.geojson`, { cache: 'no-store' }).then(r => r.json()).then(setData).catch(() => {});
+    const load = () => fetch(`/layers/${name}.geojson`, { cache: 'no-store' }).then(r => r.json()).then(setData).catch(() => {});
     load(); const t = setInterval(load, 5 * 60 * 1000); return () => clearInterval(t);
   }, [name]);
   return data;
