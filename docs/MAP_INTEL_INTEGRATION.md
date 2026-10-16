@@ -1,7 +1,7 @@
 # Nexus map intel layers — integration notes
 
 Produced by the Grok Bot Scout (`intel_gatherer.py`, every 15 min at :00/:15/:30/:45) on the Grok Bot box.
-The files in `public/layers/` are a **snapshot** from 2026-10-16 so the map can be built and tested against real data.
+The live files in `public/layers/` on main are committed by the static Git publishing path (Compliance Publisher).
 
 ## Files
 | Path | Layer | Notes |
@@ -19,18 +19,14 @@ Served by Next.js at `/layers/<layer>.geojson`.
     "properties": { "id", "event_type", "severity_score": 1-10, "summary", "source_url", "timestamp", "verified": bool, "bot_note" } }] }
 ```
 - Coordinates use GeoJSON order, `[lon, lat]`. Leaflet's `GeoJSON` component handles that for you; for a plain `Marker`, flip them.
-- `verified` is true only when the source is official (GDACS) **and** the summary was checked against the source text. Draw unverified points with a dashed outline.
+- `verified` is true only when the source is official (GDACS) **and** the summary was checked against the source text. Consumers should render unverified points so they look different, e.g. with a dashed outline.
 - Country comes from GDACS's structured `gdacs:country` field (recorded in `bot_note`), not from the LLM.
-- Severity comes from the local LLM and is clamped to the GDACS alert band (Green 1-4, Orange 5-7, Red 8-10).
+- Severity comes from the local LLM and is clamped to the GDACS alert band (Green 1-3, Orange 4-6, Red 7-10).
+- Event dates come from GDACS's `fromdate`/`todate` fields and are recorded in `bot_note`. Summaries contain no dates.
 - Files are rewritten atomically each run, so a reader never sees a half-written file.
 
-## Wiring it into `app/page.tsx` (not done in this PR, to avoid touching the room UI)
-```tsx
-const IntelLayers = dynamic(() => import('../components/IntelLayers'), { ssr: false });
-// inside <MapContainer ...> after <TileLayer .../>:
-<IntelLayers />
-```
-Make sure `import 'leaflet/dist/leaflet.css'` is loaded once (e.g. in the root layout).
+## Map consumer
+The map that renders these layers is **`components/WarMap.tsx` from PR #4** (Site Experience). It fetches `/layers/conflict_events.geojson` and `/layers/disaster_events.geojson`. This PR ships no map component and only documents the data contract. Changes to the schema above must stay compatible with WarMap.
 
 ## Publish path: Git static files
 The box commits refreshed layers to `public/layers/` and finished stories to `public/stories/`. The commit triggers a Netlify rebuild. The Supabase options below are optional alternatives.
