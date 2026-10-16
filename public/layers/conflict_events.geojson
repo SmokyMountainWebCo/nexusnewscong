@@ -1,9 +1,11 @@
 {
   "type": "FeatureCollection",
+  "feed_status": "unavailable",
   "metadata": {
     "source": "Grok Bot Intel Pipeline",
-    "last_updated": "2026-10-16T21:30:32Z",
-    "layer": "conflict_events"
+    "last_updated": "2026-10-16T21:40:44Z",
+    "layer": "conflict_events",
+    "feed_status": "unavailable"
   },
   "features": []
 }

@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-10-16T21:36:41Z",
+  "generated_at": "2026-10-16T21:45:05Z",
   "stories": [
+    {
+      "slug": "tropical-storm-champi-guam-oct-2026",
+      "title": "Champi strengthens into a typhoon as Guam braces for a close pass",
+      "location": "Guam and Northern Mariana Islands (storm centre approx. 12.0N 149.6E, open ocean)",
+      "severity": 8,
+      "alert_level": "Red",
+      "timestamp": "2026-10-16T21:45:00Z",
+      "brief_id": "20261016-1559_champi-26-guam",
+      "event_type": "tropical_cyclone",
+      "status": "published",
+      "summary": "Champi has strengthened into a typhoon over the western Pacific, and forecasters expect it to pass close to Guam this weekend as a strong typhoon.",
+      "path": "/stories/tropical-storm-champi-guam-oct-2026.md",
+      "updated": "2026-10-16T21:45:00Z",
+      "update_note": "Champi upgraded to a typhoon in JTWC warning 10; GDACS alert raised to Red; Coastal Flood Watch upgraded to Warning; added hospital, port and shelter preparations and rainfall forecast."
+    },
     {
       "slug": "tropical-cyclone-wati-cook-islands-oct-2026",
       "title": "Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert",
@@ -13,19 +28,6 @@
       "status": "published",
       "summary": "Tropical Cyclone Wati is strengthening as it moves southeast through the northern Cook Islands, with a cyclone warning in force for Suwarrow atoll and a cyclone alert for Aitutaki in the south.",
       "path": "/stories/tropical-cyclone-wati-cook-islands-oct-2026.md"
-    },
-    {
-      "slug": "tropical-storm-champi-guam-oct-2026",
-      "title": "Tropical Storm Champi heads toward Guam as governor declares emergency",
-      "location": "Guam and Northern Mariana Islands (storm centre approx. 11.6N 150.8E, open ocean)",
-      "severity": 4,
-      "alert_level": "Orange",
-      "timestamp": "2026-10-16T16:31:00Z",
-      "brief_id": "20261016-1559_champi-26-guam",
-      "event_type": "tropical_cyclone",
-      "status": "published",
-      "summary": "Tropical Storm Champi is moving west across the open Pacific toward Guam, and forecasters expect it to strengthen into a typhoon before it passes over or very near the island.",
-      "path": "/stories/tropical-storm-champi-guam-oct-2026.md"
     },
     {
       "slug": "botswana-mozambique-forest-fires-oct-2026",
