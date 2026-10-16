@@ -1,6 +1,19 @@
 {
-  "generated_at": "2026-10-16T16:23:21Z",
+  "generated_at": "2026-10-16T16:31:39Z",
   "stories": [
+    {
+      "slug": "tropical-storm-champi-guam-oct-2026",
+      "title": "Tropical Storm Champi heads toward Guam as governor declares emergency",
+      "location": "Guam and Northern Mariana Islands (storm centre approx. 11.6N 150.8E, open ocean)",
+      "severity": 4,
+      "alert_level": "Orange",
+      "timestamp": "2026-10-16T16:31:00Z",
+      "brief_id": "20261016-1559_champi-26-guam",
+      "event_type": "tropical_cyclone",
+      "status": "published",
+      "summary": "Tropical Storm Champi is moving west across the open Pacific toward Guam, and forecasters expect it to strengthen into a typhoon before it passes over or very near the island.",
+      "path": "/stories/tropical-storm-champi-guam-oct-2026.md"
+    },
     {
       "slug": "botswana-mozambique-forest-fires-oct-2026",
       "title": "Satellite monitors flag low-impact forest fires in Botswana and Mozambique",
