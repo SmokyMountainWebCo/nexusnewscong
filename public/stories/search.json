@@ -1,0 +1,148 @@
+[
+  {
+    "slug": "tropical-cyclone-wati-cook-islands-oct-2026",
+    "title": "Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert",
+    "location": "Cook Islands: Northern Group near Suwarrow (RSMC Nadi storm centre 12.2S 163.5W at 162100Z, open water); forecast track toward Aitutaki, Southern Group",
+    "severity": 4,
+    "alert_level": "Orange",
+    "event_type": "tropical_cyclone",
+    "timestamp": "2026-10-16T23:50:00Z",
+    "updated": "2026-10-16T23:50:00Z",
+    "update_note": "Updated with RSMC Nadi Northern Cooks bulletin #9 (162335Z): new 2100Z position and revised forecast pass south-southwest of Suwarrow.",
+    "source_urls": [
+      "https://www.met.gov.fj/warnings/",
+      "https://www.metoc.navy.mil/jtwc/products/sh0127web.txt",
+      "https://www.metoc.navy.mil/jtwc/products/sh0127prog.txt",
+      "https://www.cookislandsnews.com/internal/national/outer-islands/weather/cook-islands-urged-to-prepare-as-tropical-cyclone-warning-issued-for-suwarrow/",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001339",
+      "https://www.gdacs.org/report.aspx?eventid=1001339&episodeid=2&eventtype=TC"
+    ],
+    "body": "# Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert\n\nTropical Cyclone Wati is strengthening as it moves southeast through the northern Cook Islands, with a cyclone warning in force for Suwarrow atoll and a cyclone alert for Aitutaki in the south.\n\nThe Fiji Meteorological Service, which runs the regional warning center for the Cook Islands, rates Wati a Category 1 cyclone on its regional scale. At 21:00 GMT on Oct. 16, the storm's center sat near 12.2 S, 163.5 W, about 120 kilometers north-northwest of Suwarrow, with a central pressure of 993 hectopascals. The service put maximum sustained winds at about 75 kph, with gusts to 100 kph, and said Wati was moving southeast at about 14 kph. \"Cyclone intensifying,\" the service said in a marine warning that forecast winds near the center to reach 60 knots, about 110 kph, by 18:00 GMT on Oct. 17.\n\nA Tropical Cyclone Warning remains in force for Suwarrow, and a Strong Wind Warning covers the rest of the Northern Cook Islands, according to the service's latest Northern Cooks bulletin, issued at 23:35 GMT. Forecasters now expect the center to pass about 15 kilometers south-southwest of Suwarrow around 11 p.m. local time Friday and to be about 170 kilometers south-southeast of the atoll by 11 a.m. Saturday. The bulletin warned of damaging gales averaging 65 kph, with gusts to 90 kph, on Suwarrow through Saturday morning, along with heavy rain, squally thunderstorms and a risk of coastal flooding at high tide. It forecast winds of 40 to 55 kph, gusting to 75 kph, elsewhere in the Northern Group.\n\nA Tropical Cyclone Alert remains in force for Aitutaki, the service said in a separate Southern Cooks bulletin issued at 21:00 GMT. It expects Wati's center to be about 530 kilometers north-northwest of Aitutaki by 10 a.m. Saturday and about 100 kilometers north of the island by 10 a.m. Sunday. Damaging gales averaging 75 kph, with gusts to 100 kph, are expected on Aitutaki from early Sunday morning, the bulletin said. A Strong Wind Warning covers the rest of the Southern Group, where winds could rise to 45 kph, gusting to 90 kph, from later Saturday.\n\nEmergency Management Cook Islands urged people, particularly in the Northern Group, to secure loose outdoor items, avoid unnecessary sea travel and follow official updates, Cook Islands News reported.\n\nThe U.S. Joint Typhoon Warning Center, which tracks the system as Tropical Cyclone 01P, forecasts a peak of 65 knots, about 120 kph, within 24 to 36 hours, followed by weakening.\n\nThe Global Disaster Alert and Coordination System, or GDACS, gave the storm an automated Orange rating. It estimates about 3,815 people could be exposed to strong winds. That figure is a model estimate, not an official count.\n\nNo damage, casualties or evacuations had been reported as of 23:47 GMT Friday in the sources reviewed for this report. Forecasters plan updated bulletins overnight, and Nexus News Media will update this report."
+  },
+  {
+    "slug": "tropical-storm-champi-guam-oct-2026",
+    "title": "Champi strengthens into a typhoon as Guam braces for a close pass",
+    "location": "Guam and Northern Mariana Islands (storm centre approx. 12.0N 149.6E, open ocean)",
+    "severity": 8,
+    "alert_level": "Red",
+    "event_type": "tropical_cyclone",
+    "timestamp": "2026-10-16T21:45:00Z",
+    "updated": "2026-10-16T21:45:00Z",
+    "update_note": "Champi upgraded to a typhoon in JTWC warning 10; GDACS alert raised to Red; Coastal Flood Watch upgraded to Warning; added hospital, port and shelter preparations and rainfall forecast.",
+    "source_urls": [
+      "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
+      "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
+      "https://api.weather.gov/alerts/active?area=GU",
+      "https://api.weather.gov/alerts/active?area=MP",
+      "https://ghs.guam.gov/jic-release-no-3-gmha-announces-expectant-mother-intake-plans-and-service-suspensions-uscg-sets-port",
+      "https://www.guampdn.com/news/governor-declares-state-of-emergency-in-anticipation-of-champi/article_2bce0b66-f2ec-450b-ae7f-bb833c669b4c.html",
+      "https://www.redcross.org/about-us/news-and-events/news/2026/tropical-cyclone-heads-to-the-islands.html",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001338",
+      "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=10&eventtype=TC"
+    ],
+    "body": "# Champi strengthens into a typhoon as Guam braces for a close pass\n\nChampi has strengthened into a typhoon over the western Pacific, and forecasters expect it to pass close to Guam this weekend as a strong typhoon.\n\nThe U.S. Joint Typhoon Warning Center upgraded Champi from a tropical storm in its warning 10, issued at 21:00 GMT on Oct. 16. At 18:00 GMT, the storm had maximum sustained winds of 75 knots, about 140 kph, with gusts to 90 knots and a minimum central pressure of 984 millibars. At 21:00 GMT, Champi sat about 328 nautical miles, or 600 kilometers, east-southeast of Andersen Air Force Base, moving west-northwest at 13 knots.\n\nThe warning center forecasts 105 knots, about 195 kph, by 18:00 GMT on Oct. 17, with the center near 13.0 N, 145.3 E. It forecasts 120 knots by 06:00 GMT on Oct. 18 and a peak of 135 knots after the storm passes the island. In its forecast discussion, the center said Champi would \"continue rapidly intensifying for the next 48 hours\" and described its passage \"south of the island chain.\"\n\nThe National Weather Service office in Guam has a Typhoon Warning in effect for Guam and Rota, and a Tropical Storm Warning and Typhoon Watch for Tinian and Saipan. Its Flood Watch runs through 4 p.m. local time Sunday, and it said Guam \"might get 12 to 20 inches\" of rain. The weather service upgraded its Coastal Flood Watch to a Coastal Flood Warning for Guam, Rota, Tinian and Saipan, in effect from 5 p.m. Saturday until 4 a.m. Monday local time. It said coastal inundation of 5 to 7 feet is possible on Guam, adding that a \"passage south of Guam would be reduced impacts whereas passage over Guam would result in larger coastal inundation.\" A High Surf Warning calls for breaking waves up to 35 feet on Guam.\n\nGuam remains in Condition of Readiness 2 under a 90-day state of emergency that Gov. Lou Leon Guerrero declared Friday. The Guam Memorial Hospital Authority has suspended elective and non-emergency services and expects to begin taking in eligible expectant mothers Saturday morning, according to Guam Homeland Security and the Office of Civil Defense. The U.S. Coast Guard set Port Heavy Weather Condition Yankee for the ports of Guam and the Northern Mariana Islands.\n\nThe American Red Cross said it will operate or support shelters on all the islands, \"with as many as 13 set to open before the storm hits.\" No shelter openings had been confirmed in the sources reviewed.\n\nThe Global Disaster Alert and Coordination System, or GDACS, raised its alert to Red. It estimates 175,254 people could be exposed to Category 1 or stronger winds. That figure is a model estimate, not a count of people affected.\n\nNo damage, casualties or evacuation orders had been reported as of 21:40 GMT Friday. The warning center's next warning is due at 03:00 GMT. Nexus News Media will update this report."
+  },
+  {
+    "slug": "botswana-mozambique-forest-fires-oct-2026",
+    "title": "Satellite monitors flag low-impact forest fires in Botswana and Mozambique",
+    "location": "Chobe District, Botswana; Zambezia province, Mozambique",
+    "severity": 3,
+    "alert_level": "Green",
+    "event_type": "forest_fire",
+    "timestamp": "2026-10-16T16:23:00Z",
+    "updated": "2026-10-16T16:23:00Z",
+    "update_note": "Adds GDACS 1032672 (32,246 ha, Zambezia) and GDACS people-in-burned-area counts; limits burning-season context to Botswana.",
+    "source_urls": [
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032764",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032671",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032745",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032672",
+      "https://www.gdacs.org/report.aspx?eventid=1032764&eventtype=WF",
+      "https://www.gdacs.org/report.aspx?eventid=1032745&eventtype=WF",
+      "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-5586/egusphere-2026-5586.pdf",
+      "https://dailynews.gov.bw/news-detail/88742"
+    ],
+    "body": "# Satellite monitors flag low-impact forest fires in Botswana and Mozambique\n\n*Updated Oct. 16, 2026: Adds a larger fire in Mozambique's Zambezia province and GDACS counts of people living in the burned areas.*\n\nA global disaster-alert system has recorded four forest fires in southern Africa this month: one in northern Botswana and three in central Mozambique. The system rated all four at its lowest alert level.\n\nThe Global Disaster Alert and Coordination System, or GDACS, rated each fire \"Green,\" its lowest alert level. GDACS says such fires \"can have a low humanitarian impact based on the burned area and the affected population and their vulnerability.\"\n\nIn Botswana, a fire in the Chobe District burned from Oct. 12 to Oct. 13, according to GDACS event data. The system's latest figure puts the burned area at 7,856 hectares, about 19,400 acres. GDACS listed zero people living in the burned area.\n\nIn Mozambique, about 1,250 kilometers to the northeast, GDACS logged three fires in Zambezia province. The largest burned about 32,246 hectares, roughly 79,700 acres, from Oct. 5 to Oct. 16. A second burned 11,196 hectares from Oct. 6 to Oct. 14, and GDACS counted 599 people living in its burned area. A third burned 5,655 hectares from Oct. 6 to Oct. 13, with 1,754 people in its burned area. GDACS did not report casualties or damage for any of the fires.\n\nNo source reviewed for this report identified what caused any of the fires, and no source links the Mozambique fires to the one in Botswana. Nexus News Media found no news coverage of these specific events in Botswanan or Mozambican media, and the GDACS media feeds for three of the fires returned no items.\n\nThe Botswana fire falls within that country's usual burning season. A research preprint posted on EGUsphere, which has not been peer reviewed, says Botswana fires \"typically begin in May and intensify markedly from August through October as vegetation dries, fuel loads accumulate, and hot, dry, and windy conditions prevail.\" Botswana's government-run Daily News has said the country's fire season runs from May to November.\n\nGDACS builds its fire alerts from satellite detections and estimates impact from burned area and nearby population. Its figures can change as new detections arrive. An earlier GDACS report page listed the Botswana fire at 6,889 hectares, which may reflect an earlier detection.\n\nNexus News Media will update this report if officials release information on causes or damage."
+  },
+  {
+    "slug": "indonesia-forest-fires-haze-oct-2026",
+    "title": "Indonesia battles worst forest fires in over a decade as haze spreads across region",
+    "location": "Indonesia (national; GDACS events in South Sumatra, West Papua, South Papua, North Maluku)",
+    "severity": 3,
+    "alert_level": "GDACS Green (lowest) for all four mapped events",
+    "event_type": "forest_fire",
+    "timestamp": "2026-10-16T16:23:00Z",
+    "source_urls": [
+      "https://www.independent.co.uk/asia/southeast-asia/wildfires-indonesia-smog-deaths-orangutans-b3067917.html",
+      "https://en.vietnamplus.vn/indonesia-records-over-283000-respiratory-illness-cases-amid-forest-fires-post353828.vnp",
+      "https://www.rnz.co.nz/news/pacific/1950440/haze-over-papua-from-forest-fires-causes-mass-disruptions-health-issues",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032658",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032659",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032748",
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032578",
+      "https://www.channelnewsasia.com/asia/prabowo-approves-foreign-help-tackle-fires-causing-regional-haze-says-indonesian-foreign-minister-6462316",
+      "https://en.antaranews.com/news/435385/bnpb-launches-weather-modification-to-mitigate-wildfire-in-west-papua",
+      "https://www.gdacs.org/report.aspx?eventid=1032578&eventtype=WF"
+    ],
+    "body": "# Indonesia battles worst forest fires in over a decade as haze spreads across region\n\nIndonesia is fighting its worst forest and land fires in more than a decade, The Independent reported Friday. Four members of a firefighting team died, and the government has agreed to accept foreign help.\n\nSatellites detected about 799 hotspots nationwide as of Thursday, up from 372 the day before, the forestry ministry said, according to The Independent. Most hotspots were in Sumatra and Borneo.\n\nThe four victims belonged to a 12-member team of national park officers, community fire brigade members, volunteers and security personnel. They were fighting a wildfire in Bromo Tengger Semeru National Park in East Java's Probolinggo regency when smoke and flames trapped them, The Independent reported.\n\n\"The president has already expressed his approval and the matter is currently being discussed at the technical level within the BNPB,\" Foreign Minister Arrmanatha Nasir said, according to The Independent. BNPB is Indonesia's disaster mitigation agency. The government has deployed about 60,000 people to fight fires across six provinces, Arrmanatha said, according to CNA. He did not say which countries had offered help or what form it would take, CNA reported.\n\nIndonesia's health ministry has recorded 283,270 cases of acute respiratory infection in fire-affected areas from Aug. 18 to Oct. 13, the Vietnam News Agency reported.\n\nSmoke has also reached neighboring countries. Radio New Zealand reported that haze from fires in Indonesia, including West Papua, has disrupted flights and caused respiratory problems in the region, and is also affecting Papua New Guinea. In Indonesia's Mimika Regency in Central Papua, thick haze from fires in South Papua's Merauke Regency has blanketed the area, RNZ reported, citing Jubi News. Early childhood centers and a primary school there have temporarily closed, and students have switched to remote learning, RNZ reported. RNZ said the fires are concentrated in areas of large-scale land and forest clearance, often for oil palm plantations, and that prolonged dry conditions from an intensifying El Niño have made them worse.\n\nIn West Papua, BNPB has run weather modification operations to reduce haze, prioritizing the Fakfak, Teluk Bintuni and Kaimana districts, the state news agency ANTARA reported. ANTARA said the operation was scheduled to end Oct. 15. The meteorological agency BMKG recorded 73 hotspots in West Papua as of Oct. 13, ANTARA said.\n\nAuthorities have evacuated at least 46 orangutans from fire-affected areas in West Kalimantan and other parts of Borneo, The Independent reported.\n\nThe Global Disaster Alert and Coordination System, or GDACS, has mapped four fires in Indonesia since Sept. 29, each rated \"Green,\" the system's lowest alert level. The largest, in South Sumatra, burned about 11,183 hectares through Oct. 14, and GDACS counted 1,585 people living in its burned area. Three others, in West Papua, South Papua and North Maluku, each burned about 6,000 to 6,500 hectares and ended Oct. 12 or 13. These four alerts represent only a small part of the wider crisis.\n\n\nNexus News Media will update this report as Indonesian authorities release new figures."
+  },
+  {
+    "slug": "fiji-region-deep-earthquake-oct-2026",
+    "title": "Deep magnitude 5.9 earthquake strikes Fiji region, no tsunami threat",
+    "location": "Fiji region, at sea (approx. 20.99S, 178.77W)",
+    "severity": 3,
+    "alert_level": "GDACS Green; USGS PAGER green",
+    "event_type": "earthquake",
+    "timestamp": "2026-10-16T16:10:00Z",
+    "source_urls": [
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1571524",
+      "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u28y"
+    ],
+    "body": "# Deep magnitude 5.9 earthquake strikes Fiji region, no tsunami threat\n\nA magnitude 5.9 earthquake struck deep beneath the sea in the Fiji region at 10:49 GMT on Oct. 14, the U.S. Geological Survey reported.\n\nThe quake hit at a depth of about 585 kilometers, or 364 miles, the USGS said. The agency gave it a green alert in its PAGER impact system, its lowest level, and did not flag a tsunami threat.\n\nThe Global Disaster Alert and Coordination System, or GDACS, reported the same magnitude, time and depth and also rated the quake Green, its lowest alert level.\n\nNexus News Media found no reports of damage, injuries or people feeling the shaking."
+  },
+  {
+    "slug": "northeastern-nigeria-wildfire-oct-2026",
+    "title": "Satellite alert flags low-impact wildfire in northeastern Nigeria",
+    "location": "Northeastern Nigeria (approx. 12.74N, 13.92E)",
+    "severity": 2,
+    "alert_level": "GDACS Green",
+    "event_type": "forest_fire",
+    "timestamp": "2026-10-16T16:10:00Z",
+    "source_urls": [
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1032793"
+    ],
+    "body": "# Satellite alert flags low-impact wildfire in northeastern Nigeria\n\nA wildfire burned about 7,464 hectares, roughly 18,400 acres, in far northeastern Nigeria from Oct. 7 to Oct. 14, according to the Global Disaster Alert and Coordination System.\n\nGDACS rated the fire Green, its lowest alert level, based on satellite data from the Global Wildfire Information System. The fire's coordinates place it toward the Lake Chad basin.\n\nNo source reviewed for this report identified a cause, casualties or damage, and Nexus News Media found no news coverage of the fire.\n\nNexus News Media will update this report if more information becomes available."
+  },
+  {
+    "slug": "tripoli-libya-flooding-oct-2026",
+    "title": "Flash flooding in Tripoli kills at least one, prompts investigation",
+    "location": "Tripoli, Libya",
+    "severity": 2,
+    "alert_level": "GDACS Green",
+    "event_type": "flood",
+    "timestamp": "2026-10-16T16:10:00Z",
+    "source_urls": [
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=FL&eventid=1104231",
+      "https://libyaherald.com/2026/10/tripoli-government-to-launch-investigation-in-causes-of-road-floods-will-not-cover-up-its-findings",
+      "https://article.wn.com/view/2026/10/14/Two_die_as_torrential_rains_flood_Libyas_capital_Tripoli/"
+    ],
+    "body": "# Flash flooding in Tripoli kills at least one, prompts investigation\n\nTorrential rain flooded Libya's capital, Tripoli, on Tuesday, killing at least one person, the Libya Herald reported. Some reports put the death toll at two.\n\nThe city received about 152 millimeters of rain in a single day, according to the Libya Herald. The paper said that compares with an annual national average of 200 to 400 millimeters and an October average of 25 to 42 millimeters.\n\n\"At least one person drowned,\" the Libya Herald reported. A separate report carried by the WN.com news aggregator, whose original outlet could not be identified, said the flooding killed \"at least two people,\" citing authorities and local media. That report said the Libyan Red Crescent deployed emergency teams as downpours flooded neighborhoods and damaged buildings and vehicles.\n\nIssam al-Tamouni, housing minister in the Tripoli-based government, announced a technical investigation into the flooding of city roads.\n\n\"What has come to light is a painful reality and proof that some roads did not meet the required standards,\" al-Tamouni said, according to the Libya Herald. \"We will launch a technical investigation, and we will not cover up its findings.\"\n\nHe said the government would begin paying the first installment of compensation next week, the paper reported in its Oct. 15 edition.\n\nThe Global Disaster Alert and Coordination System, or GDACS, logged the flood in Tripoli from Oct. 13 to Oct. 15 and rated it Green, its lowest alert level, based on data from the Global Flood Awareness System.\n\nNexus News Media found no statement on the flooding from Libya's national authorities and has not independently confirmed the casualty figures with the Libyan Red Crescent or the U.N. humanitarian office.\n\nNexus News Media will update this report as officials release casualty and damage figures."
+  },
+  {
+    "slug": "tropical-storm-simon-baja-oct-2026",
+    "title": "Tropical Storm Simon weakens off Mexico's Baja California coast",
+    "location": "Offshore Baja California Sur, Mexico (approx. 20.6N 109.5W)",
+    "severity": 4,
+    "alert_level": "Green",
+    "alert_note": "Current GDACS episode is Green; the overall Orange rating reflects Simon's earlier, stronger phase. Storm has since weakened.",
+    "event_type": "tropical_cyclone",
+    "timestamp": "2026-10-16T16:10:00Z",
+    "source_urls": [
+      "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001335",
+      "https://www.nhc.noaa.gov/text/MIATCPEP5.shtml",
+      "https://www.nhc.noaa.gov/text/MIATCDEP5.shtml",
+      "https://www.indiatoday.in/science/story/hurricane-simon-was-so-powerful-that-it-created-gravity-waves-see-satellite-pics-3016932-2026-10-14"
+    ],
+    "body": "# Tropical Storm Simon weakens off Mexico's Baja California coast\n\nTropical Storm Simon is weakening over open water south of Mexico's Baja California peninsula, and forecasters expect it to fall apart this weekend, the U.S. National Hurricane Center said Friday.\n\nAs of Advisory No. 37, issued at 15:00 GMT on Oct. 16, Simon had maximum sustained winds of 40 mph, or 65 kph. Its center sat about 160 miles, or 260 kilometers, south of Cabo San Lucas, and it was moving northwest roughly parallel to Baja California Sur.\n\n\"There are no coastal watches or warnings in effect,\" the hurricane center said.\n\nThe center said wind shear and dry air are weakening the storm. \"Southwesterly vertical wind shear and dry mid-level air are taking a toll on Simon this morning,\" forecasters wrote. They expect Simon to become a post-tropical remnant low on Saturday and to dissipate within 48 hours.\n\nThe storm's main threat to land comes from swells. The hurricane center said the swells \"are likely to cause life-threatening surf and rip current conditions\" along parts of west-central Mexico and Baja California Sur.\n\nThe Global Disaster Alert and Coordination System, or GDACS, still lists an overall Orange alert for Simon. That rating appears to reflect the storm's stronger phase earlier in its life, which began Oct. 7. GDACS rates the current episode Green, its lowest level. A GDACS model estimates that about 62 people fall within the storm's Category 1 wind zone, but no land warnings are in effect.\n\nEarlier this week, Simon drew attention as a hurricane. India Today reported on Oct. 14 that a satellite captured Hurricane Simon creating gravity waves.\n\nNo damage or casualties had been reported in the sources reviewed for this report.\n\nNexus News Media will update this report if the hurricane center's forecast changes."
+  }
+]
