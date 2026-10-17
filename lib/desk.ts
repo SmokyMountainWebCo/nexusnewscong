@@ -119,7 +119,8 @@ const ROOM_ALIASES: Record<string, string[]> = {
   summary: ['summary'],
   'war-room': ['war-room', 'war', 'conflict'],
   press: ['press', 'press-room'],
-  'market-movers': ['markets', 'market', 'market-movers', 'market-movers'],
+  markets: ['markets', 'market', 'market-movers'],
+  'market-movers': ['markets', 'market', 'market-movers'],
   conspiracy: ['conspiracy', 'misinformation', 'disinformation', 'fact-check', 'factcheck'],
 };
 
@@ -151,7 +152,7 @@ export function quotesForStory(story: SearchStory): StoryQuote[] {
   }];
 }
 
-export type FactCheckTone = 'debunk' | 'confirmation' | 'unset';
+export type FactCheckTone = 'debunk' | 'confirmation' | 'mixed' | 'unset';
 
 export function isFactCheckStory(story: SearchStory): boolean {
   if (normalizeToken(story.eventType) === 'fact check') return true;
@@ -162,6 +163,7 @@ export function factCheckLabel(verdictType: string | null): { tone: FactCheckTon
   const value = normalizeToken(verdictType);
   if (value === 'debunk') return { tone: 'debunk', label: 'Debunked' };
   if (value === 'confirmation') return { tone: 'confirmation', label: 'Confirmed' };
+  if (value === 'mixed') return { tone: 'mixed', label: 'Mixed' };
   return { tone: 'unset', label: 'Fact-check' };
 }
 

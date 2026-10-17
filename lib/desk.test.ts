@@ -97,6 +97,8 @@ const verdicts = parseSearchIndex([
   { slug: 'debunked-claim', title: 'A debunked claim', event_type: 'fact-check', verdict_type: 'debunk', rating: 'False' },
   { slug: 'confirmed-claim', title: 'A confirmed claim', event_type: 'fact_check', verdict_type: 'confirmation', rating: 'True' },
   { slug: 'open-claim', title: 'An open check', tags: ['fact-check'], rating: null },
+  { slug: 'mixed-claim', title: 'A mixed claim', event_type: 'fact-check', verdict_type: 'mixed', rating: 'Mixture' },
+  { slug: 'prebunk-claim', title: 'A prebunk', event_type: 'fact-check', verdict_type: 'Mixed', rating: 'Prebunk' },
 ]);
 assert.equal(factCheckLabel(verdicts[0].verdictType).label, 'Debunked');
 assert.equal(factCheckLabel(verdicts[0].verdictType).tone, 'debunk');
@@ -105,6 +107,11 @@ assert.equal(factCheckLabel(verdicts[1].verdictType).label, 'Confirmed');
 assert.equal(factCheckLabel('Confirmation').tone, 'confirmation');
 assert.equal(verdicts[2].rating, null);
 assert.equal(factCheckLabel(verdicts[2].verdictType).label, 'Fact-check');
+assert.equal(factCheckLabel(verdicts[3].verdictType).label, 'Mixed');
+assert.equal(factCheckLabel(verdicts[3].verdictType).tone, 'mixed');
+assert.equal(verdicts[3].rating, 'Mixture');
+assert.equal(factCheckLabel(verdicts[4].verdictType).tone, 'mixed');
+assert.equal(verdicts[4].rating, 'Prebunk');
 assert.equal(isFactCheckStory(verdicts[2]), true);
 assert.equal(isFactCheckStory(marketFile[0]), false);
 

@@ -7,7 +7,7 @@ const ROOMS = [
   { href: '/war-room', id: 'war-room', label: 'War room' },
   { href: '/press', id: 'press', label: 'Press room' },
   { href: '/conspiracy', id: 'conspiracy', label: 'Conspiracy room' },
-  { href: '/market-movers', id: 'market-movers', label: 'Market movers' },
+  { href: '/markets', id: 'markets', label: 'Market movers' },
   { href: '/account', id: 'account', label: 'Account' },
 ];
 

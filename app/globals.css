@@ -372,6 +372,7 @@ img { max-width: 100%; }
 .nx-feed-note { color: #e7c27a; font-weight: 600; }
 .nx-story-card--debunk { border-color: #a84a45; background: rgba(255, 155, 147, 0.1); }
 .nx-story-card--confirmation { border-color: #3d7a58; background: rgba(183, 243, 204, 0.1); }
+.nx-story-card--mixed { border-color: #ffc56d; background: rgba(255, 197, 109, 0.12); }
 .nx-story-card--unset { border-color: #6d829f; }
 .nx-fact { display: grid; gap: 6px; margin-bottom: 8px; }
 .nx-verdict {
@@ -387,6 +388,7 @@ img { max-width: 100%; }
 }
 .nx-verdict--debunk { background: var(--red); color: var(--red-ink); }
 .nx-verdict--confirmation { background: var(--green); color: var(--green-ink); }
+.nx-verdict--mixed { background: #ffc56d; color: var(--orange-ink); }
 .nx-verdict--unset { background: var(--unknown); color: var(--unknown-ink); }
 .nx-rating { margin: 0; font-family: var(--mono); font-size: 14px; }
 .nx-story-card.is-selected { border-color: #6d829f; background: var(--surface-2); }
