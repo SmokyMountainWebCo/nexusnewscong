@@ -5,27 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NEXUS • Real-Time Intelligence Network — Satellites, X, primary sources, court docs. Live threat intelligence powered by AI.">
     <title>NEXUS • Real-Time Intelligence Network</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap');
-        
         :root {
             --pulse: #14b8a6;
+            --ink: #e8eef2;
+            --bg: #070b10;
+            --muted: #9aabba;
         }
-        
+
         * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
+            box-sizing: border-box;
         }
-        
-        .tail-container * {
-            font-family: 'Inter', system_ui, sans-serif;
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
         }
-        
+
         .header-font {
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        .live-pulse​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+        .live-pulse {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pulse);
+            box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+            animation: pulse 2s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            100% { box-shadow: 0 0 0 12px rgba(20, 184, 166, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .live-pulse { animation: none; }
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 28px 24px 8px;
+        }
+
+        .wordmark {
+            margin: 0;
+            font-size: clamp(2.4rem, 8vw, 4.5rem);
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+        }
+
+        .wordmark span {
+            display: block;
+            font-size: 0.42em;
+            letter-spacing: 0.28em;
+            color: var(--pulse);
+        }
+
+        main {
+            max-width: 40rem;
+            padding: 12px 24px 48px;
+        }
+
+        p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="live-pulse" aria-hidden="true"></span>
+        <h1 class="wordmark header-font">NEXUS<span>NEWS</span></h1>
+    </header>
+    <main>
+        <p>Real-time intelligence network. Satellites, primary sources, and court documents, read from the Nexus desk.</p>
+    </main>
+</body>
+</html>

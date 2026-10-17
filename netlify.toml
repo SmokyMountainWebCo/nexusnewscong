@@ -1,6 +1,10 @@
-# Netlify config for the Smoky Mountain Web Co. static site.
-# Publishes the pre-built site in smoky-mountain-site/ with no build step,
-# overriding any framework auto-detection from package.json.
+# Nexus News Media desk. Netlify builds the Next.js app in this repo.
+# The older Smoky Mountain snapshot lives in smoky-mountain-site/ and has its
+# own netlify.toml. Point a site at that base directory to publish the snapshot.
+# smokymountainwebco.netlify.app is a newer site and does not match this folder.
 [build]
-  publish = "smoky-mountain-site"
-  command = "echo 'static site - nothing to build'"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

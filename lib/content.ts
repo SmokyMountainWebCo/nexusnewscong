@@ -8,6 +8,7 @@ export type StoryCard = {
   slug: string;
   title: string;
   date: string | null;
+  timestamp: string | null;
   eventType: string | null;
   alertLevel: string | null;
   alertNote: string | null;
@@ -120,6 +121,34 @@ export function readFeedStatus(top: unknown, meta?: unknown): FeedStatus {
   return primary?.toLowerCase() === 'unavailable' ? 'unavailable' : 'ok';
 }
 
+type WhenSource = {
+  date?: string | null;
+  updated?: string | null;
+  timestamp?: string | null;
+};
+
+export function storyDateline(...sources: Array<WhenSource | null | undefined>): string | null {
+  const present = sources.filter((source): source is WhenSource => Boolean(source));
+  const pick = (key: keyof WhenSource) => {
+    for (const source of present) {
+      const value = source[key];
+      if (!value) continue;
+      return formatDeskDate(value) || value;
+    }
+    return null;
+  };
+  return pick('date') || pick('updated') || pick('timestamp');
+}
+
+export function formatDeskClock(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short',
+  }).format(date);
+}
+
 export function formatDeskDate(raw: string | null): string | null {
   if (!raw) return null;
   if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
@@ -175,6 +204,7 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       slug: slug || path,
       title,
       date: asString(item.date),
+      timestamp: asString(item.timestamp),
       eventType: asString(item.event_type),
       alertLevel: asString(item.alert_level),
       alertNote: asString(item.alert_note),

@@ -10,7 +10,9 @@ import {
   parseMarkdown,
   parseStoryIndex,
   parseStoryMarkdown,
+  formatDeskClock,
   storyBadge,
+  storyDateline,
   stripMatchingHeading,
   updatedLabel,
 } from './content.ts';
@@ -137,6 +139,34 @@ assert.equal(corrected.updateNote, 'Burned area revised after a later pass.');
 assert.equal(corrected.alertNote, 'Stays Green because expected impact is still low.');
 assert.equal(updatedLabel(corrected.updated), 'Updated Oct 16, 2026, 6:30 PM UTC');
 assert.equal(updatedLabel(null), null);
+assert.equal(storyDateline({ date: '2026-10-01', updated: '2026-10-16T23:50:00Z', timestamp: '2026-01-01T00:00:00Z' }), 'October 1, 2026');
+assert.equal(storyDateline({ date: null, updated: '2026-10-16T23:50:00Z', timestamp: '2026-01-01T00:00:00Z' }), 'Oct 16, 2026, 11:50 PM UTC');
+assert.equal(storyDateline({ date: null, updated: null, timestamp: '2026-10-16T23:50:00Z' }), 'Oct 16, 2026, 11:50 PM UTC');
+assert.equal(storyDateline(null, {}), null);
+
+const watiRaw = fs.readFileSync(
+  path.join(root, 'public/stories/tropical-cyclone-wati-cook-islands-oct-2026.md'),
+  'utf8'
+);
+const watiDoc = parseStoryMarkdown(watiRaw);
+const watiCard = parsedIndex.stories.find((story) => story.slug === 'tropical-cyclone-wati-cook-islands-oct-2026');
+assert.ok(watiCard);
+assert.equal(watiCard.date, null);
+assert.equal(watiDoc.date, null);
+assert.equal(storyDateline(watiDoc, watiCard), 'Oct 16, 2026, 11:50 PM UTC');
+
+const clockSample = new Date('2026-07-01T16:00:00Z');
+const clock = formatDeskClock(clockSample);
+assert.equal(
+  clock,
+  new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short',
+  }).format(clockSample)
+);
+assert.equal(/EDT$/.test(clock), new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).formatToParts(clockSample).some((part) => part.type === 'timeZoneName' && part.value === 'EDT'));
 
 const indexed = parseStoryIndex({
   stories: [

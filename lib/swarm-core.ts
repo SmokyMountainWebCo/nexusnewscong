@@ -1,8 +1,10 @@
+import { formatDeskClock } from './content';
+
 const swarmCore = {
   // Self-owned Grok-emulated multi-agent intelligence core
   async ask(message: string) {
     // This is where the full autonomous swarm runs (cross-referencing sources, self-healing, etc.)
-    const response = `🚀 NEXUS SWARM ONLINE • ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' })} EDT\n\nCross-referenced thousands of primary sources in real time.\nDivergence flagged where needed.\n\nYour message: ${message}\n\nCore facts stable. Security Swarm active. System self-healing and stronger than before.`;
+    const response = `🚀 NEXUS SWARM ONLINE • ${formatDeskClock(new Date())}\n\nCross-referenced thousands of primary sources in real time.\nDivergence flagged where needed.\n\nYour message: ${message}\n\nCore facts stable. Security Swarm active. System self-healing and stronger than before.`;
     return response;
   },
 

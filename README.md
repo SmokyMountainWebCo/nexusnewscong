@@ -1,8 +1,10 @@
 # Nexus News Media
 
-The product frontend is a Next.js App Router desk in `app/`. It is not the static Smoky Mountain site in `smoky-mountain-site/`, and it does not read stories or map layers from Supabase.
+The product frontend is a Next.js App Router desk in `app/`. It is not the static Smoky Mountain site in `smoky-mountain-site/`. Published content is static files under `public/`.
 
-`lib/supabaseClient.ts` is unused by the desk. Published content is static files under `public/`.
+Netlify builds this app from the root `netlify.toml` (`npm run build`, publish `.next`, `@netlify/plugin-nextjs`). `smokymountainwebco.netlify.app` is a newer Smoky Mountain page than `smoky-mountain-site/index.html` and does not match this repo, so it does not appear to be deployed from here. The snapshot’s own config is `smoky-mountain-site/netlify.toml`. A site that should keep publishing that folder needs its base directory set to `smoky-mountain-site`.
+
+The desk clock uses the viewer’s local time zone. `Intl` supplies the abbreviation, so it is not hardcoded to EDT. A story dateline uses `date`, then `updated`, then `timestamp`, from the markdown first and the index after that. `POST /api/ask-grok` is the ask route.
 
 ## What the publisher commits
 
@@ -34,12 +36,13 @@ The desk lists stories from `public/stories/index.json` (served at `/stories/ind
 | `generated_at` | no | Shown as the index time. ISO-8601. |
 | `stories[].slug` | yes | Identity. Also the default filename. |
 | `stories[].title` | yes | Card and article title if the file has none. |
-| `stories[].date` | no | Card date, `YYYY-MM-DD` or ISO-8601. |
+| `stories[].date` | no | Card date, `YYYY-MM-DD` or ISO-8601. First choice for the dateline. |
+| `stories[].updated` | no | ISO-8601 UTC. Press Room cards show an Updated label. Also the dateline when `date` is absent. Front matter wins if both are set. |
+| `stories[].timestamp` | no | ISO-8601 UTC. Dateline when `date` and `updated` are both absent. |
 | `stories[].event_type` | no | Shown as a label. Underscores are spaced. |
 | `stories[].alert_level` | no | Badge text. The words Green, Orange, or Red set the color. |
 | `stories[].alert_note` | no | Short reason for the alert level. Caption beside the article badge. Front matter wins if both are set. |
 | `stories[].summary` | no | Card deck. |
-| `stories[].updated` | no | ISO-8601 UTC. Press Room cards show an Updated label with that time. |
 | `stories[].update_note` | no | Short correction text. Shown in the article notice. Front matter wins if both are set. |
 | `stories[].path` | no | Fetch path. Defaults to `/stories/<slug>.md`. |
 
@@ -57,8 +60,8 @@ YAML front matter between `---` lines. Unknown fields are ignored. These are rea
 | `updated` | Optional ISO-8601 UTC correction time. Press Room cards show `Updated` plus that time. The article notice repeats it. |
 | `update_note` | Optional short correction. When set, an update notice at the top of the article shows this text. |
 | `event_type` | Label. |
-| `date` | Display date. |
-| `timestamp` | ISO-8601 UTC, used if `date` is absent. |
+| `date` | Display date. First choice for the dateline. |
+| `timestamp` | ISO-8601 UTC. Dateline after `date` and `updated`. |
 | `location` | Single dateline string. |
 | `locations` | YAML list of dateline strings. |
 | `sources` | YAML list of http(s) URLs, printed under the article. |

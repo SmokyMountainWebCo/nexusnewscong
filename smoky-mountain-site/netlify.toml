@@ -1,0 +1,6 @@
+# Static snapshot of an older Smoky Mountain Web Co. page.
+# Netlify uses this file when the site's base directory is smoky-mountain-site.
+# The repo root netlify.toml builds the Nexus News Media Next.js app instead.
+[build]
+  publish = "."
+  command = "echo 'static site - nothing to build'"

@@ -4,7 +4,9 @@ import { useEffect, useId, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import MarkdownBody from '@/components/MarkdownBody';
 import {
+  formatDeskClock,
   formatDeskDate,
+  storyDateline,
   isPublished,
   labelize,
   parseStoryIndex,
@@ -72,9 +74,9 @@ export default function NexusDesk() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' }) + ' EDT');
-    }, 1000);
+    const tick = () => setLiveTime(formatDeskClock(new Date()));
+    tick();
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -348,7 +350,7 @@ function SummaryRoom({
           <p className="nx-meta">
             {labelize(lead.doc?.eventType || lead.card.eventType)}
             {' · '}
-            {formatDeskDate(lead.doc?.date || lead.card.date) || 'Date not provided'}
+            {storyDateline(lead.doc, lead.card) || 'Date not provided'}
           </p>
           <h3>{lead.doc?.title || lead.card.title}</h3>
           <p>{lead.card.summary || 'No summary in the index.'}</p>
@@ -405,6 +407,7 @@ function PressRoom({
             const badge = storyBadge(story.doc?.alertLevel || story.card.alertLevel, story.doc?.severity);
             const selectedCard = selected?.card.slug === story.card.slug;
             const updated = updatedLabel(story.doc?.updated || story.card.updated);
+            const when = storyDateline(story.doc, story.card);
             return (
               <li key={story.card.slug}>
                 <button
@@ -417,7 +420,7 @@ function PressRoom({
                   <h3>{story.card.title}</h3>
                   <p className="nx-meta">
                     {labelize(story.card.eventType)}
-                    {story.card.date ? ` · ${formatDeskDate(story.card.date)}` : ''}
+                    {when ? ` · ${when}` : ''}
                   </p>
                   {updated ? <p className="nx-updated">{updated}</p> : null}
                   {story.card.summary ? <p>{story.card.summary}</p> : null}
@@ -458,7 +461,7 @@ function Article({ story }: { story: LoadedStory }) {
   const updatedText = updatedLabel(updated);
   const title = doc.title || story.card.title;
   const places = doc.locations.length ? doc.locations : doc.location ? [doc.location] : [];
-  const when = formatDeskDate(doc.date || doc.timestamp || story.card.date);
+  const when = storyDateline(doc, story.card);
   const body = stripMatchingHeading(doc.body, title);
   return (
     <article className="nx-story">
