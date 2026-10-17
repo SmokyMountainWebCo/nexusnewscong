@@ -14,6 +14,7 @@ export type StoryCard = {
   alertNote: string | null;
   summary: string | null;
   path: string;
+  tags: string[];
   updated: string | null;
   updateNote: string | null;
 };
@@ -30,6 +31,7 @@ export type StoryDoc = {
   location: string | null;
   locations: string[];
   sources: string[];
+  tags: string[];
   briefId: string | null;
   updated: string | null;
   updateNote: string | null;
@@ -210,6 +212,7 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       alertNote: asString(item.alert_note),
       summary: asString(item.summary),
       path,
+      tags: asStringList(item.tags),
       updated: asString(item.updated),
       updateNote: asString(item.update_note),
     });
@@ -245,6 +248,7 @@ export function parseStoryMarkdown(raw: string): StoryDoc {
     location: asString(data.location),
     locations: asStringList(data.locations),
     sources,
+    tags: asStringList(data.tags),
     briefId: asString(data.brief_id),
     updated: asString(data.updated),
     updateNote: asString(data.update_note),

@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "lib/content.test.ts"
+    "lib/content.test.ts",
+    "lib/desk.test.ts"
   ]
 }

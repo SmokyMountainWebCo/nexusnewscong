@@ -1,10 +1,12 @@
 # Nexus News Media
 
-The product frontend is a Next.js App Router desk in `app/`. It is not the static Smoky Mountain site in `smoky-mountain-site/`. Published content is static files under `public/`.
+The product frontend is a statically exported Next.js App Router desk in `app/`. It is not the static Smoky Mountain site in `smoky-mountain-site/`. Published content is static files under `public/`. There is no runtime API. Ask Nexus searches those files in the browser.
 
-Netlify builds this app from the root `netlify.toml` (`npm run build`, publish `.next`, `@netlify/plugin-nextjs`). `smokymountainwebco.netlify.app` is a newer Smoky Mountain page than `smoky-mountain-site/index.html` and does not match this repo, so it does not appear to be deployed from here. The snapshot’s own config is `smoky-mountain-site/netlify.toml`. A site that should keep publishing that folder needs its base directory set to `smoky-mountain-site`.
+Netlify builds this app from the root `netlify.toml` (`npm run build`, publish `out`). `smokymountainwebco.netlify.app` is a newer Smoky Mountain page than `smoky-mountain-site/index.html` and does not match this repo, so it does not appear to be deployed from here. The snapshot’s own config is `smoky-mountain-site/netlify.toml`. A site that should keep publishing that folder needs its base directory set to `smoky-mountain-site`.
 
-The desk clock uses the viewer’s local time zone. `Intl` supplies the abbreviation, so it is not hardcoded to EDT. A story dateline uses `date`, then `updated`, then `timestamp`, from the markdown first and the index after that. `POST /api/ask-grok` is the ask route.
+Each room has its own URL: `/summary`, `/war-room`, `/press`, `/press/<slug>`, `/conspiracy`, `/market-movers`, and `/account`. The nav tabs are links to those routes.
+
+The desk clock uses the viewer’s local time zone. `Intl` supplies the abbreviation, so it is not hardcoded to EDT. A story dateline uses `date`, then `updated`, then `timestamp`, from the markdown first and the index after that.
 
 ## What the publisher commits
 
@@ -73,12 +75,24 @@ A missing index, an empty `stories` array, or a missing markdown file is an empt
 
 The live example is `public/stories/botswana-mozambique-forest-fires-oct-2026.md`. Do not replace publisher files with samples.
 
+### Search, claims, briefs, and sources
+
+| File | Required | Use |
+|---|---|---|
+| `public/stories/search.json` | yes for Ask Nexus and beat lists | Full text, location, severity, tags, source URLs, `event_type`, and optional `as_of`, `verdict_type`, and `rating`. |
+| `public/kb/claims.json` | yes for claim lists | Claims with confidence, room, source links, and contradiction ids. |
+| `public/stories/sources.json` | no | Per-slug key findings and source links on the story page. Missing file leaves those sections off. |
+| `public/stories/briefs.json` | no | Per-slug suggested questions. Missing file leaves the section off. |
+
+Market stories are search rows whose `event_type` is `market` or `market movers` (also `markets`, `finance`, or `economy` tags). A trading day is one story. It may include `quotes`, an array of `{name, last, prev_close, change_pct, as_of, url}`. The Markets room and the story page render that array as a table: last price, previous close, a change chip, an as-of time, and a source link on each row, plus the story-level `as_of`. The chip color follows the severity band, Green 1–3, Orange 4–6, Red 7–10. A quote can carry its own `severity`; otherwise the story severity is used. When `quotes` is missing or empty, the table is one row built from the story fields `name` (or the title), `last`, `prev_close`, `change_pct`, `as_of`, and `url`. Fact-check stories use `event_type` `fact-check` or `fact_check`, or a matching tag. They stay in a list and do not need coordinates. `verdict_type` styles the card: `debunk` is a red Debunked label, `confirmation` is a green Confirmed label, and a missing value is a neutral Fact-check label. `rating` is printed exactly as written when it is not null.
+
 ### Map layers
 
 | File | URL | Layer |
 |---|---|---|
 | `public/layers/disaster_events.geojson` | `/layers/disaster_events.geojson` | Disaster |
 | `public/layers/conflict_events.geojson` | `/layers/conflict_events.geojson` | Conflict |
+| `public/layers/markets.geojson` | `/layers/markets.geojson` | Markets (optional) |
 
 Both files should stay present. An empty `features` array with `feed_status` `ok` — or with the field missing — is shown as **No current events**. A failed fetch is a separate “couldn’t load” state.
 
@@ -115,7 +129,9 @@ When the status is `unavailable`, the layer toggle, the legend, and that layer�
 }
 ```
 
-Coordinates are GeoJSON order, `[longitude, latitude]`. Missing geometry or coordinates outside the valid range are skipped.
+Coordinates are GeoJSON order, `[longitude, latitude]`. On the conflict and disaster layers, missing geometry or coordinates outside the valid range are skipped.
+
+`public/layers/markets.geojson` is optional. When the file is absent, the Markets room does not invent quotes. When it is present, every feature with a quote name is listed, including pairs such as BTC/USD and EUR/USD that have null geometry or no coordinates. Only features with a valid point are drawn on the markets map. Quote properties read, in order: name from `name`, `quote`, `symbol`, `pair`, or `ticker`; last price from `last_price`, `last`, or `price`; percent change from `change_pct`, `pct_change`, `percent_change`, `change_percent`, or `change`; severity from `severity_score` or `severity`. A positive change is a green chip and a negative change is a red chip. `feed_status: unavailable` prints “Markets feed temporarily unavailable” and still lists any quotes in the file.
 
 Marker color follows GDACS bands on `severity_score`: **Green 1–3, Orange 4–6, Red 7–10**. Size grows with the score. A missing or out-of-range score is a neutral marker, not a false alert. `verified: false` and a missing `verified` value get a dashed ring. Popups show the summary, timestamp, an http(s) source link when the URL is safe, the event window parsed from `bot_note`, and the full `bot_note`.
 
