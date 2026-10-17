@@ -1,369 +1,321 @@
 {
- "generated_at": "2026-10-17T01:35:26Z",
- "count": 20,
- "claims": [
-  {
-   "id": "c001",
-   "text": "Shooting at Silver Rail Elementary School, Bend, Oregon killed three children (5, 8, 11) and a teacher (5 dead total per AA); 16-year-old suspect shot by bystander.",
-   "room": "summary",
-   "sources": [
+  "generated_at": "2026-10-17T01:39:51Z",
+  "count": 18,
+  "claims": [
     {
-     "id": "bbc",
-     "name": "BBC News",
-     "url": "https://www.bbc.com/news/world"
+      "id": "c001",
+      "text": "Shooting at an elementary school in Bend, Oregon killed three children (5, 8, 11) and a teacher (5 dead total per AA, including the suspect); the 16-year-old suspect was shot by an armed parent.",
+      "room": "summary",
+      "sources": [
+        {
+          "id": "bbc",
+          "name": "BBC News",
+          "url": "https://www.bbc.com/news/articles/cv98zw1k8kp3o"
+        },
+        {
+          "id": "aa",
+          "name": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 90,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "aa",
-     "name": "Anadolu Agency",
-     "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 90,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c002",
-   "text": "School roof collapse in Khyber Pakhtunkhwa, Pakistan killed at least 33.",
-   "room": "summary",
-   "sources": [
-    {
-     "id": "xinhua",
-     "name": "Xinhua",
-     "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+      "id": "c002",
+      "text": "School roof collapse in Khyber Pakhtunkhwa, Pakistan killed at least 33.",
+      "room": "summary",
+      "sources": [
+        {
+          "id": "xinhua",
+          "name": "Xinhua",
+          "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 90,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "bbc",
-     "name": "BBC News",
-     "url": "https://www.bbc.com/news/world"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 90,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c003",
-   "text": "Houthi attack on Aden presidential palace compound killed 5, wounded 16 (Yemen govt); Houthis claim Saudi officers hit.",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "xinhua",
-     "name": "Xinhua",
-     "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+      "id": "c003",
+      "text": "Houthi attack on Aden presidential palace compound killed 5, wounded 16 (Yemen govt); Houthis claim Saudi officers hit.",
+      "room": "war-room",
+      "sources": [
+        {
+          "id": "xinhua",
+          "name": "Xinhua",
+          "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; corroborated by X search_news AI-generated trend summary, 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "x2",
-     "name": "X trending: Houthi attacks airports/Aden",
-     "url": "https://x.com/i/trending/2111072270991139285"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; corroborated by X search_news AI-generated trend summary, 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c004",
-   "text": "Saudi-led coalition: 20 attacks on King Khalid Intl Airport, Riyadh since Oct 1 killed 17, injured 330+.",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "xinhua",
-     "name": "Xinhua",
-     "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; figure attributed to coalition",
-   "contradictions": [
-    "c005"
-   ]
-  },
-  {
-   "id": "c005",
-   "text": "X summary: Houthi attacks on five Saudi airports since early Oct killed 19, injured 364 (KKIA alone 17).",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "x1",
-     "name": "X trending: Saudi intercepts",
-     "url": "https://x.com/i/trending/2111107704127132092"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 40,
-   "provenance": "X search_news AI-generated trend summary, 2026-10-16; unverified",
-   "contradictions": [
-    "c004"
-   ]
-  },
-  {
-   "id": "c006",
-   "text": "Coalition intercepted a drone over Saudi Eastern Province; Houthis claimed missile strike on Riyadh airport.",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "aa",
-     "name": "Anadolu Agency",
-     "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+      "id": "c004",
+      "text": "Saudi-led coalition: 20 attacks on King Khalid Intl Airport, Riyadh since Oct 1 killed 17, injured 330+.",
+      "room": "war-room",
+      "sources": [
+        {
+          "id": "xinhua",
+          "name": "Xinhua",
+          "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+        },
+        {
+          "id": "aa",
+          "name": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; figure attributed to coalition; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": [
+        "Anadolu Agency (https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527): 10 attacks on 5 airports Oct 5-11 killed 20, 18 of them at King Khalid Intl Airport, Riyadh"
+      ]
     },
     {
-     "id": "x1",
-     "name": "X trending: Saudi intercepts",
-     "url": "https://x.com/i/trending/2111107704127132092"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c007",
-   "text": "Trump ruled out using nuclear weapons against Iran.",
-   "room": "press",
-   "sources": [
-    {
-     "id": "aa",
-     "name": "Anadolu Agency",
-     "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; single source",
-   "contradictions": []
-  },
-  {
-   "id": "c008",
-   "text": "Ukraine struck a Russian oil refinery despite Trump demand; Starlink/Starshield service restored after throttling.",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "axios",
-     "name": "Axios",
-     "url": "https://www.axios.com/world/2026/10/16"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; Ukrainian official via Axios",
-   "contradictions": []
-  },
-  {
-   "id": "c009",
-   "text": "Ship attack reports near Strait of Hormuz at record high as oil exports slow.",
-   "room": "war-room",
-   "sources": [
-    {
-     "id": "bbc",
-     "name": "BBC News",
-     "url": "https://www.bbc.com/news/world"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; headline only",
-   "contradictions": []
-  },
-  {
-   "id": "c010",
-   "text": "Rubio pressed Lebanon's Aoun not to return seized explosives to Hezbollah.",
-   "room": "press",
-   "sources": [
-    {
-     "id": "axios",
-     "name": "Axios",
-     "url": "https://www.axios.com/world/2026/10/16"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c011",
-   "text": "Trump administration sued California over ~20,000 allegedly ineligible voters' mail ballots.",
-   "room": "press",
-   "sources": [
-    {
-     "id": "axios",
-     "name": "Axios",
-     "url": "https://www.axios.com/world/2026/10/16"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c012",
-   "text": "EU Brussels summit on competitiveness/energy prices; day one ended with differences and cancelled press conference.",
-   "room": "press",
-   "sources": [
-    {
-     "id": "xinhua",
-     "name": "Xinhua",
-     "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c013",
-   "text": "IEA members to accelerate release of 100M barrels; US extended Lukoil sanctions waiver through April.",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "aa",
-     "name": "Anadolu Agency",
-     "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; headlines only",
-   "contradictions": []
-  },
-  {
-   "id": "c014",
-   "text": "Oct 15 close: Dow +1.08% to 52,177.69; S&P 500 +0.33% to 7,744.06; Nasdaq +0.08% to 26,713.03.",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "afp",
-     "name": "AFP via Manila Times",
-     "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
+      "id": "c006",
+      "text": "Coalition intercepted a drone over Saudi Eastern Province; Houthis claimed missile strike on Riyadh airport.",
+      "room": "war-room",
+      "sources": [
+        {
+          "id": "aa",
+          "name": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "hdfc",
-     "name": "HDFC Sky",
-     "url": "https://hdfcsky.com/news/us-stock-market-close-dow-sp500-nasdaq-october-16-2026"
+      "id": "c007",
+      "text": "Trump ruled out using nuclear weapons against Iran.",
+      "room": "press",
+      "sources": [
+        {
+          "id": "aa",
+          "name": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; single source; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "saxo",
-     "name": "Saxo Bank",
-     "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 97,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": [
-    "c015"
-   ]
-  },
-  {
-   "id": "c015",
-   "text": "Saxo reports Dow close at 52,183.23 (vs 52,177.69 at AFP/HDFC).",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "saxo",
-     "name": "Saxo Bank",
-     "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; likely data-vendor discrepancy",
-   "contradictions": [
-    "c014"
-   ]
-  },
-  {
-   "id": "c016",
-   "text": "Kospi closed -7.6% (brief halt after >8% intraday drop); Nikkei -4.9% amid AI-investment worries.",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "afp",
-     "name": "AFP via Manila Times",
-     "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c017",
-   "text": "Rotation out of AI/chips: Nvidia -1.84%, AMD -1.50%; CoreWeave ~+5%.",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "saxo",
-     "name": "Saxo Bank",
-     "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c018",
-   "text": "Hot CPI/PPI; 10y yield hit 5.33% post-CPI, ~5.12% Fri morning; WTI ~$98.25, Brent ~$106.35; Nasdaq -2.4% WTD.",
-   "room": "markets",
-   "sources": [
-    {
-     "id": "inv",
-     "name": "Investopedia",
-     "url": "https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-10162026-12176848"
+      "id": "c008",
+      "text": "Ukraine struck a Russian oil refinery despite Trump demand; Starlink/Starshield service restored after throttling.",
+      "room": "war-room",
+      "sources": [
+        {
+          "id": "axios",
+          "name": "Axios",
+          "url": "https://www.axios.com/2026/10/15/ukraine-starlink-restored-strikes-russia-trump-musk"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; Ukrainian official via Axios; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     },
     {
-     "id": "afp",
-     "name": "AFP via Manila Times",
-     "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 90,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c019",
-   "text": "Japan agency cancelled mistaken M9.9 quake warning; trains disrupted.",
-   "room": "summary",
-   "sources": [
+      "id": "c009",
+      "text": "BBC Verify: a record 12 ships reported attacks near the Strait of Hormuz Oct. 5-11 as oil exports slowed.",
+      "room": "war-room",
+      "sources": [
+        {
+          "id": "bbc",
+          "name": "BBC News",
+          "url": "https://www.bbc.com/news/articles/cmde8dpg8g0no"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; headline only; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
     {
-     "id": "kyodo",
-     "name": "Kyodo News",
-     "url": "https://english.kyodonews.net/articles/-/88356"
-    }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 65,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  },
-  {
-   "id": "c020",
-   "text": "Istanbul flash floods: 3 dead, 5 missing.",
-   "room": "summary",
-   "sources": [
+      "id": "c010",
+      "text": "Rubio pressed Lebanon's Aoun not to return seized explosives to Hezbollah.",
+      "room": "press",
+      "sources": [
+        {
+          "id": "axios",
+          "name": "Axios",
+          "url": "https://www.axios.com/2026/10/15/lebanon-hezbollah-explosives-israel-rubio"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
     {
-     "id": "xinhua",
-     "name": "Xinhua",
-     "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+      "id": "c011",
+      "text": "Trump administration sued California over ~20,000 allegedly ineligible voters' mail ballots.",
+      "room": "press",
+      "sources": [
+        {
+          "id": "axios",
+          "name": "Axios",
+          "url": "https://www.axios.com/2026/10/15/trump-doj-california-voters-ballots-lawsuit"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c012",
+      "text": "EU Brussels summit on competitiveness/energy prices; day one ended with differences and cancelled press conference.",
+      "room": "press",
+      "sources": [
+        {
+          "id": "xinhua",
+          "name": "Xinhua",
+          "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c013",
+      "text": "IEA members to accelerate release of 100M barrels; US extended a Lukoil sanctions waiver through April covering only Lukoil-branded service stations abroad.",
+      "room": "markets",
+      "sources": [
+        {
+          "id": "aa",
+          "name": "Anadolu Agency",
+          "url": "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; headlines only; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c014",
+      "text": "Oct. 15 (Thursday) close: Dow +1.08% to 52,177.69; S&P 500 +0.33% to 7,744.06; Nasdaq +0.08% to 26,713.03.",
+      "room": "markets",
+      "sources": [
+        {
+          "id": "afp",
+          "name": "AFP via Manila Times",
+          "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
+        },
+        {
+          "id": "hdfc",
+          "name": "HDFC Sky",
+          "url": "https://hdfcsky.com/news/us-stock-market-close-dow-sp500-nasdaq-october-16-2026"
+        },
+        {
+          "id": "saxo",
+          "name": "Saxo Bank",
+          "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 97,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c016",
+      "text": "Kospi closed -7.6% (brief halt after >8% intraday drop); Nikkei -4.9% amid AI-investment worries.",
+      "room": "markets",
+      "sources": [
+        {
+          "id": "afp",
+          "name": "AFP via Manila Times",
+          "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c017",
+      "text": "Per Saxo Bank, the Oct. 15 session saw rotation out of AI/chips: Nvidia -1.84%, AMD -1.50%; CoreWeave ~+5%. Other outlets report different per-stock moves.",
+      "room": "markets",
+      "sources": [
+        {
+          "id": "saxo",
+          "name": "Saxo Bank",
+          "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c018",
+      "text": "Hot CPI/PPI data (PPI +6.3% y/y); the 10-year Treasury yield peaked at 5.33% after CPI; Nasdaq was down 2.4% for the week heading into Friday, Oct. 16.",
+      "room": "markets",
+      "sources": [
+        {
+          "id": "inv",
+          "name": "Investopedia",
+          "url": "https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-10162026-12176848"
+        },
+        {
+          "id": "afp",
+          "name": "AFP via Manila Times",
+          "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 75,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c019",
+      "text": "Japan agency cancelled mistaken M9.9 quake warning; trains disrupted.",
+      "room": "summary",
+      "sources": [
+        {
+          "id": "kyodo",
+          "name": "Kyodo News",
+          "url": "https://english.kyodonews.net/articles/-/88356"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 65,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
+    },
+    {
+      "id": "c020",
+      "text": "Istanbul flash floods: 3 dead, 5 missing.",
+      "room": "summary",
+      "sources": [
+        {
+          "id": "xinhua",
+          "name": "Xinhua",
+          "url": "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html"
+        }
+      ],
+      "timestamp": "2026-10-16T15:20:00Z",
+      "confidence": 55,
+      "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16; revised 2026-10-17T01:39:51Z per Compliance review_kb_claims_20261017T013835Z (article permalinks verified via WebSearch)",
+      "contradictions": []
     }
-   ],
-   "timestamp": "2026-10-16T15:20:00Z",
-   "confidence": 55,
-   "provenance": "Retrieved via WebSearch result excerpt (not full-page WebFetch) on 2026-10-16",
-   "contradictions": []
-  }
- ]
+  ]
 }
