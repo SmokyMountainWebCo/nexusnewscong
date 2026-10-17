@@ -1,0 +1,71 @@
+{
+  "tropical-cyclone-wati-cook-islands-oct-2026": {
+    "key_questions": [
+      "Where is Wati now and what is the official forecast track and timing relative to the Cook Islands?",
+      "What is Wati's current official classification and intensity?",
+      "Which communities make up the ~3,815 people GDACS lists as exposed, and what warnings or evacuations are in place?",
+      "What do local authorities in Cook Islands report about preparations, shelters, and infrastructure risk?",
+      "Has any damage or disruption actually been reported yet?"
+    ]
+  },
+  "tropical-storm-champi-guam-oct-2026": {
+    "key_questions": [
+      "Where is Champi now and what is the official forecast track and timing relative to Guam?",
+      "What is Champi's current official classification and intensity?",
+      "Which communities in Guam are exposed and what warnings are in place?",
+      "What do local authorities in Guam report about preparations, shelters, and infrastructure risk?",
+      "Has any damage or disruption actually been reported yet?"
+    ]
+  },
+  "botswana-mozambique-forest-fires-oct-2026": {
+    "key_questions": [
+      "How large are the burned areas behind these alerts, and are any fires still active after the GDACS end dates?",
+      "What do satellite detections (e.g. NASA FIRMS) show about fire activity in Mozambique and Botswana compared with a normal season?",
+      "Is there a genuine shared driver linking the fires in Mozambique and Botswana, or are these separate local events?",
+      "Are any of the fires near settlements, protected areas, or farmland, and are there health impacts from smoke?",
+      "What is driving the fires: land clearing, agriculture, drought, or heat?",
+      "How are authorities in Mozambique and Botswana responding?"
+    ]
+  },
+  "indonesia-forest-fires-haze-oct-2026": {
+    "key_questions": [
+      "How large are the burned areas behind these alerts, and are any fires still active after the GDACS end dates?",
+      "Are any of the fires near settlements, protected areas, or farmland, and are there health impacts from smoke?",
+      "What is driving the fires: land clearing, agriculture, drought, or heat?"
+    ]
+  },
+  "fiji-region-deep-earthquake-oct-2026": {
+    "key_questions": [
+      "Do USGS/EMSC confirm the magnitude, depth, and epicentre?",
+      "Was shaking felt in populated parts of Fiji, and is there any reported damage?",
+      "Was any tsunami threat assessed or issued?",
+      "Is this part of a sequence or unusual for the region?"
+    ]
+  },
+  "northeastern-nigeria-wildfire-oct-2026": {
+    "key_questions": [
+      "How large are the burned areas behind these alerts, and are any fires still active after the GDACS end dates?",
+      "What do satellite detections (e.g. NASA FIRMS) show about fire activity in Nigeria compared with a normal season?",
+      "Are any of the fires near settlements, protected areas, or farmland, and are there health impacts from smoke?",
+      "What is driving the fires: land clearing, agriculture, drought, or heat?",
+      "How are authorities in Nigeria responding?"
+    ]
+  },
+  "tripoli-libya-flooding-oct-2026": {
+    "key_questions": [
+      "Which areas or neighbourhoods flooded, and what caused it (rainfall, drainage, infrastructure)?",
+      "Is the flooding over or is more rain forecast?",
+      "What is the condition of infrastructure and services in affected areas?",
+      "Has this area flooded before, and what lessons were or were not applied?"
+    ]
+  },
+  "tropical-storm-simon-baja-oct-2026": {
+    "key_questions": [
+      "Where is SIMON-26 now and what is the official forecast track and timing relative to México?",
+      "What is SIMON-26's current official classification and intensity, given conflicting figures in the GDACS text?",
+      "Which communities make up the ~62 people GDACS lists as exposed, and what warnings or evacuations are in place?",
+      "What do local authorities in México report about preparations, shelters, and infrastructure risk?",
+      "Has any damage or disruption actually been reported yet?"
+    ]
+  }
+}

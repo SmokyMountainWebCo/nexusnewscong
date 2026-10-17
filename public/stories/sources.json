@@ -1,0 +1,199 @@
+{
+  "tropical-cyclone-wati-cook-islands-oct-2026": {
+    "key_findings": [
+      "RSMC Nadi Northern Cooks bulletin #9 (162335Z): Category 1 Tropical Cyclone Wati (01F) was centred at 12.2S 163.5W at 2100 UTC Oct. 16, 993 hPa, about 120 km north-northwest of Suwarrow, with sustained winds near 75 km/h, gusts to 100 km/h, moving southeast at about 14 km/h.",
+      "RSMC Nadi warnings in force: Tropical Cyclone Warning for Suwarrow; Strong Wind Warning for the rest of the Northern Cooks; Tropical Cyclone Alert for Aitutaki; Strong Wind Warning for the rest of the Southern Cooks.",
+      "Bulletin #9 forecasts the centre about 15 km south-southwest of Suwarrow around 11 p.m. Friday local time (about 0900 UTC Oct. 17), replacing the earlier 'about 50 km east' forecast; the Southern Cooks bulletin puts it about 100 km north of Aitutaki by 10 a.m. Sunday.",
+      "Forecast impacts: damaging gales of 65 km/h, gusts 90 km/h, on Suwarrow through Saturday morning with heavy rain and coastal inundation risk at high tide; on Aitutaki, damaging gales of 75 km/h, gusts 100 km/h, from early Sunday.",
+      "GDACS's Orange alert and its 3,815-person exposure figure are automated model estimates, not official figures.",
+      "No damage, casualties, evacuations or shelter openings were reported as of about 2347 UTC Oct. 16; the official Southwest Pacific cyclone season starts Nov. 1."
+    ],
+    "sources": [
+      {
+        "label": "Fiji Met (RSMC Nadi)",
+        "url": "https://www.met.gov.fj/warnings/"
+      },
+      {
+        "label": "JTWC Warning 002",
+        "url": "https://www.metoc.navy.mil/jtwc/products/sh0127web.txt"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1001339&episodeid=2&eventtype=TC"
+      },
+      {
+        "label": "Cook Islands News",
+        "url": "https://www.cookislandsnews.com/internal/national/outer-islands/weather/cook-islands-urged-to-prepare-as-tropical-cyclone-warning-issued-for-suwarrow/"
+      }
+    ]
+  },
+  "tropical-storm-champi-guam-oct-2026": {
+    "key_findings": [
+      "JTWC Warning 10 (issued 162100Z) upgraded Champi to Typhoon 29W: 75 kt, gusts 90 kt, 984 mb at 161800Z; at 162100Z it was near 12.0N 149.6E, about 328 nm east-southeast of Andersen AFB, moving west-northwest at 13 kt.",
+      "JTWC forecasts 105 kt, gusts 130 kt, at 13.0N 145.3E at 171800Z (the point its reasoning ties to closest approach to Guam), with a peak of 135 kt from 181800Z to 191800Z after passing Guam. JTWC's prognostic reasoning describes passage south of the island chain.",
+      "NWS Guam: Typhoon Warning for Guam and Rota; Tropical Storm Warning and Typhoon Watch for Tinian and Saipan; Coastal Flood Warning and High Surf Warning for all four islands (inundation 5-7 ft and surf up to 35 ft on Guam); Flood Watch to 4 p.m. ChST Oct. 18 with 12-20 in. of rain forecast for Guam.",
+      "GDACS raised its alert to Red (episode 10). Its figure of about 175,000 people in the Category 1+ wind zone is a model exposure estimate, not a count of people affected.",
+      "Guam remained in COR 2 as of 7:21 a.m. ChST Oct. 17. GMHA suspended elective services, the Coast Guard set Port Condition YANKEE ordering large commercial vessels out of port, and the Red Cross says up to 13 shelters will open; none confirmed open yet.",
+      "No damage, casualties or evacuation orders were reported in the sources checked."
+    ],
+    "sources": [
+      {
+        "label": "JTWC Warning 10",
+        "url": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt"
+      },
+      {
+        "label": "JTWC Prognostic Reasoning",
+        "url": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt"
+      },
+      {
+        "label": "NWS Guam",
+        "url": "https://api.weather.gov/alerts/active?zone=GUZ001,MPZ001,MPZ002,MPZ003"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=10&eventtype=TC"
+      },
+      {
+        "label": "Guam Homeland Security JIC Release 3",
+        "url": "https://ghs.guam.gov/jic-release-no-3-gmha-announces-expectant-mother-intake-plans-and-service-suspensions-uscg-sets-port"
+      },
+      {
+        "label": "American Red Cross",
+        "url": "https://www.redcross.org/about-us/news-and-events/news/2026/tropical-cyclone-heads-to-the-islands.html"
+      },
+      {
+        "label": "Pacific Daily News",
+        "url": "https://www.guampdn.com/news/governor-declares-state-of-emergency-in-anticipation-of-champi/article_2bce0b66-f2ec-450b-ae7f-bb833c669b4c.html"
+      }
+    ]
+  },
+  "botswana-mozambique-forest-fires-oct-2026": {
+    "key_findings": [
+      "GDACS/GWIS rates all four fires Green, its lowest alert level.",
+      "Zambezia, Mozambique: 5,655 ha with 1,754 people in the burned area (Oct. 6-13) and 11,196 ha with 599 people (Oct. 6-14).",
+      "A larger nearby Zambezia fire, GDACS event 1032672, burned 32,246 ha from Oct. 5-16.",
+      "Chobe District, Botswana: 7,856 ha with no people in the burned area (Oct. 12-13).",
+      "Botswana government Daily News says the country's fire season runs from May to November (background, not about this fire).",
+      "No news coverage, cause, official response or health impacts were found for these fires; the Zambezia and Chobe fires are about 1,250 km apart and no source links them."
+    ],
+    "sources": [
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1032745&eventtype=WF"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1032671"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1032764"
+      },
+      {
+        "label": "Botswana Daily News",
+        "url": "https://dailynews.gov.bw/news-detail/88742"
+      }
+    ]
+  },
+  "indonesia-forest-fires-haze-oct-2026": {
+    "key_findings": [
+      "CNA reports President Prabowo Subianto approved foreign assistance to fight the fires (announced Oct. 15), with about 60,000 people deployed across six provinces.",
+      "RNZ reports haze causing flight disruptions, respiratory problems and school closures, with smoke reaching Papua New Guinea.",
+      "Per RNZ, the fires are concentrated where land and forest have been cleared, often for oil palm, and worsened by prolonged dry conditions from an intensifying El Nino.",
+      "ANTARA reports BNPB weather-modification operations in West Papua prioritising Fakfak, Teluk Bintuni and Kaimana; BMKG recorded 73 hotspots in West Papua as of Oct. 13.",
+      "GDACS/GWIS rates four mapped Indonesian fires Green (lowest): 11,183 ha in South Sumatra with 1,585 people in the burned area, plus 6,056 ha (West Papua), 6,170 ha (North Maluku) and 6,470 ha (South Papua) with none."
+    ],
+    "sources": [
+      {
+        "label": "CNA",
+        "url": "https://www.channelnewsasia.com/asia/prabowo-approves-foreign-help-tackle-fires-causing-regional-haze-says-indonesian-foreign-minister-6462316"
+      },
+      {
+        "label": "RNZ",
+        "url": "https://www.rnz.co.nz/news/pacific/1950440/haze-over-papua-from-forest-fires-causes-mass-disruptions-health-issues"
+      },
+      {
+        "label": "ANTARA",
+        "url": "https://en.antaranews.com/news/435385/bnpb-launches-weather-modification-to-mitigate-wildfire-in-west-papua"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1032578&eventtype=WF"
+      }
+    ]
+  },
+  "fiji-region-deep-earthquake-oct-2026": {
+    "key_findings": [
+      "USGS confirms a magnitude 5.9 earthquake in the Fiji region at 10:49:47 UTC on Oct. 14, 2026, at a depth of 585 km.",
+      "USGS PAGER alert is green and its tsunami flag is 0; GDACS rates the quake Green with few people within 100 km.",
+      "No damage, felt reports or tsunami threat were found."
+    ],
+    "sources": [
+      {
+        "label": "USGS",
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u28y"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1571524"
+      }
+    ]
+  },
+  "northeastern-nigeria-wildfire-oct-2026": {
+    "key_findings": [
+      "GDACS/GWIS records a Green-alert (lowest level) fire in northeastern Nigeria from Oct. 7-14, 2026, with about 7,464 hectares burned.",
+      "No news coverage, cause, casualties or displacement were found."
+    ],
+    "sources": [
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1032793"
+      }
+    ]
+  },
+  "tripoli-libya-flooding-oct-2026": {
+    "key_findings": [
+      "Torrential rain flooded Tripoli on Tuesday, Oct. 13; Libya Herald reports about 152 mm fell in a day, against an October average of 25-42 mm.",
+      "Libya Herald says at least one person drowned; an aggregated report on WN.com, citing authorities and local media, says at least two died.",
+      "Housing Minister Issam al-Tamouni announced a technical investigation into road failures and a compensation plan.",
+      "GDACS rates the flood Green."
+    ],
+    "sources": [
+      {
+        "label": "Libya Herald",
+        "url": "https://libyaherald.com/2026/10/tripoli-government-to-launch-investigation-in-causes-of-road-floods-will-not-cover-up-its-findings"
+      },
+      {
+        "label": "WN.com",
+        "url": "https://article.wn.com/view/2026/10/14/Two_die_as_torrential_rains_flood_Libyas_capital_Tripoli/"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1104231"
+      }
+    ]
+  },
+  "tropical-storm-simon-baja-oct-2026": {
+    "key_findings": [
+      "NHC Advisory 37 (1500 UTC Oct. 16): Tropical Storm Simon had 40 mph (65 km/h) winds about 160 mi (260 km) south of Cabo San Lucas and was weakening.",
+      "No coastal watches or warnings are in effect; swells are likely to cause life-threatening surf and rip currents.",
+      "NHC forecasts Simon to become a post-tropical remnant low on Saturday and dissipate within 48 hours.",
+      "GDACS's current episode alert is Green.",
+      "No damage or casualties were found in sources checked."
+    ],
+    "sources": [
+      {
+        "label": "NHC Advisory 37",
+        "url": "https://www.nhc.noaa.gov/text/MIATCPEP5.shtml"
+      },
+      {
+        "label": "NHC Discussion 37",
+        "url": "https://www.nhc.noaa.gov/text/MIATCDEP5.shtml"
+      },
+      {
+        "label": "GDACS",
+        "url": "https://www.gdacs.org/report.aspx?eventid=1001335&episodeid=37&eventtype=TC"
+      }
+    ]
+  }
+}
