@@ -5,17 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
     "next": "16.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@supabase/supabase-js": "^2.45.0",
-    "react-leaflet": "^4.2.1",
-    "leaflet": "^1.9.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.5.0"
