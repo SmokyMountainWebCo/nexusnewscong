@@ -6,6 +6,35 @@ function Badge({ tone, label }: { tone: Conclusion['tone']; label: string | null
   return <span className={`confidence confidence--${tone || 'other'}`}>{label}</span>;
 }
 
+function CanarySource({ canary }: { canary: Canary }) {
+  if (canary.sourceParts.length) {
+    return (
+      <p className="watch__source">
+        {canary.sourceParts.map((part, index) =>
+          part.href ? (
+            <a key={index} href={part.href} target="_blank" rel="noopener noreferrer">
+              {part.text}
+            </a>
+          ) : (
+            <span key={index}>{part.text}</span>
+          ),
+        )}
+      </p>
+    );
+  }
+  if (canary.sourceUrl) {
+    return (
+      <p className="watch__source">
+        <a href={canary.sourceUrl} target="_blank" rel="noopener noreferrer">
+          {canary.sourceLabel || canary.sourceUrl}
+        </a>
+      </p>
+    );
+  }
+  if (canary.sourceLabel) return <p className="watch__source">{canary.sourceLabel}</p>;
+  return null;
+}
+
 function CanaryList({ canaries }: { canaries: Canary[] }) {
   if (!canaries.length) return null;
   return (
@@ -16,13 +45,7 @@ function CanaryList({ canaries }: { canaries: Canary[] }) {
           <li key={`${canary.indicator}-${index}`}>
             <p>{canary.indicator}</p>
             {canary.when ? <p className="watch__when">{canary.when}</p> : null}
-            {canary.sourceUrl ? (
-              <a href={canary.sourceUrl} target="_blank" rel="noopener noreferrer">
-                {canary.sourceLabel || canary.sourceUrl}
-              </a>
-            ) : canary.sourceLabel ? (
-              <span>{canary.sourceLabel}</span>
-            ) : null}
+            <CanarySource canary={canary} />
           </li>
         ))}
       </ul>
@@ -49,6 +72,12 @@ export default function InvestigationBody({ view }: { view: InvestigationView })
   const others = view.sections.filter((section) => section.id !== 'bottom');
   return (
     <div className="investigation">
+      {view.developing || view.asOf ? (
+        <p className="investigation__meta">
+          {view.developing ? <span className="developing">Developing</span> : null}
+          {view.asOf ? <span>As of {view.asOf}</span> : null}
+        </p>
+      ) : null}
       {view.storyLabel ? (
         <p className="investigation__story-confidence">
           <Badge tone={view.storyTone} label={view.storyLabel} />

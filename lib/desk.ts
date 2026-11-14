@@ -26,6 +26,7 @@ export type SearchStory = {
   confidence: unknown;
   conclusions: unknown;
   canaries: unknown;
+  developing: unknown;
   sourceUrls: string[];
   tags: string[];
   body: string;
@@ -232,6 +233,7 @@ export function parseSearchIndex(data: unknown): SearchStory[] {
       confidence: item.confidence ?? null,
       conclusions: item.conclusions ?? null,
       canaries: item.canaries ?? null,
+      developing: item.developing ?? null,
       body: asString(item.body) || asString(item.text) || '',
     });
   }

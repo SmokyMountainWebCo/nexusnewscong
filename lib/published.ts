@@ -25,6 +25,8 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       confidence: story.confidence,
       conclusions: story.conclusions,
       canaries: story.canaries,
+      developing: story.developing,
+      asOf: story.asOf,
     },
     doc: {
       title: story.title,
@@ -45,6 +47,8 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       confidence: story.confidence,
       conclusions: story.conclusions,
       canaries: story.canaries,
+      developing: story.developing,
+      asOf: story.asOf,
       body: story.body,
     },
   };

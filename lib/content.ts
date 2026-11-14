@@ -21,6 +21,8 @@ export type StoryCard = {
   confidence: unknown;
   conclusions: unknown;
   canaries: unknown;
+  developing: unknown;
+  asOf: string | null;
 };
 
 export type StoryDoc = {
@@ -42,6 +44,8 @@ export type StoryDoc = {
   confidence: unknown;
   conclusions: unknown;
   canaries: unknown;
+  developing: unknown;
+  asOf: string | null;
   body: string;
 };
 
@@ -171,6 +175,8 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       confidence: item.confidence ?? null,
       conclusions: item.conclusions ?? null,
       canaries: item.canaries ?? null,
+      developing: item.developing ?? null,
+      asOf: asString(item.as_of),
     });
   }
   return { generatedAt: asString(record.generated_at), stories };
@@ -211,6 +217,8 @@ export function parseStoryMarkdown(raw: string): StoryDoc {
     confidence: data.confidence ?? null,
     conclusions: data.conclusions ?? null,
     canaries: data.canaries ?? null,
+    developing: data.developing ?? null,
+    asOf: asString(data.as_of),
     body: body.trim(),
   };
 }
@@ -380,6 +388,8 @@ function parseSimpleYaml(fm: string): Record<string, unknown> {
 function coerceScalar(value: string): unknown {
   const text = unquote(value);
   if (/^-?\d+(\.\d+)?$/.test(text)) return Number(text);
+  if (text === 'true') return true;
+  if (text === 'false') return false;
   if (text.startsWith('[')) {
     try {
       return JSON.parse(text);

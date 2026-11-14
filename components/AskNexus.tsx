@@ -65,6 +65,7 @@ async function loadCorpus(): Promise<DeskCorpus> {
             confidence: null,
             conclusions: null,
             canaries: null,
+            developing: null,
             body: doc.body,
           };
         } catch {

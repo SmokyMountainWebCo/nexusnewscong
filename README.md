@@ -42,9 +42,9 @@ Routes: `/`, `/summary`, `/war-room`, `/press`, `/press/<slug>/`, `/conspiracy`,
 
 ## Investigation stories
 
-`confidence` and `canaries` are optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. `confidence` may be `Low`, `Medium`, or `High`, or a list paired with `conclusions`. Each canary is a string or an object with an indicator, a date or window, and a source url or label. When those fields are missing and the body has none of the five section headings, the story uses the normal layout.
+`confidence` and `canaries` are optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. `confidence` may be `Low`, `Medium`, or `High`, a list paired with `conclusions`, or a list of `{conclusion, level}` objects with no separate conclusions list. Each canary is a string or an object with an indicator, a date or window, and a source. A source may be several hosts separated by `;`. A bare domain or path is linked with `https://`; the rest stays text. `developing: true` shows a Developing tag. A non-ISO `as_of` is shown as written.
 
-The five headings, when present, are Surface narrative, Primary evidence, Who benefits, What coverage is leaving out, and Bottom line / conclusions. Conclusions show a neutral Low badge, an amber Medium badge (`#ffc56d`), or a green High badge. Canaries render as What to watch (30–90 days). A blockquote, or a line that starts with `Inference:`, is marked as inference.
+Section headings match by a leading number and by keywords: surface, records or evidence, stake or benefit, missing or omission, conclusion or bottom line. The heading text on the page is the author's. The older titles still match: Surface narrative, Primary evidence, Who benefits, What coverage is leaving out, and Bottom line / conclusions. Conclusions show a neutral Low badge, an amber Medium badge (`#ffc56d`), or a green High badge. Canaries render as What to watch (30–90 days). A blockquote, or a line that starts with `Inference:`, is marked as inference. When those fields and headings are missing, the story uses the normal layout.
 
 The sample story used by the tests is `lib/fixtures/investigation-story.md`. It is not published under `public/stories`.
 

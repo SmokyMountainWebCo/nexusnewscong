@@ -1,3 +1,5 @@
+import { formatDeskDate } from './content.ts';
+
 // Investigation layout fields. Compliance may publish them on the markdown
 // front-matter, on public/stories/index.json, or on public/stories/search.json.
 // Missing confidence and canaries leave the normal story layout in place.
@@ -10,11 +12,17 @@ export type Conclusion = {
   label: string | null;
 };
 
+export type SourcePiece = {
+  text: string;
+  href: string | null;
+};
+
 export type Canary = {
   indicator: string;
   when: string | null;
   sourceLabel: string | null;
   sourceUrl: string | null;
+  sourceParts: SourcePiece[];
 };
 
 export type InvestigationSection = {
@@ -25,6 +33,8 @@ export type InvestigationSection = {
 
 export type InvestigationView = {
   active: boolean;
+  developing: boolean;
+  asOf: string | null;
   storyTone: ConfidenceTone | null;
   storyLabel: string | null;
   conclusions: Conclusion[];
@@ -33,19 +43,13 @@ export type InvestigationView = {
   sections: InvestigationSection[];
 };
 
-const SECTION_TITLES: Record<InvestigationSection['id'], string> = {
-  surface: 'Surface narrative',
-  evidence: 'Primary evidence',
-  benefits: 'Who benefits',
-  omission: 'What coverage is leaving out',
-  bottom: 'Bottom line / conclusions',
-};
-
 type FieldSource = {
   confidence?: unknown;
   conclusions?: unknown;
   canaries?: unknown;
   body?: string | null;
+  developing?: unknown;
+  asOf?: unknown;
 } | null | undefined;
 
 export function confidenceTone(value: string | null | undefined): ConfidenceTone | null {
@@ -99,7 +103,49 @@ function firstFilled(...values: unknown[]): unknown {
   return null;
 }
 
+function conclusionFromObject(value: Record<string, unknown>): Conclusion | null {
+  const text = asText(value.conclusion) || asText(value.text) || asText(value.claim);
+  const level = asText(value.level) || asText(value.confidence) || asText(value.rating);
+  if (!text && !level) return null;
+  return { text: text || '', tone: confidenceTone(level), label: confidenceLabel(level) };
+}
+
+export function displayAsOf(raw: string | null | undefined): string | null {
+  if (!raw || !raw.trim()) return null;
+  const text = raw.trim();
+  const isoDate = /^\d{4}-\d{2}-\d{2}$/.test(text);
+  const isoTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?$/.test(text);
+  if (!isoDate && !isoTime) return text;
+  return formatDeskDate(text) || text;
+}
+
+function asFlag(value: unknown): boolean {
+  if (value === true) return true;
+  const text = asText(value);
+  return text === 'true' || text === 'yes' || text === '1';
+}
+
 export function parseConclusions(conclusions: unknown, confidence: unknown): { story: Conclusion | null; items: Conclusion[] } {
+  if (Array.isArray(confidence) && confidence.some((item) => item && typeof item === 'object')) {
+    const texts = stringList(conclusions);
+    const items = confidence
+      .map((item, index) => {
+        if (item && typeof item === 'object' && !Array.isArray(item)) {
+          const parsed = conclusionFromObject(item as Record<string, unknown>);
+          if (!parsed) return null;
+          return { ...parsed, text: parsed.text || texts[index] || '' };
+        }
+        const level = asText(item);
+        if (!level && !texts[index]) return null;
+        return {
+          text: texts[index] || '',
+          tone: confidenceTone(level),
+          label: confidenceLabel(level),
+        };
+      })
+      .filter((item): item is Conclusion => Boolean(item));
+    return { story: null, items };
+  }
   const texts = stringList(conclusions);
   const levels = Array.isArray(confidence) ? confidence.map(asText).filter((item): item is string => Boolean(item)) : [];
   const single = !Array.isArray(confidence) ? asText(confidence) : null;
@@ -139,6 +185,36 @@ function urlFromText(value: string): string | null {
   return match ? safeHttp(match[0].replace(/[.,;]+$/, '')) : null;
 }
 
+function linkedHref(token: string): string | null {
+  const cleaned = token.replace(/[.,)]+$/, '');
+  const bare = /^(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?$/i.test(cleaned);
+  const href = /^https?:\/\//i.test(cleaned) ? safeHttp(cleaned) : bare ? safeHttp(`https://${cleaned}`) : null;
+  if (!href) return null;
+  const pathless = !/^(?:https?:\/\/)?[^/\s]+\/./.test(cleaned);
+  return pathless && href.endsWith('/') ? href.slice(0, -1) : href;
+}
+
+/** Split a source line into text and links. Bare domains and paths gain https://. */
+export function sourcePieces(raw: string): SourcePiece[] {
+  const pieces: SourcePiece[] = [];
+  const segments = raw.split(';');
+  segments.forEach((segment, index) => {
+    if (index > 0) pieces.push({ text: '; ', href: null });
+    const re = /(?:https?:\/\/[^\s;]+|(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s;]*)?)/gi;
+    let last = 0;
+    for (const match of segment.matchAll(re)) {
+      const at = match.index ?? 0;
+      if (at > last) pieces.push({ text: segment.slice(last, at), href: null });
+      const href = linkedHref(match[0]);
+      const text = match[0].replace(/[.,)]+$/, '');
+      pieces.push(href ? { text, href } : { text: match[0], href: null });
+      last = at + match[0].length;
+    }
+    if (last < segment.length) pieces.push({ text: segment.slice(last), href: null });
+  });
+  return pieces.filter((piece) => piece.text.length > 0);
+}
+
 export function parseCanary(value: unknown): Canary | null {
   if (typeof value === 'string') {
     const text = value.trim();
@@ -148,12 +224,14 @@ export function parseCanary(value: unknown): Canary | null {
       const source = parts[parts.length - 1];
       const when = parts.length >= 3 ? parts[parts.length - 2] : whenFromText(parts[1]);
       const indicator = parts.slice(0, parts.length >= 3 ? -2 : -1).join(' | ') || parts[0];
-      const url = safeHttp(source) || urlFromText(source);
+      const pieces = sourcePieces(source);
+      const url = pieces.find((piece) => piece.href)?.href || safeHttp(source) || urlFromText(source);
       return {
         indicator,
         when: when || null,
         sourceUrl: url,
         sourceLabel: url ? source.replace(url, '').trim() || null : source,
+        sourceParts: pieces,
       };
     }
     const url = urlFromText(text);
@@ -162,17 +240,22 @@ export function parseCanary(value: unknown): Canary | null {
       when: whenFromText(text),
       sourceUrl: url,
       sourceLabel: null,
+      sourceParts: url ? sourcePieces(text) : [],
     };
   }
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const item = value as Record<string, unknown>;
-  const indicator = asText(item.indicator) || asText(item.text) || asText(item.watch) || asText(item.signal) || asText(item.name);
-  if (!indicator) return null;
   const when = asText(item.window) || asText(item.when) || asText(item.date) || asText(item.time) || asText(item.as_of) || asText(item.timeframe);
   const source = item.source && typeof item.source === 'object' && !Array.isArray(item.source) ? (item.source as Record<string, unknown>) : null;
-  const sourceUrl = safeHttp(asText(item.url) || asText(item.href) || asText(item.source_url) || asText(source?.url) || asText(item.source));
-  const sourceLabel = asText(item.label) || asText(item.source_label) || asText(source?.label) || asText(source?.name) || (sourceUrl ? null : asText(item.source));
-  return { indicator, when, sourceUrl, sourceLabel };
+  const sourceText = asText(item.source) || asText(source?.url) || asText(source?.label) || asText(source?.name);
+  const explicitUrl = safeHttp(asText(item.url) || asText(item.href) || asText(item.source_url) || asText(source?.url));
+  const pieces = sourceText ? sourcePieces(sourceText) : [];
+  const sourceUrl = explicitUrl || pieces.find((piece) => piece.href)?.href || null;
+  const sourceLabel = asText(item.label) || asText(item.source_label) || asText(source?.label) || asText(source?.name) || (sourceUrl && sourceText === sourceUrl ? null : sourceText);
+  const indicator = asText(item.indicator) || asText(item.text) || asText(item.watch) || asText(item.signal) || asText(item.name) || when || sourceLabel || sourceText;
+  if (!indicator) return null;
+  const parts = pieces.length ? pieces : sourceLabel ? [{ text: sourceLabel, href: null }] : [];
+  return { indicator, when, sourceUrl, sourceLabel, sourceParts: parts };
 }
 
 export function parseCanaries(value: unknown): Canary[] {
@@ -185,11 +268,14 @@ export function parseCanaries(value: unknown): Canary[] {
 
 function sectionId(heading: string): InvestigationSection['id'] | null {
   const text = heading.trim().toLowerCase().replace(/[.:]+$/g, '');
-  if (text === 'surface narrative') return 'surface';
-  if (text === 'primary evidence') return 'evidence';
-  if (text === 'who benefits') return 'benefits';
-  if (text === 'what coverage is leaving out') return 'omission';
-  if (text === 'bottom line / conclusions' || text === 'bottom line' || text === 'conclusions') return 'bottom';
+  const numbered = /^(\d+)\s*[.)]\s*(.*)$/.exec(text);
+  const number = numbered ? Number(numbered[1]) : null;
+  const rest = (numbered ? numbered[2] : text).trim();
+  if (number === 1 || /\bsurface\b/.test(rest)) return 'surface';
+  if (number === 2 || /\brecords\b/.test(rest) || /\bevidence\b/.test(rest)) return 'evidence';
+  if (number === 3 || /\bstake\b/.test(rest) || /\bbenefit/.test(rest) || /cui bono/.test(rest)) return 'benefits';
+  if (number === 4 || /\bmissing\b/.test(rest) || /\bomission\b/.test(rest) || /leaving out/.test(rest)) return 'omission';
+  if (number === 5 || /\bconclusion/.test(rest) || /bottom line/.test(rest)) return 'bottom';
   return null;
 }
 
@@ -197,19 +283,19 @@ export function splitInvestigationSections(body: string): { intro: string; secti
   const lines = body.replace(/\r\n/g, '\n').split('\n');
   const intro: string[] = [];
   const sections: InvestigationSection[] = [];
-  let current: { id: InvestigationSection['id']; lines: string[] } | null = null;
+  let current: { id: InvestigationSection['id']; title: string; lines: string[] } | null = null;
   for (const line of lines) {
     const heading = /^(#{1,6})\s+(.*)$/.exec(line.trim());
     const id = heading ? sectionId(heading[2]) : null;
     if (id) {
-      if (current) sections.push({ id: current.id, title: SECTION_TITLES[current.id], body: current.lines.join('\n').trim() });
-      current = { id, lines: [] };
+      if (current) sections.push({ id: current.id, title: current.title, body: current.lines.join('\n').trim() });
+      current = { id, title: (heading?.[2] || '').trim(), lines: [] };
       continue;
     }
     if (current) current.lines.push(line);
     else intro.push(line);
   }
-  if (current) sections.push({ id: current.id, title: SECTION_TITLES[current.id], body: current.lines.join('\n').trim() });
+  if (current) sections.push({ id: current.id, title: current.title, body: current.lines.join('\n').trim() });
   return { intro: intro.join('\n').trim(), sections };
 }
 
@@ -218,12 +304,16 @@ export function resolveInvestigation(...sources: FieldSource[]): InvestigationVi
   const conclusions = firstFilled(...sources.map((source) => source?.conclusions));
   const canaries = firstFilled(...sources.map((source) => source?.canaries));
   const body = sources.map((source) => source?.body).find((value) => typeof value === 'string' && value.trim()) || '';
+  const asOfRaw = sources.map((source) => asText(source?.asOf)).find((value) => Boolean(value)) || null;
   const parsed = parseConclusions(conclusions, confidence);
   const items = parseCanaries(canaries);
   const split = splitInvestigationSections(body);
+  const developing = sources.some((source) => asFlag(source?.developing));
   const active = Boolean(parsed.story || parsed.items.length || items.length);
   return {
-    active: active || split.sections.length > 0,
+    active: active || split.sections.length > 0 || developing,
+    developing,
+    asOf: displayAsOf(asOfRaw),
     storyTone: parsed.story?.tone ?? null,
     storyLabel: parsed.story?.label ?? null,
     conclusions: parsed.items,

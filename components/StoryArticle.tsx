@@ -42,10 +42,17 @@ export default function StoryArticle({
   const sources = pack?.sources.length ? pack.sources : doc.sources.map((url) => ({ label: url, url }));
   const quotes = searchStory ? quotesForStory(searchStory) : [];
   const investigation = resolveInvestigation(
-    { confidence: doc.confidence, conclusions: doc.conclusions, canaries: doc.canaries, body },
-    { confidence: story.card.confidence, conclusions: story.card.conclusions, canaries: story.card.canaries },
+    { confidence: doc.confidence, conclusions: doc.conclusions, canaries: doc.canaries, developing: doc.developing, asOf: doc.asOf, body },
+    { confidence: story.card.confidence, conclusions: story.card.conclusions, canaries: story.card.canaries, developing: story.card.developing, asOf: story.card.asOf },
     searchStory
-      ? { confidence: searchStory.confidence, conclusions: searchStory.conclusions, canaries: searchStory.canaries, body: searchStory.body }
+      ? {
+          confidence: searchStory.confidence,
+          conclusions: searchStory.conclusions,
+          canaries: searchStory.canaries,
+          developing: searchStory.developing,
+          asOf: searchStory.asOf,
+          body: searchStory.body,
+        }
       : null,
   );
   const investigationLayout = investigation.active;
