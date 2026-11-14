@@ -6,13 +6,18 @@ import { useEffect, useState } from 'react';
 import AskNexus from './AskNexus';
 
 const ROOMS = [
-  { href: '/', label: 'Summary' },
-  { href: '/war-room', label: 'War room' },
-  { href: '/press', label: 'Press room' },
-  { href: '/conspiracy', label: 'Conspiracy room' },
-  { href: '/markets', label: 'Market movers' },
-  { href: '/account', label: 'Account' },
+  { href: '/', label: 'Summary', match: ['/', '/summary'] },
+  { href: '/war-room', label: 'War room', match: ['/war-room'] },
+  { href: '/press', label: 'Press room', match: ['/press'] },
+  { href: '/conspiracy', label: 'Conspiracy room', match: ['/conspiracy'] },
+  { href: '/markets', label: 'Market movers', match: ['/markets', '/market-movers'] },
+  { href: '/account', label: 'Account', match: ['/account'] },
 ];
+
+function cleanPath(path: string): string {
+  if (path.length > 1 && path.endsWith('/')) return path.slice(0, -1);
+  return path || '/';
+}
 
 export default function DeskShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -43,7 +48,8 @@ export default function DeskShell({ children }: { children: React.ReactNode }) {
       </header>
       <nav className={open ? 'desk__nav is-open' : 'desk__nav'} aria-label="Rooms">
         {ROOMS.map((room) => {
-          const current = room.href === '/' ? pathname === '/' : pathname === room.href || pathname.startsWith(`${room.href}/`);
+          const path = cleanPath(pathname || '/');
+          const current = room.match.some((item) => path === item || (item !== '/' && path.startsWith(`${item}/`)));
           return (
             <Link key={room.href} href={room.href} aria-current={current ? 'page' : undefined} onClick={() => setOpen(false)}>
               {room.label}

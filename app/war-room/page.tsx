@@ -1,24 +1,16 @@
-'use client';
+import ClaimList from '@/components/ClaimList';
+import WarRoomView from '@/components/WarRoomView';
+import { claimsForRoom } from '@/lib/desk';
+import { loadClaims } from '@/lib/published';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import GlobePanel from '@/components/GlobePanel';
-
-function WarRoom() {
-  const story = useSearchParams().get('story');
+export default function WarRoomPage() {
+  const claims = loadClaims();
   return (
     <section className="room">
       <p className="kicker">War room</p>
       <h2>Real-time threat intelligence</h2>
-      <GlobePanel storySlug={story} />
+      <WarRoomView />
+      <ClaimList claims={claimsForRoom(claims, 'war-room')} catalog={claims} title="Claims filed to the war room" />
     </section>
-  );
-}
-
-export default function WarRoomPage() {
-  return (
-    <Suspense fallback={<p>Loading the war room.</p>}>
-      <WarRoom />
-    </Suspense>
   );
 }

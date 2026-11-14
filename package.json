@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test": "node --experimental-strip-types lib/content.test.ts && node --experimental-strip-types lib/desk.test.ts && node --experimental-strip-types lib/investigation.test.ts && node --experimental-strip-types lib/gev/bridge.test.ts && node --experimental-strip-types lib/stories.test.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.0",
     "next": "16.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

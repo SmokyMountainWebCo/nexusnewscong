@@ -30,16 +30,33 @@ The parent posts `{ type: 'gev:view', id, view }` only after `{ type: 'gev:ready
 
 Opening a story flies the camera to coordinates parsed from its location text, when that text contains a latitude and longitude. Guam and the Cook Islands stories do. The panel lists those stories as camera presets.
 
-## What was removed
+## Static desk
 
-`public/layers/conflict_events.geojson` and `public/layers/disaster_events.geojson` are gone. This branch did not render them. Leaflet, react-leaflet, and their type packages are not dependencies. There is no markets map layer and no feed-status notice, because those belonged to the removed files.
+`npm run build` writes a static export to `out/`. There is no API route. Ask Nexus searches `public/stories/search.json`, `public/kb/claims.json`, and the optional `public/stories/sources.json` and `public/stories/briefs.json` in the browser. A missing optional file is an empty section.
+
+Fact-check stories use `event_type` `fact-check` or a matching tag. `verdict_type` `debunk` is a red Debunked label, `confirmation` is a green Confirmed label, `mixed` is an amber Mixed label and border (`#ffc56d`), and a missing value is a neutral Fact-check label. `rating` is shown as written.
+
+Market stories use `event_type` `market` or `market movers`. `quotes` is a table of `{name, last, prev_close, change_pct, as_of, url}`. `quotes_note` prints under the table. A story-level `as_of` of `YYYY-MM-DD` prints as a date, with no clock and no timezone shift. Quotes without coordinates still list. There is no markets map.
+
+Routes: `/`, `/summary`, `/war-room`, `/press`, `/press/<slug>/`, `/conspiracy`, `/markets`, `/market-movers`, `/account`.
+
+## Investigation stories
+
+`confidence` and `canaries` are optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. `confidence` may be `Low`, `Medium`, or `High`, or a list paired with `conclusions`. Each canary is a string or an object with an indicator, a date or window, and a source url or label. When those fields are missing and the body has none of the five section headings, the story uses the normal layout.
+
+The five headings, when present, are Surface narrative, Primary evidence, Who benefits, What coverage is leaving out, and Bottom line / conclusions. Conclusions show a neutral Low badge, an amber Medium badge (`#ffc56d`), or a green High badge. Canaries render as What to watch (30–90 days). A blockquote, or a line that starts with `Inference:`, is marked as inference.
+
+The sample story used by the tests is `lib/fixtures/investigation-story.md`. It is not published under `public/stories`.
+
+## What was not carried from the map desk
+
+Leaflet, react-leaflet, and `public/layers` GeoJSON are not in this desk. Conflict and disaster feed-status notices and the markets map were part of that map and were not brought back. The Ask Nexus agent loop and the Supabase route are gone; search reads the published files.
 
 ## Scripts
 
 ```bash
 npm install
+npm test
 npm run lint
 npm run build
-node --experimental-strip-types lib/gev/bridge.test.ts
-node --experimental-strip-types lib/stories.test.ts
 ```

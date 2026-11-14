@@ -1,6 +1,5 @@
-# Netlify config for the Smoky Mountain Web Co. static site.
-# Publishes the pre-built site in smoky-mountain-site/ with no build step,
-# overriding any framework auto-detection from package.json.
+# Static export of the Nexus desk. The older Smoky Mountain snapshot stays in
+# smoky-mountain-site/ and is not this publish directory.
 [build]
-  publish = "smoky-mountain-site"
-  command = "echo 'static site - nothing to build'"
+  command = "npm run build"
+  publish = "out"
