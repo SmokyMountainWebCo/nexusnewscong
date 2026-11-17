@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { parseMarkdown, parseStoryMarkdown } from './content.ts';
-import { parseCanaries, resolveInvestigation } from './investigation.ts';
+import { parseMarkdown, parseStoryMarkdown, storyBadge } from './content.ts';
+import { displayAsOf, parseCanaries, resolveInvestigation, splitConfidenceBullets } from './investigation.ts';
 
 const raw = fs.readFileSync(path.join(process.cwd(), 'lib/fixtures/investigation-story.md'), 'utf8');
 const doc = parseStoryMarkdown(raw);
@@ -66,7 +66,7 @@ const faa = resolveInvestigation({
 });
 assert.equal(draft.conclusions, null);
 assert.equal(faa.developing, true);
-assert.equal(faa.asOf, '2026-11-14T00:30Z (7:30 PM ET Nov 13)');
+assert.equal(faa.asOf, '7:30 PM ET Nov 13');
 assert.equal(faa.conclusions.length, 3);
 assert.equal(faa.conclusions[0].tone, 'high');
 assert.match(faa.conclusions[0].text, /separate outages/);
@@ -90,5 +90,33 @@ assert.match(faa.canaries[0].sourceParts.map((part) => part.text).join(''), /ATC
 assert.equal(faa.canaries[1].sourceParts.find((part) => part.href)?.href, 'https://status.cloud.microsoft');
 assert.match(faa.canaries[1].sourceParts.map((part) => part.text).join(''), /@MSFT365Status/);
 assert.equal(faa.canaries[1].sourceParts.find((part) => part.text.includes('@MSFT365Status'))?.href, null);
+
+const published = parseStoryMarkdown(
+  fs.readFileSync(path.join(process.cwd(), 'public/stories/faa-nationwide-ground-stop-telecom-outage-nov-2026.md'), 'utf8'),
+);
+const live = resolveInvestigation({
+  confidence: published.confidence,
+  conclusions: published.conclusions,
+  canaries: published.canaries,
+  developing: published.developing,
+  asOf: published.asOf,
+  body: published.body,
+});
+const bottom = live.sections.find((section) => section.id === 'bottom');
+const bullets = splitConfidenceBullets(bottom?.body || '');
+assert.equal(bullets.removed, true);
+assert.equal(bullets.before, '');
+assert.match(bullets.after, /Still unknown/);
+assert.doesNotMatch(`${bullets.before}\n${bullets.after}`, /confidence:/i);
+assert.equal(live.conclusions.length, 3);
+assert.equal(live.conclusions.every((item) => item.tone === 'high'), true);
+assert.equal(live.asOf, '8:55 PM ET Nov 16');
+assert.equal(displayAsOf('2026-11-17T01:55Z'), 'Nov 16, 2026, 8:55 PM ET');
+assert.equal(displayAsOf('2026-10-16'), 'October 16, 2026');
+assert.equal(storyBadge(published.alertLevel, published.severity), null);
+assert.equal(storyBadge('Orange', 4)?.label, 'Orange');
+assert.equal(storyBadge('Orange', 4)?.band, 'orange');
+assert.equal(storyBadge('GDACS Green (lowest) for all four mapped events', 3)?.label, 'Green');
+assert.equal(storyBadge(null, null)?.label, 'Unrated');
 
 console.log('investigation tests passed');

@@ -11,7 +11,8 @@ export default function SummaryRoom() {
   const badge = lead ? storyBadge(lead.doc?.alertLevel || lead.card.alertLevel, lead.doc?.severity) : null;
   const bands = { green: 0, orange: 0, red: 0, unknown: 0 };
   for (const story of stories) {
-    bands[storyBadge(story.doc?.alertLevel || story.card.alertLevel, story.doc?.severity ?? null).band] += 1;
+    const counted = storyBadge(story.doc?.alertLevel || story.card.alertLevel, story.doc?.severity ?? null);
+    bands[counted?.band ?? 'unknown'] += 1;
   }
   return (
     <section className="room">

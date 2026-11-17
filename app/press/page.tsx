@@ -21,7 +21,7 @@ export default function PressPage() {
           return (
             <li key={story.card.slug}>
               <Link href={`/press/${story.card.slug}`}>
-                <span className={`badge badge--${badge.band}`}>{badge.label}</span>
+                {badge ? <span className={`badge badge--${badge.band}`}>{badge.label}</span> : null}
                 <h3>{story.card.title}</h3>
                 <p>
                   {labelize(story.doc?.eventType || story.card.eventType)}

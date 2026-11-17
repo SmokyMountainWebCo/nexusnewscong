@@ -3,7 +3,7 @@ import FactCheckMark from './FactCheckMark';
 import InvestigationBody from './InvestigationBody';
 import MarkdownBody from './MarkdownBody';
 import QuoteTable from './QuoteTable';
-import { formatDeskDate, labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel } from '@/lib/content';
+import { labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel } from '@/lib/content';
 import { isFactCheckStory, quotesForStory, type SearchStory, type SourcePack } from '@/lib/desk';
 import { resolveInvestigation } from '@/lib/investigation';
 import type { LoadedStory } from '@/lib/published';
@@ -78,14 +78,14 @@ export default function StoryArticle({
           {updateNote ? <p>{updateNote}</p> : null}
         </aside>
       ) : null}
-      <p className={`badge badge--${badge.band}`}>{badge.label}</p>
+      {badge ? <p className={`badge badge--${badge.band}`}>{badge.label}</p> : null}
       {alertNote ? <p className="story__note">{alertNote}</p> : null}
       {searchStory && isFactCheckStory(searchStory) ? <FactCheckMark story={searchStory} /> : null}
       <h2>{title}</h2>
       <p className="story__dateline">
         {[labelize(doc.eventType || story.card.eventType), when, places.join(' · ')].filter(Boolean).join(' — ')}
         {doc.severity != null ? ` — Severity ${doc.severity}/10` : ''}
-        {searchStory?.asOf ? ` — As of ${formatDeskDate(searchStory.asOf) || searchStory.asOf}` : ''}
+        {!investigationLayout && investigation.asOf ? ` — As of ${investigation.asOf}` : ''}
       </p>
       {quotes.length ? <QuoteTable quotes={quotes} storyAsOf={searchStory?.asOf || null} note={searchStory?.quotesNote} /> : null}
       {pack?.keyFindings.length ? (

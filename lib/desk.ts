@@ -164,6 +164,13 @@ export function isFactCheckStory(story: SearchStory): boolean {
   return story.tags.some((tag) => normalizeToken(tag) === 'fact check');
 }
 
+export function factCheckRating(rating: unknown): string | null {
+  if (typeof rating !== 'string') return null;
+  const text = rating.trim();
+  if (!text || text.toLowerCase() === 'undefined' || text.toLowerCase() === 'null') return null;
+  return text;
+}
+
 export function factCheckLabel(verdictType: string | null): { tone: FactCheckTone; label: string } {
   const value = normalizeToken(verdictType);
   if (value === 'debunk') return { tone: 'debunk', label: 'Debunked' };

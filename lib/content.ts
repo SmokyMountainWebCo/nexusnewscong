@@ -69,10 +69,28 @@ export function bandFromAlertLabel(label: string | null | undefined): AlertBand 
   return null;
 }
 
-export function storyBadge(alertLevel: unknown, severity: unknown): { label: string; band: AlertBand } {
-  const alert = asString(alertLevel);
-  const fromLabel = bandFromAlertLabel(alert);
-  if (alert) return { label: alert, band: fromLabel ?? bandFromSeverity(asScore(severity)) };
+/** First none/green/orange/red token. "none (no GDACS-type alert…)" is none. */
+export function alertLevelToken(label: string | null | undefined): string | null {
+  if (!label) return null;
+  const match = label.match(/\b(none|green|orange|red)\b/i);
+  return match ? match[1] : null;
+}
+
+function levelLabel(token: string): string {
+  const lower = token.toLowerCase();
+  if (lower === 'green') return 'Green';
+  if (lower === 'orange') return 'Orange';
+  if (lower === 'red') return 'Red';
+  return token;
+}
+
+export function storyBadge(alertLevel: unknown, severity: unknown): { label: string; band: AlertBand } | null {
+  const token = alertLevelToken(asString(alertLevel));
+  if (token?.toLowerCase() === 'none') return null;
+  if (token) {
+    const band = bandFromAlertLabel(token) ?? bandFromSeverity(asScore(severity));
+    return { label: levelLabel(token), band };
+  }
   const score = asScore(severity);
   const band = bandFromSeverity(score);
   if (band === 'green') return { label: 'Green', band };

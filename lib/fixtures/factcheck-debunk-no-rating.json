@@ -1,0 +1,6 @@
+{
+  "slug": "factcheck-debunk-no-rating",
+  "title": "Fact check without a rating field",
+  "event_type": "fact-check",
+  "verdict_type": "debunk"
+}

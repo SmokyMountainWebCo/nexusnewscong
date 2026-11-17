@@ -110,13 +110,52 @@ function conclusionFromObject(value: Record<string, unknown>): Conclusion | null
   return { text: text || '', tone: confidenceTone(level), label: confidenceLabel(level) };
 }
 
+const ISO_TIME = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?)$/;
+
+function formatEastern(iso: string): string | null {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hourCycle: 'h12',
+  }).formatToParts(date);
+  const pick = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value || '';
+  return `${pick('month')} ${pick('day')}, ${pick('year')}, ${pick('hour')}:${pick('minute')} ${pick('dayPeriod')} ET`;
+}
+
 export function displayAsOf(raw: string | null | undefined): string | null {
   if (!raw || !raw.trim()) return null;
   const text = raw.trim();
-  const isoDate = /^\d{4}-\d{2}-\d{2}$/.test(text);
-  const isoTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?$/.test(text);
-  if (!isoDate && !isoTime) return text;
-  return formatDeskDate(text) || text;
+  const noted = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?)\s*\(([^)]+)\)\s*$/.exec(text);
+  if (noted) return noted[2].trim();
+  if (ISO_TIME.test(text)) return formatEastern(text) || text;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return formatDeskDate(text) || text;
+  return text;
+}
+
+const CONFIDENCE_BULLET = /^\s*[-*+]\s+(?:\*\*|__)?\s*(high|medium|low)\s+confidence\b/i;
+
+/** Drop section bullets that only restate a front-matter confidence level. */
+export function splitConfidenceBullets(source: string): { before: string; after: string; removed: boolean } {
+  const lines = source.replace(/\r\n/g, '\n').split('\n');
+  let first = -1;
+  let last = -1;
+  lines.forEach((line, index) => {
+    if (!CONFIDENCE_BULLET.test(line)) return;
+    if (first < 0) first = index;
+    last = index;
+  });
+  if (first < 0) return { before: source.trim(), after: '', removed: false };
+  return {
+    before: lines.slice(0, first).join('\n').trim(),
+    after: lines.slice(last + 1).join('\n').trim(),
+    removed: true,
+  };
 }
 
 function asFlag(value: unknown): boolean {

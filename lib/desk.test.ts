@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   factCheckLabel,
+  factCheckRating,
   factCheckStories,
   isFactCheckStory,
   marketStories,
@@ -170,5 +171,17 @@ const hit = searchDesk(
   'bitcoin',
 );
 assert.equal(hit.some((item) => item.kind === 'story' && item.slug === 'btc-note'), true);
+
+const noRating = parseSearchIndex([
+  JSON.parse(fs.readFileSync(path.join(root, 'lib/fixtures/factcheck-debunk-no-rating.json'), 'utf8')),
+]);
+assert.equal(noRating.length, 1);
+assert.equal(isFactCheckStory(noRating[0]), true);
+assert.equal(noRating[0].rating, null);
+assert.equal(factCheckRating(noRating[0].rating), null);
+assert.equal(factCheckRating(undefined), null);
+assert.equal(factCheckRating('undefined'), null);
+assert.equal(factCheckLabel(noRating[0].verdictType).label, 'Debunked');
+assert.equal(factCheckLabel(noRating[0].verdictType).tone, 'debunk');
 
 console.log('desk tests passed');

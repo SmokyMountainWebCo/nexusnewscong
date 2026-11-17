@@ -1,5 +1,5 @@
 import MarkdownBody from './MarkdownBody';
-import type { Canary, Conclusion, InvestigationView } from '@/lib/investigation';
+import { splitConfidenceBullets, type Canary, type Conclusion, type InvestigationView } from '@/lib/investigation';
 
 function Badge({ tone, label }: { tone: Conclusion['tone']; label: string | null }) {
   if (!label) return null;
@@ -53,6 +53,19 @@ function CanaryList({ canaries }: { canaries: Canary[] }) {
   );
 }
 
+function BottomSection({ body, conclusions }: { body: string; conclusions: Conclusion[] }) {
+  if (!conclusions.length) return body ? <MarkdownBody source={body} /> : null;
+  const split = splitConfidenceBullets(body);
+  return (
+    <>
+      {split.removed && split.before ? <MarkdownBody source={split.before} /> : null}
+      {!split.removed && body ? <MarkdownBody source={body} /> : null}
+      <Conclusions items={conclusions} />
+      {split.removed && split.after ? <MarkdownBody source={split.after} /> : null}
+    </>
+  );
+}
+
 function Conclusions({ items }: { items: Conclusion[] }) {
   if (!items.length) return null;
   return (
@@ -93,8 +106,7 @@ export default function InvestigationBody({ view }: { view: InvestigationView })
       {bottom || view.conclusions.length ? (
         <section className="investigation__section investigation__section--bottom">
           <h3>{bottom?.title || 'Bottom line / conclusions'}</h3>
-          {bottom?.body ? <MarkdownBody source={bottom.body} /> : null}
-          <Conclusions items={view.conclusions} />
+          <BottomSection body={bottom?.body || ''} conclusions={view.conclusions} />
         </section>
       ) : null}
       <CanaryList canaries={view.canaries} />
