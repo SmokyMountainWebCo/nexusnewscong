@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T02:04:12Z",
+  "generated_at": "2026-11-17T02:05:09Z",
   "stories": [
     {
       "slug": "factcheck-nov-17-blackout-hoax",
@@ -11,10 +11,12 @@
       "brief_id": "nsb-doom-narrative-surge-20261116",
       "event_type": "fact-check",
       "status": "published",
-      "summary": "There is no evidence that a 90-day power, internet or banking blackout will begin Nov. 17, Snopes reported. France 24 called the claim a hoax. What is scheduled is a routine nationwide test of the Emergency Alert System by FEMA and the Federal Communications Commission.",
+      "summary": "PolitiFact rated the claim that a 90-day power, internet or banking blackout begins Nov. 17 \"False.\" Snopes found no evidence for it, and France 24 called it a hoax. What is scheduled is a routine nationwide test of the Emergency Alert System by FEMA and the Federal Communications Commission.",
       "path": "/stories/factcheck-nov-17-blackout-hoax.md",
+      "updated": "2026-11-17T02:10Z",
+      "update_note": "Adds PolitiFact's False rating and FEMA's test details; official FCC notice link.",
       "as_of": "2026-11-17T01:57Z (8:57 PM ET Nov 16)",
-      "rating": "hoax",
+      "rating": "False",
       "verdict_type": "debunk"
     },
     {
