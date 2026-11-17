@@ -85,12 +85,6 @@ export default function InvestigationBody({ view }: { view: InvestigationView })
   const others = view.sections.filter((section) => section.id !== 'bottom');
   return (
     <div className="investigation">
-      {view.developing || view.asOf ? (
-        <p className="investigation__meta">
-          {view.developing ? <span className="developing">Developing</span> : null}
-          {view.asOf ? <span>As of {view.asOf}</span> : null}
-        </p>
-      ) : null}
       {view.storyLabel ? (
         <p className="investigation__story-confidence">
           <Badge tone={view.storyTone} label={view.storyLabel} />

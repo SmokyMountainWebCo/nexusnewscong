@@ -104,6 +104,28 @@ code { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 .developing { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; border: 1px solid var(--amber); border-radius: 999px; color: var(--amber); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .investigation__meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0; color: var(--muted); }
 .watch__source { margin: 0; overflow-wrap: anywhere; }
+.trail { display: grid; gap: 12px; margin: 4px 0 8px; }
+.trail h3 { margin: 0; font-size: 1rem; }
+.trail__stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); position: relative; }
+.trail__stages::before { content: ""; position: absolute; top: 14px; left: 12%; right: 12%; height: 2px; background: var(--line); }
+.trail__stages span { position: relative; z-index: 1; justify-self: center; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; }
+.trail__steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.trail__step { border: 1px solid var(--line); border-radius: 14px; background: var(--bg); padding: 12px; display: grid; gap: 6px; align-content: start; }
+.trail__step--2 { border-color: var(--cyan); }
+.trail__stage, .trail__when, .trail__platform, .trail__lead { margin: 0; color: var(--muted); font-size: 0.85rem; }
+.trail__label { margin: 0; }
+.trail__step.is-disproven .trail__label { text-decoration: line-through; }
+.trail__status { display: inline-flex; justify-self: start; width: fit-content; min-height: 28px; align-items: center; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.trail__status--verified { background: #34d399; color: #022c22; }
+.trail__status--unverified { background: #ffc56d; color: #1c1408; }
+.trail__status--disproven { background: #f87171; color: #450a0a; }
+.trail__link { overflow-wrap: anywhere; }
+.trail__link--primary { font-weight: 700; }
+.trail__more summary { min-height: 44px; display: inline-flex; align-items: center; cursor: pointer; }
+@media (max-width: 720px) {
+  .trail__stages { display: none; }
+  .trail__steps { display: flex; flex-direction: column; margin-left: 8px; padding-left: 14px; border-left: 2px solid var(--line); }
+}
 .conclusions, .watch ul { list-style: none; padding: 0; display: grid; gap: 10px; }
 .conclusions li, .watch li { display: grid; gap: 4px; }
 .nx-prose .is-inference, blockquote.is-inference, p.is-inference {

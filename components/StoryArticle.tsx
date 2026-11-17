@@ -3,9 +3,11 @@ import FactCheckMark from './FactCheckMark';
 import InvestigationBody from './InvestigationBody';
 import MarkdownBody from './MarkdownBody';
 import QuoteTable from './QuoteTable';
+import VerificationTrail from './VerificationTrail';
 import { labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel } from '@/lib/content';
 import { isFactCheckStory, quotesForStory, type SearchStory, type SourcePack } from '@/lib/desk';
 import { resolveInvestigation } from '@/lib/investigation';
+import { resolveTrail } from '@/lib/trail';
 import type { LoadedStory } from '@/lib/published';
 
 export default function StoryArticle({
@@ -56,6 +58,7 @@ export default function StoryArticle({
       : null,
   );
   const investigationLayout = investigation.active;
+  const trail = resolveTrail(doc.trail, story.card.trail, searchStory?.trail);
   return (
     <article className="story">
       <p>
@@ -87,6 +90,13 @@ export default function StoryArticle({
         {doc.severity != null ? ` — Severity ${doc.severity}/10` : ''}
         {!investigationLayout && investigation.asOf ? ` — As of ${investigation.asOf}` : ''}
       </p>
+      {investigation.developing || (investigationLayout && investigation.asOf) ? (
+        <p className="investigation__meta">
+          {investigation.developing ? <span className="developing">Developing</span> : null}
+          {investigationLayout && investigation.asOf ? <span>As of {investigation.asOf}</span> : null}
+        </p>
+      ) : null}
+      <VerificationTrail steps={trail} />
       {quotes.length ? <QuoteTable quotes={quotes} storyAsOf={searchStory?.asOf || null} note={searchStory?.quotesNote} /> : null}
       {pack?.keyFindings.length ? (
         <section>

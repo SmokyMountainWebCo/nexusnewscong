@@ -27,6 +27,7 @@ export type SearchStory = {
   conclusions: unknown;
   canaries: unknown;
   developing: unknown;
+  trail: unknown;
   sourceUrls: string[];
   tags: string[];
   body: string;
@@ -241,6 +242,7 @@ export function parseSearchIndex(data: unknown): SearchStory[] {
       conclusions: item.conclusions ?? null,
       canaries: item.canaries ?? null,
       developing: item.developing ?? null,
+      trail: item.trail ?? null,
       body: asString(item.body) || asString(item.text) || '',
     });
   }

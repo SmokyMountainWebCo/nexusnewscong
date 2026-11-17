@@ -48,6 +48,14 @@ Section headings match by a leading number and by keywords: surface, records or 
 
 The sample story used by the tests is `lib/fixtures/investigation-story.md`. It is not published under `public/stories`.
 
+## Origin and verification trail
+
+`trail` is optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. It is a list of steps, as a YAML list or a single-line JSON array. The first non-empty list is used. If `trail` is absent, the story page draws nothing for it.
+
+Each step is `{stage, label, at?, source?, status?}`. `stage` is `0` (Origin signal), `1` (X triangulation), or `2` (Primary record). `at` is an ISO time, a date, or free text, shown with the same rules as `as_of`. `status` is `verified` (green), `unverified` (amber `#ffc56d`), or `disproven` (red, with the label struck through). A missing status is neutral.
+
+Stage 0 never renders a clickable link, even when `source` is a URL. The page shows the platform hostname or the text label, the time, and the note "Lead only, not a source." Stage 1 may link. Stage 2 links are prominent. More than six steps stay collapsible. The example fixture is `lib/fixtures/trail-story.md`. It is not published.
+
 ## What was not carried from the map desk
 
 Leaflet, react-leaflet, and `public/layers` GeoJSON are not in this desk. Conflict and disaster feed-status notices and the markets map were part of that map and were not brought back. The Ask Nexus agent loop and the Supabase route are gone; search reads the published files.

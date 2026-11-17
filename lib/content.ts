@@ -23,6 +23,7 @@ export type StoryCard = {
   canaries: unknown;
   developing: unknown;
   asOf: string | null;
+  trail: unknown;
 };
 
 export type StoryDoc = {
@@ -46,6 +47,7 @@ export type StoryDoc = {
   canaries: unknown;
   developing: unknown;
   asOf: string | null;
+  trail: unknown;
   body: string;
 };
 
@@ -195,6 +197,7 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       canaries: item.canaries ?? null,
       developing: item.developing ?? null,
       asOf: asString(item.as_of),
+      trail: item.trail ?? null,
     });
   }
   return { generatedAt: asString(record.generated_at), stories };
@@ -237,6 +240,7 @@ export function parseStoryMarkdown(raw: string): StoryDoc {
     canaries: data.canaries ?? null,
     developing: data.developing ?? null,
     asOf: asString(data.as_of),
+    trail: data.trail ?? null,
     body: body.trim(),
   };
 }

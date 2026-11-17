@@ -27,6 +27,7 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       canaries: story.canaries,
       developing: story.developing,
       asOf: story.asOf,
+      trail: story.trail,
     },
     doc: {
       title: story.title,
@@ -49,6 +50,7 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       canaries: story.canaries,
       developing: story.developing,
       asOf: story.asOf,
+      trail: story.trail,
       body: story.body,
     },
   };
