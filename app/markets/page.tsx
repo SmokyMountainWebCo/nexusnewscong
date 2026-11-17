@@ -21,7 +21,7 @@ export default function MarketsPage() {
       {stories.length ? (
         <ul className="stories">
           {stories.map((story) => (
-            <li key={story.slug} className="story-card">
+            <li key={story.slug} className="story-card" data-reveal>
               <h3>
                 <Link href={`/press/${story.slug}`}>{story.title}</Link>
               </h3>

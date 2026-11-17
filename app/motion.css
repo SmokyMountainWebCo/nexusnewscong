@@ -1,0 +1,317 @@
+/*
+  Motion layer for the Nexus desk.
+  Layout, type, and color stay in globals.css.
+  Easing curves are restated from Motion Blitz spring feel
+  (cubic-bezier enter / exit), as original CSS.
+*/
+
+:root {
+  --motion-enter: cubic-bezier(0, 0, 0.2, 1);
+  --motion-exit: cubic-bezier(0.4, 0, 1, 1);
+  --motion-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Cross-document fallback for full page loads (no client router). */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition {
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.desk__header { view-transition-name: desk-header; }
+.desk__nav { view-transition-name: desk-nav; }
+
+::view-transition-old(desk-header),
+::view-transition-new(desk-header),
+::view-transition-old(desk-nav),
+::view-transition-new(desk-nav) {
+  animation: none;
+}
+
+::view-transition-group(desk-header),
+::view-transition-group(desk-nav) {
+  z-index: 21;
+}
+
+::view-transition-old(.room-exit) {
+  animation: motion-room-exit 280ms var(--motion-exit) both;
+}
+
+::view-transition-new(.room-enter) {
+  animation: motion-room-enter 420ms var(--motion-enter) both;
+}
+
+@keyframes motion-room-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes motion-room-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+  First paint stays fully visible so a hero can be LCP.
+  The original .room fade is kept only as a no-View-Transition
+  fallback after a client navigation.
+*/
+.room { animation: none; }
+
+html.no-vt:not([data-motion="reduced"]) .room {
+  animation: motion-room-enter 360ms var(--motion-enter) both;
+}
+
+/* --- Cards: hover lift and scroll reveal --- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .stories > li > a,
+  .story-card,
+  .lead,
+  .nx-claim {
+    transition:
+      transform 220ms var(--motion-standard),
+      border-color 220ms var(--motion-standard),
+      box-shadow 220ms var(--motion-standard);
+  }
+
+  .stories > li > a:hover,
+  .stories > li > a:focus-visible,
+  .story-card:hover,
+  .lead:hover,
+  .nx-claim:hover {
+    transform: translateY(-3px);
+    border-color: #475569;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.34);
+  }
+
+  .desk__nav a {
+    transition:
+      color 180ms var(--motion-standard),
+      background-color 180ms var(--motion-standard),
+      border-color 180ms var(--motion-standard);
+  }
+}
+
+html.js:not([data-motion="reduced"]) [data-reveal].is-pending {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+html.js:not([data-motion="reduced"]) [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 480ms var(--motion-enter),
+    transform 480ms var(--motion-enter);
+  transition-delay: calc(var(--reveal-i, 0) * 45ms);
+}
+
+.stories > li:nth-child(1),
+.nx-claims li:nth-child(1) { --reveal-i: 0; }
+.stories > li:nth-child(2),
+.nx-claims li:nth-child(2) { --reveal-i: 1; }
+.stories > li:nth-child(3),
+.nx-claims li:nth-child(3) { --reveal-i: 2; }
+.stories > li:nth-child(4),
+.nx-claims li:nth-child(4) { --reveal-i: 3; }
+.stories > li:nth-child(5),
+.nx-claims li:nth-child(5) { --reveal-i: 4; }
+.stories > li:nth-child(6),
+.nx-claims li:nth-child(6) { --reveal-i: 5; }
+.stories > li:nth-child(7),
+.nx-claims li:nth-child(7) { --reveal-i: 6; }
+.stories > li:nth-child(n + 8),
+.nx-claims li:nth-child(n + 8) { --reveal-i: 7; }
+
+/* --- Hero entrance: image is opaque from the first frame --- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .visual--hero img,
+  .visual--hero .cover {
+    transform-origin: center center;
+    animation: motion-hero-settle 900ms var(--motion-enter) both;
+  }
+
+  .visual--hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgba(248, 250, 252, 0.08) 50%,
+      transparent 70%
+    );
+    transform: translateX(-70%);
+    animation: motion-hero-sheen 900ms var(--motion-enter) 80ms both;
+  }
+}
+
+@keyframes motion-hero-settle {
+  from { transform: scale(1.035); }
+  to { transform: scale(1); }
+}
+
+@keyframes motion-hero-sheen {
+  to { transform: translateX(70%); opacity: 0; }
+}
+
+/* --- Globe / map interaction feedback --- */
+
+.globe__stage {
+  transition: border-color 200ms var(--motion-standard), box-shadow 200ms var(--motion-standard);
+}
+
+.globe__stage:hover,
+.globe__stage:focus-within {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 12px 40px rgba(34, 211, 238, 0.08);
+}
+
+.globe__presets button,
+.globe__follow-actions button,
+.globe__sheet-toggle {
+  transition:
+    background-color 180ms var(--motion-standard),
+    color 180ms var(--motion-standard),
+    border-color 180ms var(--motion-standard),
+    transform 180ms var(--motion-standard);
+}
+
+.globe__presets button:hover,
+.globe__presets button:focus-visible,
+.globe__follow-actions button:hover,
+.globe__follow-actions button:focus-visible {
+  border-color: var(--cyan);
+}
+
+.globe__presets button:active,
+.globe__follow-actions button:active {
+  transform: translateY(1px);
+}
+
+.globe__stage.is-loading .globe__frame,
+.globe__stage.is-offline .globe__frame {
+  opacity: 0;
+}
+
+.globe__stage.is-ready .globe__frame,
+.globe__stage.is-applying .globe__frame {
+  opacity: 1;
+  transition: opacity 400ms var(--motion-enter);
+}
+
+.globe__loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+.globe__loading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.globe__loading-mark {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--line);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: motion-globe-spin 0.9s linear infinite;
+}
+
+.globe__applying {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  animation: motion-room-enter 280ms var(--motion-enter) both;
+}
+
+.globe__offline {
+  animation: motion-room-enter 400ms var(--motion-enter) both;
+}
+
+.globe__status {
+  transition: color 200ms var(--motion-standard);
+}
+
+@keyframes motion-globe-spin {
+  to { transform: rotate(1turn); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .room { animation: none; }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation: none !important;
+  }
+
+  .visual--hero img,
+  .visual--hero .cover,
+  .visual--hero::before,
+  .globe__offline,
+  .globe__applying {
+    animation: none !important;
+  }
+
+  .globe__loading-mark {
+    animation: none;
+    border-top-color: var(--line);
+    background: var(--cyan);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 0;
+  }
+
+  html.js [data-reveal],
+  html.js [data-reveal].is-pending,
+  html.js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (scripting: none) {
+  [data-reveal],
+  [data-reveal].is-pending {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -189,6 +189,8 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
 
   const moreLayers = GEV_LAYER_IDS.filter((id) => !GEV_PRIMARY_LAYERS.includes(id));
   const disconnected = failed || !embedSrc;
+  const applying = ready && pendingId != null && status?.id !== pendingId;
+  const stageState = disconnected ? 'is-offline' : ready ? (applying ? 'is-applying' : 'is-ready') : 'is-loading';
   const statusText = !ready
     ? disconnected
       ? 'Globe not connected'
@@ -200,8 +202,8 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
         : 'Connected';
 
   return (
-    <div className="globe">
-      <div className="globe__stage">
+    <div className={`globe ${stageState}`}>
+      <div className={`globe__stage ${stageState}`}>
         {embedSrc ? (
           <iframe
             ref={frameRef}
@@ -210,6 +212,17 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
             src={embedSrc}
             referrerPolicy="no-referrer"
           />
+        ) : null}
+        {!ready && !disconnected ? (
+          <div className="globe__loading" role="status">
+            <span className="globe__loading-mark" aria-hidden="true" />
+            <p>Waiting for gev:ready</p>
+          </div>
+        ) : null}
+        {applying ? (
+          <div className="globe__applying" role="status">
+            Applying view
+          </div>
         ) : null}
         {disconnected && (
           <div className="globe__offline" role="status">

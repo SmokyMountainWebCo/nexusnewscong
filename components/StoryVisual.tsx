@@ -26,7 +26,14 @@ export default function StoryVisual({
   }
   return (
     <figure className={`visual visual--${variant}`}>
-      <img src={image.src} alt={image.alt} width={1600} height={900} loading="lazy" />
+      <img
+        src={image.src}
+        alt={image.alt}
+        width={1600}
+        height={900}
+        loading={variant === 'hero' ? 'eager' : 'lazy'}
+        fetchPriority={variant === 'hero' ? 'high' : 'auto'}
+      />
       {variant === 'hero' ? (
         <figcaption>
           {[image.credit, image.license].filter(Boolean).join(' · ')}

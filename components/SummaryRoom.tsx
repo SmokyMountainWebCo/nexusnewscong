@@ -26,7 +26,7 @@ export default function SummaryRoom() {
           <p>When a story is added to the index, it will lead this page.</p>
         </div>
       ) : (
-        <article className="lead">
+        <article className="lead" data-reveal>
           <StoryVisual
             image={resolveStoryImage(lead.doc, lead.card)}
             slug={lead.card.slug}
@@ -67,7 +67,7 @@ export default function SummaryRoom() {
           <h3>Timeline</h3>
           <ol className="stories timeline">
             {stories.map((story) => (
-              <li key={story.card.slug}>
+              <li key={story.card.slug} data-reveal>
                 <Link href={`/press/${story.card.slug}`}>
                   <StoryVisual
                     image={resolveStoryImage(story.doc, story.card)}
