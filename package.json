@@ -7,17 +7,23 @@
     "build": "node --experimental-strip-types scripts/chronicle.ts && next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "test": "node --experimental-strip-types lib/content.test.ts && node --experimental-strip-types lib/desk.test.ts && node --experimental-strip-types lib/investigation.test.ts && node --experimental-strip-types lib/trail.test.ts && node --experimental-strip-types lib/images.test.ts && node --experimental-strip-types lib/chronicle.test.ts && node --experimental-strip-types lib/gev/bridge.test.ts && node --experimental-strip-types lib/stories.test.ts"
+    "test": "node --experimental-strip-types lib/content.test.ts && node --experimental-strip-types lib/desk.test.ts && node --experimental-strip-types lib/investigation.test.ts && node --experimental-strip-types lib/trail.test.ts && node --experimental-strip-types lib/images.test.ts && node --experimental-strip-types lib/chronicle.test.ts && node --experimental-strip-types lib/gev/bridge.test.ts && node --experimental-strip-types lib/stories.test.ts && node --experimental-strip-types lib/constellation.test.ts && node --experimental-strip-types lib/motion-hooks.test.ts && node --experimental-strip-types lib/datasets/duckdb.test.ts && node --experimental-strip-types lib/motion-blitz/springs.test.ts",
+    "budget": "node scripts/budget.mjs"
   },
   "dependencies": {
+    "@duckdb/duckdb-wasm": "^1.32.0",
+    "gsap": "^3.15.1",
+    "lenis": "^1.3.27",
     "next": "16.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.187.0",
     "typescript": "^5.5.0"
   }
 }
