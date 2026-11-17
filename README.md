@@ -40,6 +40,12 @@ Market stories use `event_type` `market` or `market movers`. `quotes` is a table
 
 Routes: `/`, `/summary`, `/war-room`, `/press`, `/press/<slug>/`, `/conspiracy`, `/markets`, `/market-movers`, `/account`.
 
+## Story images
+
+`image`, `image_alt`, `image_credit`, `image_license`, and `image_source_url` are optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. The first entry that has an `image` supplies the whole set. `image` is a path under `public/stories/img/` (`img/photo.jpg` or `/stories/img/photo.jpg`) or an `https` URL. The story page shows it as a 16:9 hero, 4:3 on a narrow screen, with a muted credit and license line linked to `image_source_url`. Press and summary cards use the same crop.
+
+When `image` is absent, the desk draws an illustration from the slug and the verdict or event type. Debunk is red, confirmation is green, mixed is amber (`#ffc56d`), and everything else is slate blue. The cover is labeled Illustration and has no credit line.
+
 ## Investigation stories
 
 `confidence` and `canaries` are optional on markdown front-matter, `public/stories/index.json`, and `public/stories/search.json`. `confidence` may be `Low`, `Medium`, or `High`, a list paired with `conclusions`, or a list of `{conclusion, level}` objects with no separate conclusions list. Each canary is a string or an object with an indicator, a date or window, and a source. A source may be several hosts separated by `;`. A bare domain or path is linked with `https://`; the rest stays text. `developing: true` shows a Developing tag. A non-ISO `as_of` is shown as written.

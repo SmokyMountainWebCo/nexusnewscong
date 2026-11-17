@@ -3,10 +3,12 @@ import FactCheckMark from './FactCheckMark';
 import InvestigationBody from './InvestigationBody';
 import MarkdownBody from './MarkdownBody';
 import QuoteTable from './QuoteTable';
+import StoryVisual from './StoryVisual';
 import VerificationTrail from './VerificationTrail';
 import { labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel } from '@/lib/content';
 import { isFactCheckStory, quotesForStory, type SearchStory, type SourcePack } from '@/lib/desk';
 import { resolveInvestigation } from '@/lib/investigation';
+import { resolveStoryImage } from '@/lib/images';
 import { resolveTrail } from '@/lib/trail';
 import type { LoadedStory } from '@/lib/published';
 
@@ -59,8 +61,27 @@ export default function StoryArticle({
   );
   const investigationLayout = investigation.active;
   const trail = resolveTrail(doc.trail, story.card.trail, searchStory?.trail);
+  const image = resolveStoryImage(
+    {
+      image: doc.image,
+      imageAlt: doc.imageAlt,
+      imageCredit: doc.imageCredit,
+      imageLicense: doc.imageLicense,
+      imageSourceUrl: doc.imageSourceUrl,
+    },
+    {
+      image: story.card.image,
+      imageAlt: story.card.imageAlt,
+      imageCredit: story.card.imageCredit,
+      imageLicense: story.card.imageLicense,
+      imageSourceUrl: story.card.imageSourceUrl,
+    },
+    searchStory,
+  );
+  const verdict = searchStory?.verdictType || null;
   return (
     <article className="story">
+      <StoryVisual image={image} slug={story.card.slug} eventType={doc.eventType || story.card.eventType} verdictType={verdict} title={title} variant="hero" />
       <p>
         <Link href="/press">All stories</Link>
         {searchStory ? (

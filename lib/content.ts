@@ -24,6 +24,11 @@ export type StoryCard = {
   developing: unknown;
   asOf: string | null;
   trail: unknown;
+  image: string | null;
+  imageAlt: string | null;
+  imageCredit: string | null;
+  imageLicense: string | null;
+  imageSourceUrl: string | null;
 };
 
 export type StoryDoc = {
@@ -48,6 +53,11 @@ export type StoryDoc = {
   developing: unknown;
   asOf: string | null;
   trail: unknown;
+  image: string | null;
+  imageAlt: string | null;
+  imageCredit: string | null;
+  imageLicense: string | null;
+  imageSourceUrl: string | null;
   body: string;
 };
 
@@ -198,6 +208,11 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       developing: item.developing ?? null,
       asOf: asString(item.as_of),
       trail: item.trail ?? null,
+      image: asString(item.image),
+      imageAlt: asString(item.image_alt),
+      imageCredit: asString(item.image_credit),
+      imageLicense: asString(item.image_license),
+      imageSourceUrl: asString(item.image_source_url),
     });
   }
   return { generatedAt: asString(record.generated_at), stories };
@@ -241,6 +256,11 @@ export function parseStoryMarkdown(raw: string): StoryDoc {
     developing: data.developing ?? null,
     asOf: asString(data.as_of),
     trail: data.trail ?? null,
+    image: asString(data.image),
+    imageAlt: asString(data.image_alt),
+    imageCredit: asString(data.image_credit),
+    imageLicense: asString(data.image_license),
+    imageSourceUrl: asString(data.image_source_url),
     body: body.trim(),
   };
 }

@@ -28,6 +28,11 @@ export type SearchStory = {
   canaries: unknown;
   developing: unknown;
   trail: unknown;
+  image: string | null;
+  imageAlt: string | null;
+  imageCredit: string | null;
+  imageLicense: string | null;
+  imageSourceUrl: string | null;
   sourceUrls: string[];
   tags: string[];
   body: string;
@@ -243,6 +248,11 @@ export function parseSearchIndex(data: unknown): SearchStory[] {
       canaries: item.canaries ?? null,
       developing: item.developing ?? null,
       trail: item.trail ?? null,
+      image: asString(item.image),
+      imageAlt: asString(item.image_alt),
+      imageCredit: asString(item.image_credit),
+      imageLicense: asString(item.image_license),
+      imageSourceUrl: asString(item.image_source_url),
       body: asString(item.body) || asString(item.text) || '',
     });
   }

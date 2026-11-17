@@ -28,6 +28,11 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       developing: story.developing,
       asOf: story.asOf,
       trail: story.trail,
+      image: story.image,
+      imageAlt: story.imageAlt,
+      imageCredit: story.imageCredit,
+      imageLicense: story.imageLicense,
+      imageSourceUrl: story.imageSourceUrl,
     },
     doc: {
       title: story.title,
@@ -51,6 +56,11 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       developing: story.developing,
       asOf: story.asOf,
       trail: story.trail,
+      image: story.image,
+      imageAlt: story.imageAlt,
+      imageCredit: story.imageCredit,
+      imageLicense: story.imageLicense,
+      imageSourceUrl: story.imageSourceUrl,
       body: story.body,
     },
   };

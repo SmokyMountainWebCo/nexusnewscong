@@ -17,7 +17,12 @@
       "update_note": "Adds PolitiFact's False rating and FEMA's test details; official FCC notice link.",
       "as_of": "2026-11-17T01:57Z (8:57 PM ET Nov 16)",
       "rating": "False",
-      "verdict_type": "debunk"
+      "verdict_type": "debunk",
+      "image": "/stories/img/fema-ipaws-demonstration.jpg",
+      "image_alt": "FEMA officials demonstrate the Integrated Public Alert and Warning System at the U.S. Capitol",
+      "image_credit": "FEMA / Bill Koplitz",
+      "image_license": "Public domain (FEMA)",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:FEMA_-_45468_-_FEMA%27s_IPAWS_demonstration_on_Capitol_Hill.jpg"
     },
     {
       "slug": "faa-nationwide-ground-stop-telecom-outage-nov-2026",
@@ -63,7 +68,12 @@
           "window": "Nov 16, 2026 - Jan 31, 2027",
           "source": "@SecDuffy; transportation.gov briefing room; fbi.gov news"
         }
-      ]
+      ],
+      "image": "/stories/img/faa-anchorage-artcc.jpg",
+      "image_alt": "Air traffic controllers at the FAA Anchorage Air Route Traffic Control Center operations area",
+      "image_credit": "US DOT FAA",
+      "image_license": "Public domain (FAA)",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:ZAN-ARTCC-ATOP.jpg"
     },
     {
       "slug": "tropical-cyclone-wati-cook-islands-oct-2026",

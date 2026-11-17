@@ -10,6 +10,11 @@ timestamp: "2026-11-13T20:54Z"
 brief_id: nsb-faa-groundstop-20261113
 event_type: infrastructure_outage
 status: published
+image: /stories/img/faa-anchorage-artcc.jpg
+image_alt: Air traffic controllers at the FAA Anchorage Air Route Traffic Control Center operations area
+image_credit: US DOT FAA
+image_license: Public domain (FAA)
+image_source_url: https://commons.wikimedia.org/wiki/File:ZAN-ARTCC-ATOP.jpg
 as_of: "2026-11-17T01:55Z (8:55 PM ET Nov 16)"
 confidence: [{"conclusion": "Microsoft is not linked to the FAA ground stop by any primary or official source; the two are separate outages.", "level": "High"}, {"conclusion": "The stop came from a data flood on the FAA's FTI telecom network, per the FAA; why the flood started (installer error, a faulty router or something else) is still under investigation.", "level": "High"}, {"conclusion": "No evidence links SMART to the stop, and the timing alone isn't evidence; the FAA, which denies a link, is the agency involved, so its denial is not independent.", "level": "High"}]
 canaries: [{"indicator": "FAA or L3Harris publishes a root-cause report separating installer error from a faulty router, and confirms or revises the Amarillo and El Dorado account", "window": "Nov 16, 2026 - Jan 31, 2027", "source": "faa.gov/newsroom/nationwide-ground-stop-questions-and-answers; L3Harris newsroom"}, {"indicator": "NTSB or DOT Inspector General announces an investigation or audit of the Nov 13 event", "window": "Nov 16, 2026 - Feb 15, 2027", "source": "ntsb.gov; oig.dot.gov/active-audits"}, {"indicator": "FBI or DOT discloses a finding on the El Dorado router, including whether tampering was ruled out", "window": "Nov 16, 2026 - Jan 31, 2027", "source": "@SecDuffy; transportation.gov briefing room; fbi.gov news"}]

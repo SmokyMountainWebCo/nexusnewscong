@@ -9,6 +9,11 @@ timestamp: "2026-11-17T01:57Z"
 brief_id: nsb-doom-narrative-surge-20261116
 event_type: fact-check
 status: published
+image: /stories/img/fema-ipaws-demonstration.jpg
+image_alt: FEMA officials demonstrate the Integrated Public Alert and Warning System at the U.S. Capitol
+image_credit: FEMA / Bill Koplitz
+image_license: Public domain (FEMA)
+image_source_url: https://commons.wikimedia.org/wiki/File:FEMA_-_45468_-_FEMA%27s_IPAWS_demonstration_on_Capitol_Hill.jpg
 updated: "2026-11-17T02:10Z"
 update_note: "Adds PolitiFact's False rating and FEMA's test details; official FCC notice link."
 as_of: "2026-11-17T01:57Z (8:57 PM ET Nov 16)"

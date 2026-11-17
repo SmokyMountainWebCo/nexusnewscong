@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import ClaimList from './ClaimList';
+import StoryVisual from './StoryVisual';
 import { labelize, storyBadge, storyDateline } from '@/lib/content';
+import { resolveStoryImage } from '@/lib/images';
 import { claimsForRoom } from '@/lib/desk';
 import { loadClaims, loadStories } from '@/lib/published';
 
@@ -19,20 +21,33 @@ export default function SummaryRoom() {
       <p className="kicker">Summary</p>
       <h2>Live global summary</h2>
       {!lead ? (
-        <p>When a story is added to the index, it will lead this page.</p>
+        <div className="empty" role="status">
+          <strong>No published brief yet</strong>
+          <p>When a story is added to the index, it will lead this page.</p>
+        </div>
       ) : (
         <article className="lead">
-          {badge ? <p className={`badge badge--${badge.band}`}>{badge.label}</p> : null}
-          <p className="story__dateline">
-            {labelize(lead.doc?.eventType || lead.card.eventType)}
-            {' · '}
-            {storyDateline(lead.doc, lead.card) || 'Date not provided'}
-          </p>
-          <h3>{lead.doc?.title || lead.card.title}</h3>
-          <p>{lead.card.summary || 'No summary in the index.'}</p>
-          <p>
-            <Link href={`/press/${lead.card.slug}`}>Read in the press room</Link>
-          </p>
+          <StoryVisual
+            image={resolveStoryImage(lead.doc, lead.card)}
+            slug={lead.card.slug}
+            eventType={lead.doc?.eventType || lead.card.eventType}
+            verdictType={null}
+            title={lead.doc?.title || lead.card.title}
+            variant="hero"
+          />
+          <div>
+            {badge ? <p className={`badge badge--${badge.band}`}>{badge.label}</p> : null}
+            <p className="story__dateline">
+              {labelize(lead.doc?.eventType || lead.card.eventType)}
+              {' · '}
+              {storyDateline(lead.doc, lead.card) || 'Date not provided'}
+            </p>
+            <h3>{lead.doc?.title || lead.card.title}</h3>
+            <p>{lead.card.summary || 'No summary in the index.'}</p>
+            <p>
+              <Link href={`/press/${lead.card.slug}`}>Read in the press room</Link>
+            </p>
+          </div>
         </article>
       )}
       <section>
@@ -50,16 +65,27 @@ export default function SummaryRoom() {
       {stories.length ? (
         <section>
           <h3>Timeline</h3>
-          <ol className="timeline">
+          <ol className="stories timeline">
             {stories.map((story) => (
               <li key={story.card.slug}>
-                <Link href={`/press/${story.card.slug}`}>{story.card.title}</Link>
-                <span>
-                  {' '}
-                  {storyDateline(story.doc, story.card) || ''}
-                  {' · '}
-                  {labelize(story.doc?.eventType || story.card.eventType)}
-                </span>
+                <Link href={`/press/${story.card.slug}`}>
+                  <StoryVisual
+                    image={resolveStoryImage(story.doc, story.card)}
+                    slug={story.card.slug}
+                    eventType={story.doc?.eventType || story.card.eventType}
+                    verdictType={null}
+                    title={story.card.title}
+                    variant="thumb"
+                  />
+                  <div>
+                    <h3>{story.card.title}</h3>
+                    <p>
+                      {storyDateline(story.doc, story.card) || 'Date not provided'}
+                      {' · '}
+                      {labelize(story.doc?.eventType || story.card.eventType)}
+                    </p>
+                  </div>
+                </Link>
               </li>
             ))}
           </ol>

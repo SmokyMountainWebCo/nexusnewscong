@@ -67,6 +67,11 @@ async function loadCorpus(): Promise<DeskCorpus> {
             canaries: null,
             developing: null,
             trail: null,
+            image: null,
+            imageAlt: null,
+            imageCredit: null,
+            imageLicense: null,
+            imageSourceUrl: null,
             body: doc.body,
           };
         } catch {
