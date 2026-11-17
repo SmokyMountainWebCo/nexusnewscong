@@ -1,5 +1,66 @@
 [
   {
+    "slug": "faa-nationwide-ground-stop-telecom-outage-nov-2026",
+    "title": "FAA traces nationwide ground stop to data flood on its telecom network; root cause still open",
+    "location": "United States (nationwide, FAA en route centers)",
+    "severity": 6,
+    "alert_level": "none (no GDACS-type alert for this event)",
+    "alert_note": "Severity set by Journalist from scope (nationwide stop, thousands of cancellations); no external alert level exists.",
+    "event_type": "infrastructure_outage",
+    "timestamp": "2026-11-13T20:54Z",
+    "as_of": "2026-11-17T01:55Z (8:55 PM ET Nov 16)",
+    "confidence": [
+      {
+        "conclusion": "Microsoft is not linked to the FAA ground stop by any primary or official source; the two are separate outages.",
+        "level": "High"
+      },
+      {
+        "conclusion": "The stop came from a data flood on the FAA's FTI telecom network, per the FAA; why the flood started (installer error, a faulty router or something else) is still under investigation.",
+        "level": "High"
+      },
+      {
+        "conclusion": "No evidence links SMART to the stop, and the timing alone isn't evidence; the FAA, which denies a link, is the agency involved, so its denial is not independent.",
+        "level": "High"
+      }
+    ],
+    "canaries": [
+      {
+        "indicator": "FAA or L3Harris publishes a root-cause report separating installer error from a faulty router, and confirms or revises the Amarillo and El Dorado account",
+        "window": "Nov 16, 2026 - Jan 31, 2027",
+        "source": "faa.gov/newsroom/nationwide-ground-stop-questions-and-answers; L3Harris newsroom"
+      },
+      {
+        "indicator": "NTSB or DOT Inspector General announces an investigation or audit of the Nov 13 event",
+        "window": "Nov 16, 2026 - Feb 15, 2027",
+        "source": "ntsb.gov; oig.dot.gov/active-audits"
+      },
+      {
+        "indicator": "FBI or DOT discloses a finding on the El Dorado router, including whether tampering was ruled out",
+        "window": "Nov 16, 2026 - Jan 31, 2027",
+        "source": "@SecDuffy; transportation.gov briefing room; fbi.gov news"
+      }
+    ],
+    "source_urls": [
+      "https://www.faa.gov/newsroom/nationwide-ground-stop-questions-and-answers",
+      "https://www.transportation.gov/briefing-room/icymi-us-transportation-secretary-sean-p-duffy-provides-update-restoration-airspace",
+      "https://www.fly.faa.gov/ois/oisedit/adv_oisedit_dis?day=11132026&number=111",
+      "https://abcnews.com/Politics/transportation-secretary-duffy-atc-routers-ability-broadcast-data/story?id=138155545",
+      "https://www.npr.org/2026/11/14/nx-s1-6040952/faa-ground-stop-airplane-travel",
+      "https://www.nbcnews.com/news/us-news/flights-air-traffic-delays-groundstop-faa-duffy-rcna609545",
+      "https://www.investing.com/news/stock-market-news/us-probes-why-a-router-installation-sparked-mass-flight-grounding-5030697",
+      "https://x.com/MSFT365Status/status/2121303408313303423",
+      "https://www.businessinsider.com/smart-system-microsoft-faa-ground-stop-not-their-fault-2026-11",
+      "https://www.geekwire.com/2026/dhs-chief-sees-no-microsoft-link-to-faa-ground-stop-says-possible-ai-role-being-investigated/",
+      "https://www.usaspending.gov/award/CONT_AWD_693KA821F00222_6920_DTFA0102D03006_6920",
+      "https://www.usaspending.gov/award/CONT_IDV_693KA826D00016_6920",
+      "https://www.usaspending.gov/award/CONT_AWD_693KA726C00064_6920_-NONE-_-NONE-",
+      "https://www.usaspending.gov/award/CONT_AWD_692M1526F00218_6920_692M1526A00001_6920",
+      "https://www.oig.dot.gov/sites/default/files/WEB%20FILE2_FTI%20%20Nov%2019%20outage-6-18-10_Final%20Signature%28a%29%20%282%29.pdf",
+      "https://www.gao.gov/products/gao-24-107001"
+    ],
+    "body": "# FAA traces nationwide ground stop to data flood on its telecom network; root cause still open\n\nA flood of data on the Federal Aviation Administration's private telecommunications network forced Friday's nationwide ground stop, the FAA said, and every aircraft in the air landed safely. Air traffic resumed at 8:15 p.m. EST the same day. The root cause is still undetermined, Transportation Secretary Duffy said Monday. Microsoft's outage a day earlier was a separate event, according to Microsoft and Homeland Security Secretary Mullin.\n\n## 1. The surface story\n\nThe FAA halted all U.S. departures Friday afternoon. Its Command Center advisory listed the event start at 3:53 p.m. EST and took effect at 3:54 p.m. The FAA later said the technical problem began around 3:30 p.m. Online speculation tied the stop to Microsoft's Outlook and Microsoft 365 outage, but no official source has made that link.\n\n## 2. What the records show\n\nIn a question-and-answer page dated Nov. 15, the FAA said its \"legacy equipment became unstable when data began flooding the FAA FTI network, at a rate of 1,000 connection attempts every 4 to 5 seconds.\" The agency said the initial investigation points to two sites: a radar site in Amarillo, Texas, and a radio site in El Dorado, Arkansas, where L3Harris, its network provider, had deployed a new router. L3Harris blocked both sites and the network stabilized, the FAA said.\n\n\"No, this was not a full outage,\" the FAA wrote. \"Some frequencies and radar feeds remained reliable.\" Instability began at 17 of its 22 en route centers, and approximately 3,500 aircraft landed safely, it said. The FAA said there was no indication of a cyberattack.\n\nTransportation Secretary Duffy said Saturday investigators had not determined whether the cause was installer error at L3Harris or a faulty router. He said Monday on CNBC that it remains unclear why the router triggered the flood, Reuters reported.\n\nThe FAA said operators canceled approximately 12,462 flights Friday, though not all because of the stop. FlightAware counted more than 9,000 Friday cancellations, NPR reported. By 9 a.m. EST Monday, about 1,500 U.S. flights were delayed and nearly 300 canceled, NBC reported, citing FlightAware.\n\n## 3. Who has a stake\n\nL3Harris runs the FTI network, with $2.31 billion obligated under its contract, according to USAspending. AT&T now leads the build of its replacement under an Aug. 12 contract. Microsoft said its own outage stemmed from a network capacity upgrade and \"was a technical issue not related to cyber or AI.\" Federal records show small Microsoft support contracts with the FAA and a $1.1 million AWS and Azure hosting order placed through the reseller Four Points Technology. Nothing ties either to air traffic systems.\n\nThe FAA said its SMART planning tool, built by Air Space Intelligence under a contract worth up to $875.95 million, is \"not related\" and does not feed the air traffic control system.\n\nAnalysis: a failure traced to the legacy network could strengthen the administration's push for telecom modernization funding and could benefit the contractors replacing it.\n\n## 4. What coverage is missing\n\nA 2009 failure of the same network disrupted flight plans nationwide, and the Transportation Department's inspector general warned then that \"an inherent risk of critical outages remains.\" The Government Accountability Office found in 2024 that 51 of 138 air traffic systems were unsustainable. The FAA has not explained a 3:21 p.m. equipment advisory at Chicago O'Hare that preceded the stop. The number of similar routers is about 60, per the FAA; 69, per Duffy on ABC.\n\n## 5. Conclusions\n\n- **High confidence:** No evidence links Microsoft to the ground stop.\n- **High confidence:** A data flood on the FAA's FTI network caused the stop, per the FAA. Why it started is still under investigation.\n- **High confidence:** No evidence links SMART to the stop, and the timing alone isn't evidence; the FAA, which denies a link, is the agency involved, so its denial is not independent.\n\n**Still unknown:** the root cause, whether the NTSB or inspector general will investigate, and any FBI finding. Duffy said the FBI is helping examine the router."
+  },
+  {
     "slug": "tropical-cyclone-wati-cook-islands-oct-2026",
     "title": "Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert",
     "location": "Cook Islands: Northern Group near Suwarrow (RSMC Nadi storm centre 12.2S 163.5W at 162100Z, open water); forecast track toward Aitutaki, Southern Group",
@@ -84,7 +145,7 @@
       "https://en.antaranews.com/news/435385/bnpb-launches-weather-modification-to-mitigate-wildfire-in-west-papua",
       "https://www.gdacs.org/report.aspx?eventid=1032578&eventtype=WF"
     ],
-    "body": "# Indonesia battles worst forest fires in over a decade as haze spreads across region\n\nIndonesia is fighting its worst forest and land fires in more than a decade, The Independent reported Friday. Four members of a firefighting team died, and the government has agreed to accept foreign help.\n\nSatellites detected about 799 hotspots nationwide as of Thursday, up from 372 the day before, the forestry ministry said, according to The Independent. Most hotspots were in Sumatra and Borneo.\n\nThe four victims belonged to a 12-member team of national park officers, community fire brigade members, volunteers and security personnel. They were fighting a wildfire in Bromo Tengger Semeru National Park in East Java's Probolinggo regency when smoke and flames trapped them, The Independent reported.\n\n\"The president has already expressed his approval and the matter is currently being discussed at the technical level within the BNPB,\" Foreign Minister Arrmanatha Nasir said, according to The Independent. BNPB is Indonesia's disaster mitigation agency. The government has deployed about 60,000 people to fight fires across six provinces, Arrmanatha said, according to CNA. He did not say which countries had offered help or what form it would take, CNA reported.\n\nIndonesia's health ministry has recorded 283,270 cases of acute respiratory infection in fire-affected areas from Aug. 18 to Oct. 13, the Vietnam News Agency reported.\n\nSmoke has also reached neighboring countries. Radio New Zealand reported that haze from fires in Indonesia, including West Papua, has disrupted flights and caused respiratory problems in the region, and is also affecting Papua New Guinea. In Indonesia's Mimika Regency in Central Papua, thick haze from fires in South Papua's Merauke Regency has blanketed the area, RNZ reported, citing Jubi News. Early childhood centers and a primary school there have temporarily closed, and students have switched to remote learning, RNZ reported. RNZ said the fires are concentrated in areas of large-scale land and forest clearance, often for oil palm plantations, and that prolonged dry conditions from an intensifying El Ni\u00f1o have made them worse.\n\nIn West Papua, BNPB has run weather modification operations to reduce haze, prioritizing the Fakfak, Teluk Bintuni and Kaimana districts, the state news agency ANTARA reported. ANTARA said the operation was scheduled to end Oct. 15. The meteorological agency BMKG recorded 73 hotspots in West Papua as of Oct. 13, ANTARA said.\n\nAuthorities have evacuated at least 46 orangutans from fire-affected areas in West Kalimantan and other parts of Borneo, The Independent reported.\n\nThe Global Disaster Alert and Coordination System, or GDACS, has mapped four fires in Indonesia since Sept. 29, each rated \"Green,\" the system's lowest alert level. The largest, in South Sumatra, burned about 11,183 hectares through Oct. 14, and GDACS counted 1,585 people living in its burned area. Three others, in West Papua, South Papua and North Maluku, each burned about 6,000 to 6,500 hectares and ended Oct. 12 or 13. These four alerts represent only a small part of the wider crisis.\n\n\nNexus News Media will update this report as Indonesian authorities release new figures."
+    "body": "# Indonesia battles worst forest fires in over a decade as haze spreads across region\n\nIndonesia is fighting its worst forest and land fires in more than a decade, The Independent reported Friday. Four members of a firefighting team died, and the government has agreed to accept foreign help.\n\nSatellites detected about 799 hotspots nationwide as of Thursday, up from 372 the day before, the forestry ministry said, according to The Independent. Most hotspots were in Sumatra and Borneo.\n\nThe four victims belonged to a 12-member team of national park officers, community fire brigade members, volunteers and security personnel. They were fighting a wildfire in Bromo Tengger Semeru National Park in East Java's Probolinggo regency when smoke and flames trapped them, The Independent reported.\n\n\"The president has already expressed his approval and the matter is currently being discussed at the technical level within the BNPB,\" Foreign Minister Arrmanatha Nasir said, according to The Independent. BNPB is Indonesia's disaster mitigation agency. The government has deployed about 60,000 people to fight fires across six provinces, Arrmanatha said, according to CNA. He did not say which countries had offered help or what form it would take, CNA reported.\n\nIndonesia's health ministry has recorded 283,270 cases of acute respiratory infection in fire-affected areas from Aug. 18 to Oct. 13, the Vietnam News Agency reported.\n\nSmoke has also reached neighboring countries. Radio New Zealand reported that haze from fires in Indonesia, including West Papua, has disrupted flights and caused respiratory problems in the region, and is also affecting Papua New Guinea. In Indonesia's Mimika Regency in Central Papua, thick haze from fires in South Papua's Merauke Regency has blanketed the area, RNZ reported, citing Jubi News. Early childhood centers and a primary school there have temporarily closed, and students have switched to remote learning, RNZ reported. RNZ said the fires are concentrated in areas of large-scale land and forest clearance, often for oil palm plantations, and that prolonged dry conditions from an intensifying El Niño have made them worse.\n\nIn West Papua, BNPB has run weather modification operations to reduce haze, prioritizing the Fakfak, Teluk Bintuni and Kaimana districts, the state news agency ANTARA reported. ANTARA said the operation was scheduled to end Oct. 15. The meteorological agency BMKG recorded 73 hotspots in West Papua as of Oct. 13, ANTARA said.\n\nAuthorities have evacuated at least 46 orangutans from fire-affected areas in West Kalimantan and other parts of Borneo, The Independent reported.\n\nThe Global Disaster Alert and Coordination System, or GDACS, has mapped four fires in Indonesia since Sept. 29, each rated \"Green,\" the system's lowest alert level. The largest, in South Sumatra, burned about 11,183 hectares through Oct. 14, and GDACS counted 1,585 people living in its burned area. Three others, in West Papua, South Papua and North Maluku, each burned about 6,000 to 6,500 hectares and ended Oct. 12 or 13. These four alerts represent only a small part of the wider crisis.\n\n\nNexus News Media will update this report as Indonesian authorities release new figures."
   },
   {
     "slug": "fiji-region-deep-earthquake-oct-2026",
@@ -144,71 +205,5 @@
       "https://www.indiatoday.in/science/story/hurricane-simon-was-so-powerful-that-it-created-gravity-waves-see-satellite-pics-3016932-2026-10-14"
     ],
     "body": "# Tropical Storm Simon weakens off Mexico's Baja California coast\n\nTropical Storm Simon is weakening over open water south of Mexico's Baja California peninsula, and forecasters expect it to fall apart this weekend, the U.S. National Hurricane Center said Friday.\n\nAs of Advisory No. 37, issued at 15:00 GMT on Oct. 16, Simon had maximum sustained winds of 40 mph, or 65 kph. Its center sat about 160 miles, or 260 kilometers, south of Cabo San Lucas, and it was moving northwest roughly parallel to Baja California Sur.\n\n\"There are no coastal watches or warnings in effect,\" the hurricane center said.\n\nThe center said wind shear and dry air are weakening the storm. \"Southwesterly vertical wind shear and dry mid-level air are taking a toll on Simon this morning,\" forecasters wrote. They expect Simon to become a post-tropical remnant low on Saturday and to dissipate within 48 hours.\n\nThe storm's main threat to land comes from swells. The hurricane center said the swells \"are likely to cause life-threatening surf and rip current conditions\" along parts of west-central Mexico and Baja California Sur.\n\nThe Global Disaster Alert and Coordination System, or GDACS, still lists an overall Orange alert for Simon. That rating appears to reflect the storm's stronger phase earlier in its life, which began Oct. 7. GDACS rates the current episode Green, its lowest level. A GDACS model estimates that about 62 people fall within the storm's Category 1 wind zone, but no land warnings are in effect.\n\nEarlier this week, Simon drew attention as a hurricane. India Today reported on Oct. 14 that a satellite captured Hurricane Simon creating gravity waves.\n\nNo damage or casualties had been reported in the sources reviewed for this report.\n\nNexus News Media will update this report if the hurricane center's forecast changes."
-  },
-  {
-    "slug": "market-movers-oct-16-2026",
-    "title": "Market movers for Oct. 16",
-    "event_type": "market",
-    "as_of": "2026-10-16",
-    "severity": 6,
-    "quotes_note": "These closes and moves are the figures already filed in the market claims. A plain date is shown as a date, with no clock and no timezone shift.",
-    "tags": [
-      "market"
-    ],
-    "source_urls": [
-      "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186",
-      "https://hdfcsky.com/news/us-stock-market-close-dow-sp500-nasdaq-october-16-2026",
-      "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
-    ],
-    "body": "Oct. 15 index closes and the Kospi move, taken from the market claims already on the desk. Pairs without a previous close still appear in the table.",
-    "quotes": [
-      {
-        "name": "Dow",
-        "last": "52177.69",
-        "change_pct": 1.08,
-        "as_of": "2026-10-15",
-        "severity": 2,
-        "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
-      },
-      {
-        "name": "S&P 500",
-        "last": "7744.06",
-        "change_pct": 0.33,
-        "as_of": "2026-10-15",
-        "severity": 2,
-        "url": "https://hdfcsky.com/news/us-stock-market-close-dow-sp500-nasdaq-october-16-2026"
-      },
-      {
-        "name": "Nasdaq",
-        "last": "26713.03",
-        "change_pct": 0.08,
-        "as_of": "2026-10-15",
-        "severity": 2,
-        "url": "https://www.home.saxo/en-gb/content/articles/macro/market-quick-take--meltdown-in-ai-stocks-yields-to-late-recovery---16-october-2026-16102026"
-      },
-      {
-        "name": "Kospi",
-        "change_pct": -7.6,
-        "as_of": "2026-10-15",
-        "severity": 8,
-        "url": "https://www.manilatimes.net/2026/10/16/world/americas-emea/us-stocks-end-higher-as-ai-shares-stabilize/2447186"
-      }
-    ]
-  },
-  {
-    "slug": "riyadh-airport-casualty-figures-oct-2026",
-    "title": "Two filed counts of attacks on King Khalid International Airport do not match",
-    "event_type": "fact-check",
-    "verdict_type": "mixed",
-    "rating": "Mixture",
-    "tags": [
-      "fact-check"
-    ],
-    "timestamp": "2026-10-16T15:20:00Z",
-    "source_urls": [
-      "https://english.news.cn/20261016/fbffb1f1c00746cda325372b9cb3744a/c.html",
-      "https://www.aa.com.tr/en/world/morning-briefing-oct-16-2026/4090527"
-    ],
-    "body": "One filed claim says the Saudi-led coalition counted 20 attacks on King Khalid International Airport in Riyadh since Oct. 1, with 17 killed and more than 330 injured. A contradiction filed on that claim says Anadolu Agency counted 10 attacks on 5 airports from Oct. 5 to 11, with 20 killed, 18 of them at King Khalid International Airport. The two counts are not the same window and not the same total."
   }
 ]

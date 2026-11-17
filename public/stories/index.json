@@ -1,6 +1,52 @@
 {
-  "generated_at": "2026-10-16T23:50:31Z",
+  "generated_at": "2026-11-17T01:58:26Z",
   "stories": [
+    {
+      "slug": "faa-nationwide-ground-stop-telecom-outage-nov-2026",
+      "title": "FAA traces nationwide ground stop to data flood on its telecom network; root cause still open",
+      "location": "United States (nationwide, FAA en route centers)",
+      "severity": 6,
+      "alert_level": "none (no GDACS-type alert for this event)",
+      "timestamp": "2026-11-13T20:54Z",
+      "brief_id": "nsb-faa-groundstop-20261113",
+      "event_type": "infrastructure_outage",
+      "status": "published",
+      "summary": "A flood of data on the Federal Aviation Administration's private telecommunications network forced Friday's nationwide ground stop, the FAA said, and every aircraft in the air landed safely. Air traffic resumed at 8:15 p.m. EST the same day. The root cause is still undetermined, Transportation Secretary Duffy said Monday. Microsoft's outage a day earlier was a separate event, according to Microsoft and Homeland Security Secretary Mullin.",
+      "path": "/stories/faa-nationwide-ground-stop-telecom-outage-nov-2026.md",
+      "alert_note": "Severity set by Journalist from scope (nationwide stop, thousands of cancellations); no external alert level exists.",
+      "as_of": "2026-11-17T01:55Z (8:55 PM ET Nov 16)",
+      "confidence": [
+        {
+          "conclusion": "Microsoft is not linked to the FAA ground stop by any primary or official source; the two are separate outages.",
+          "level": "High"
+        },
+        {
+          "conclusion": "The stop came from a data flood on the FAA's FTI telecom network, per the FAA; why the flood started (installer error, a faulty router or something else) is still under investigation.",
+          "level": "High"
+        },
+        {
+          "conclusion": "No evidence links SMART to the stop, and the timing alone isn't evidence; the FAA, which denies a link, is the agency involved, so its denial is not independent.",
+          "level": "High"
+        }
+      ],
+      "canaries": [
+        {
+          "indicator": "FAA or L3Harris publishes a root-cause report separating installer error from a faulty router, and confirms or revises the Amarillo and El Dorado account",
+          "window": "Nov 16, 2026 - Jan 31, 2027",
+          "source": "faa.gov/newsroom/nationwide-ground-stop-questions-and-answers; L3Harris newsroom"
+        },
+        {
+          "indicator": "NTSB or DOT Inspector General announces an investigation or audit of the Nov 13 event",
+          "window": "Nov 16, 2026 - Feb 15, 2027",
+          "source": "ntsb.gov; oig.dot.gov/active-audits"
+        },
+        {
+          "indicator": "FBI or DOT discloses a finding on the El Dorado router, including whether tampering was ruled out",
+          "window": "Nov 16, 2026 - Jan 31, 2027",
+          "source": "@SecDuffy; transportation.gov briefing room; fbi.gov news"
+        }
+      ]
+    },
     {
       "slug": "tropical-cyclone-wati-cook-islands-oct-2026",
       "title": "Tropical Cyclone Wati intensifies near Suwarrow, with Aitutaki on alert",
