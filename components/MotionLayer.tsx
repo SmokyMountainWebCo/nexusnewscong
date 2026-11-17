@@ -2,6 +2,9 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
+import { bindMotionHooks } from '@/lib/motion-hooks.ts';
+import { EASE, installCssSprings } from '@/lib/motion-blitz/springs.js';
+import { startSmoothScroll } from '@/lib/smooth-scroll.ts';
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -60,12 +63,37 @@ export default function MotionLayer() {
     };
     apply();
     if (!('startViewTransition' in document)) root.classList.add('no-vt');
+    try {
+      installCssSprings();
+      for (const [name, ease] of Object.entries(EASE)) {
+        root.style.setProperty(`--motion-${name}`, ease.css);
+      }
+    } catch {
+      // CSS spring install is an enhancement only.
+    }
+    let cancelled = false;
+    let stopScroll = () => {};
+    void startSmoothScroll().then((stop) => {
+      if (cancelled) stop();
+      else stopScroll = stop;
+    });
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     media.addEventListener('change', apply);
-    return () => media.removeEventListener('change', apply);
+    return () => {
+      cancelled = true;
+      media.removeEventListener('change', apply);
+      stopScroll();
+    };
   }, []);
 
-  useEffect(() => markReveals(), [pathname]);
+  useEffect(() => {
+    const stopReveals = markReveals();
+    const stopHooks = bindMotionHooks(document, { reduced: prefersReducedMotion() });
+    return () => {
+      stopReveals();
+      stopHooks();
+    };
+  }, [pathname]);
 
   return null;
 }
