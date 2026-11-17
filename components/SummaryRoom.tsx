@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import ClaimList from './ClaimList';
+import StoryConstellation from './StoryConstellation';
+import StoryDatasetProbe from './StoryDatasetProbe';
 import StoryVisual from './StoryVisual';
 import { labelize, storyBadge, storyDateline } from '@/lib/content';
 import { resolveStoryImage } from '@/lib/images';
 import { claimsForRoom } from '@/lib/desk';
 import { loadClaims, loadStories } from '@/lib/published';
+import { graphFromStories } from '@/lib/constellation.ts';
 
 export default function SummaryRoom() {
   const { stories } = loadStories();
@@ -62,6 +65,22 @@ export default function SummaryRoom() {
           </li>
         </ul>
       </section>
+      {stories.length ? (
+        <>
+        <StoryConstellation
+          graph={graphFromStories(
+            stories.map((story) => ({
+              slug: story.card.slug,
+              title: story.doc?.title || story.card.title,
+              href: `/press/${story.card.slug}/`,
+              severity: story.doc?.severity ?? null,
+              related: story.doc?.related ?? [],
+            })),
+          )}
+        />
+        <StoryDatasetProbe fallbackCount={stories.length} />
+        </>
+      ) : null}
       {stories.length ? (
         <section>
           <h3>Timeline</h3>
