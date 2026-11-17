@@ -96,11 +96,26 @@ export function versionFromMarkdown(sha: string, at: string, raw: string): Histo
   };
 }
 
+function sameStoryContent(left: HistoryVersion, right: HistoryVersion): boolean {
+  return left.title === right.title && left.body === right.body && left.updateNote === right.updateNote;
+}
+
+export function collapseIdenticalVersions(versions: HistoryVersion[]): HistoryVersion[] {
+  const sorted = [...versions].sort((left, right) => left.at.localeCompare(right.at) || left.sha.localeCompare(right.sha));
+  const kept: HistoryVersion[] = [];
+  for (const version of sorted) {
+    const previous = kept[kept.length - 1];
+    if (previous && sameStoryContent(previous, version)) continue;
+    kept.push(version);
+  }
+  return kept;
+}
+
 export function mergeHistory(committed: HistoryVersion[], fromGit: HistoryVersion[]): HistoryVersion[] {
   const bySha = new Map<string, HistoryVersion>();
   for (const version of committed) bySha.set(version.sha, version);
   for (const version of fromGit) bySha.set(version.sha, version);
-  return [...bySha.values()].sort((left, right) => left.at.localeCompare(right.at) || left.sha.localeCompare(right.sha));
+  return collapseIdenticalVersions([...bySha.values()]);
 }
 
 /** Keep committed revisions when git is missing, shallow, or shorter. Never invent versions. */
@@ -115,11 +130,10 @@ export function decideHistory(input: {
     if (committed.length) return { write: false, versions: committed };
     return { write: Boolean(input.current), versions: input.current ? [input.current] : [] };
   }
-  if (!committed.length) return { write: true, versions: input.fromGit };
   const merged = mergeHistory(committed, input.fromGit);
-  const known = new Set(committed.map((version) => version.sha));
-  const added = merged.some((version) => !known.has(version.sha));
-  if (!added || merged.length < committed.length) return { write: false, versions: committed };
+  if (!committed.length) return { write: true, versions: merged };
+  const same = committed.length === merged.length && committed.every((version, index) => version.sha === merged[index].sha);
+  if (same) return { write: false, versions: committed };
   return { write: true, versions: merged };
 }
 
@@ -130,9 +144,7 @@ export function versionsFromSnapshots(snapshots: Array<{ sha: string; at: string
     if (!snapshot.raw.trim()) continue;
     const version = versionFromMarkdown(snapshot.sha, snapshot.at, snapshot.raw);
     const previous = versions[versions.length - 1];
-    if (previous && previous.title === version.title && previous.body === version.body && previous.updateNote === version.updateNote) {
-      continue;
-    }
+    if (previous && sameStoryContent(previous, version)) continue;
     versions.push(version);
   }
   return versions;

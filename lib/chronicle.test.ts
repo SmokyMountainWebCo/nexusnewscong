@@ -81,4 +81,17 @@ const extended = decideHistory({
 assert.equal(extended.write, true);
 assert.deepEqual(extended.versions.map((version) => version.sha), ['aaa', 'bbb', 'ccc']);
 
+const uploadCommit = {
+  sha: '47310673',
+  at: '2026-11-17T13:00:18Z',
+  title: 'Second',
+  body: 'Second body',
+  updateNote: 'Revised',
+  updated: null,
+};
+const identicalUpload = decideHistory({ repo: true, committed, fromGit: [uploadCommit], current });
+assert.equal(identicalUpload.versions.length, 2);
+assert.deepEqual(identicalUpload.versions.map((version) => version.sha), ['aaa', 'bbb']);
+assert.equal(identicalUpload.write, false);
+
 console.log('chronicle tests passed');
