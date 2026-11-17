@@ -194,7 +194,7 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
   const statusText = !ready
     ? disconnected
       ? 'Globe not connected'
-      : 'Waiting for gev:ready'
+      : 'Loading globe…'
     : status
       ? `View ${status.id ?? '—'} ${status.ok ? 'applied' : 'failed'}${status.error ? `: ${status.error}` : ''}`
       : pendingId
@@ -216,7 +216,7 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
         {!ready && !disconnected ? (
           <div className="globe__loading" role="status">
             <span className="globe__loading-mark" aria-hidden="true" />
-            <p>Waiting for gev:ready</p>
+            <p>Loading globe…</p>
           </div>
         ) : null}
         {applying ? (
@@ -226,7 +226,7 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
         ) : null}
         {disconnected && (
           <div className="globe__offline" role="status">
-            <p className="globe__offline-kicker">God&apos;s Eye View</p>
+            <p className="globe__offline-kicker">God's Eye View</p>
             <h3>Globe not connected</h3>
             <p>
               The frame at <code>{baseUrl}</code> did not send <code>gev:ready</code>. The desk does not draw a map of its own.
@@ -239,7 +239,7 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
                 Run <code>npm ci</code> then <code>npm run dev</code>. The app listens on {DEFAULT_GEV_URL}.
               </li>
               <li>
-                Set <code>GEV_EMBED_FRAME_ANCESTORS</code> to this site&apos;s origin, or <code>*</code>, then restart GEV. Framing is denied otherwise.
+                Set <code>GEV_EMBED_FRAME_ANCESTORS</code> to this site's origin, or <code>*</code>, then restart GEV. Framing is denied otherwise.
               </li>
               <li>
                 Point <code>NEXT_PUBLIC_GEV_URL</code> at that origin and rebuild this site. The default is {DEFAULT_GEV_URL}.
