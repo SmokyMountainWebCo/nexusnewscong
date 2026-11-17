@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-11-17T01:58:26Z",
+  "generated_at": "2026-11-17T02:04:12Z",
   "stories": [
+    {
+      "slug": "factcheck-nov-17-blackout-hoax",
+      "title": "Fact check: Nov. 17 is a one-minute alert test, not the start of a 90-day blackout",
+      "location": "United States",
+      "severity": 2,
+      "alert_level": "none",
+      "timestamp": "2026-11-17T01:57Z",
+      "brief_id": "nsb-doom-narrative-surge-20261116",
+      "event_type": "fact-check",
+      "status": "published",
+      "summary": "There is no evidence that a 90-day power, internet or banking blackout will begin Nov. 17, Snopes reported. France 24 called the claim a hoax. What is scheduled is a routine nationwide test of the Emergency Alert System by FEMA and the Federal Communications Commission.",
+      "path": "/stories/factcheck-nov-17-blackout-hoax.md",
+      "as_of": "2026-11-17T01:57Z (8:57 PM ET Nov 16)",
+      "rating": "hoax",
+      "verdict_type": "debunk"
+    },
     {
       "slug": "faa-nationwide-ground-stop-telecom-outage-nov-2026",
       "title": "FAA traces nationwide ground stop to data flood on its telecom network; root cause still open",
