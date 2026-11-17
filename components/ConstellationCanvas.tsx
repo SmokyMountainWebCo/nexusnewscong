@@ -163,8 +163,13 @@ export default function ConstellationCanvas({ graph, onUnavailable }: Props) {
         host.style.cursor = 'pointer';
         if (event) {
           const box = host.getBoundingClientRect();
-          tooltip.style.left = `${event.clientX - box.left + 12}px`;
-          tooltip.style.top = `${event.clientY - box.top + 12}px`;
+          const offset = 12;
+          const maxLeft = Math.max(0, box.width - tooltip.offsetWidth);
+          const maxTop = Math.max(0, box.height - tooltip.offsetHeight);
+          const left = Math.min(Math.max(0, event.clientX - box.left + offset), maxLeft);
+          const top = Math.min(Math.max(0, event.clientY - box.top + offset), maxTop);
+          tooltip.style.left = `${left}px`;
+          tooltip.style.top = `${top}px`;
         }
       };
 

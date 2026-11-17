@@ -420,6 +420,23 @@ html.js:not([data-motion="reduced"]) [data-motion="scrubber"] {
   pointer-events: none;
 }
 
+/* Reduced-motion first paint: never leave an empty stage, keep the list visible. */
+@media (prefers-reduced-motion: reduce) {
+  .constellation > .constellation__stage {
+    display: none;
+  }
+  .constellation [data-constellation-fallback].visually-hidden {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
 .constellation__note,
 .constellation__lede,
 .dataset-probe p {
