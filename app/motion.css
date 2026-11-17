@@ -315,3 +315,154 @@ html.js:not([data-motion="reduced"]) [data-reveal].is-in {
     transform: none;
   }
 }
+
+/* --- Chronicle Phase 1: data-motion hooks (no-op until those elements exist) --- */
+
+[data-motion] {
+  --motion-duration: 350ms;
+  --motion-ease: var(--motion-enter);
+  --motion-travel: 12px;
+  --motion-scale: 1;
+  --motion-progress: 0;
+}
+
+html.js:not([data-motion="reduced"]) [data-motion="headline"].is-pending,
+html.js:not([data-motion="reduced"]) [data-motion="badge"].is-pending {
+  opacity: 0;
+  transform: translateY(var(--motion-travel));
+}
+
+html.js:not([data-motion="reduced"]) [data-motion="headline"].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+}
+
+html.js:not([data-motion="reduced"]) [data-motion="badge"].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+}
+
+/* Search overlay only (not the Cmd+K trigger button, which also uses data-motion="search"). */
+html.js:not([data-motion="reduced"]) .cmdk[data-motion="search"][data-state="open"] {
+  animation: motion-room-enter var(--motion-duration) var(--motion-ease) both;
+}
+
+/* Margin cards are visible while closed; only ease state changes. */
+html.js:not([data-motion="reduced"]) [data-motion="margin-card"] {
+  transition:
+    opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+}
+
+html.js:not([data-motion="reduced"]) [data-motion="scrubber"] {
+  transform: translateY(calc(var(--motion-progress) * -2px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion],
+  [data-motion].is-pending,
+  [data-motion].is-in,
+  [data-motion][data-state] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto;
+  }
+}
+
+/* --- Story constellation (tokens only; typography inherits from the desk) --- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.constellation__stage {
+  position: relative;
+  width: 100%;
+  height: min(52vw, 420px);
+  min-height: 260px;
+  margin: 0 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.constellation__stage:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.constellation__tooltip {
+  position: absolute;
+  z-index: 2;
+  max-width: min(280px, 70%);
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.constellation__note,
+.constellation__lede,
+.dataset-probe p {
+  color: var(--muted);
+}
+
+.constellation__list {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.dataset-probe {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.dataset-probe .nx-btn {
+  justify-self: start;
+}
+
+/* Lenis structural rules (from lenis 1.3.27 dist/lenis.css). No color or type changes. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
