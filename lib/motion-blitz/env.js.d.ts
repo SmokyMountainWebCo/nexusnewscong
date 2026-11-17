@@ -1,0 +1,12 @@
+export const RENDER_MODE: boolean;
+export function reducedMotion(): boolean;
+export function isPhone(): boolean;
+export function dpr(desktopCap?: number, phoneCap?: number): number;
+export function hasWebGL(version?: number): boolean;
+export function isSoftwareGL(gl: unknown): boolean;
+export function softwareAllowed(): boolean;
+export function clamp01(t: number): number;
+export function lerp(a: number, b: number, t: number): number;
+export function smooth(t: number): number;
+export function range(p: number, a: number, b: number): number;
+export function stageProgress(el: Element): number;
