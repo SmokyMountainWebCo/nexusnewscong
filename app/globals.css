@@ -15,8 +15,14 @@
   --cyan: #22d3ee;
   --amber: #ffc56d;
   --ink: #0f172a;
+  /* Sticky .desk__header height. 69px at 1280; wrapped header is 117px at 375
+     and 125px when a 44px control stays on the first row. */
+  --header-h: 69px;
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
 }
+
+html { scroll-padding-top: var(--header-h); }
+html[data-focus="open"] { scroll-padding-top: 0; }
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); }
@@ -209,6 +215,7 @@ html[data-focus="open"] .story__sources { display: none; }
   content: "Inference"; display: block; margin-bottom: 4px; color: #cbd5e1; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
 }
 @media (max-width: 720px) {
+  :root { --header-h: 125px; }
   .nx-quote-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .nx-quote-table, .nx-quote-table tbody, .nx-quote-table tr, .nx-quote-table th, .nx-quote-table td { display: block; width: auto; }
   .nx-quote-table tr { border: 1px solid var(--line); border-radius: 12px; margin: 0 0 10px; padding: 8px 10px; }
