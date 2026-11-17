@@ -70,7 +70,7 @@ Leaflet, react-leaflet, and `public/layers` GeoJSON are not in this desk. Confli
 
 `npm run build` writes `public/search-index.json` from the story index and markdown. The header Search button, and Cmd or Ctrl+K, open a client-side search over that file and open the story.
 
-Each story also gets `public/stories/history/<slug>.json` from `git log --follow` and `git show`. The ticks are those commits. A story with one version says "No revisions yet" and hides the slider. The script does not invent versions. Netlify's clone keeps commit history and downloads file blobs on demand. A shallow clone tries `git fetch --unshallow` and otherwise keeps the current file as the only version.
+Each story also gets `public/stories/history/<slug>.json` from `git log --follow` and `git show`. The ticks are those commits. A story with one version says "No revisions yet" and hides the slider. The script does not invent versions. If git is missing, shallow, or returns fewer versions than the committed history file, that file is kept and versions are merged by commit sha. A story with no history file yet is written from the current text only. Netlify's git-based build can read older blobs. A CLI upload with no `.git` directory leaves the committed history in place.
 
 Focus reading uses the self-hosted Fraunces variable font. Trail entries and source links become margin cards on a wide screen and footnotes on a narrow one. Cards list only the name, link, time, and label that exist. Headline weight follows front-matter `severity`, mapped to 1–5. Fact-checks and debunks stay at normal weight.
 

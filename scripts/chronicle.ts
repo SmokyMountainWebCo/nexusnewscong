@@ -2,12 +2,25 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseStoryIndex, parseStoryMarkdown } from '../lib/content.ts';
-import { searchEntry, versionsFromSnapshots } from '../lib/chronicle.ts';
+import { decideHistory, searchEntry, versionFromMarkdown, versionsFromSnapshots, type HistoryVersion } from '../lib/chronicle.ts';
 
 const root = process.cwd();
 
 function git(args: string[]): string {
-  return execFileSync('git', args, { cwd: root, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+  return execFileSync('git', args, {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+}
+
+function insideRepo(): boolean {
+  try {
+    return git(['rev-parse', '--is-inside-work-tree']).trim() === 'true';
+  } catch {
+    return false;
+  }
 }
 
 function ensureHistory() {
@@ -15,7 +28,7 @@ function ensureHistory() {
   try {
     shallow = git(['rev-parse', '--is-shallow-repository']).trim() === 'true';
   } catch {
-    shallow = false;
+    return;
   }
   if (shallow) {
     try {
@@ -92,25 +105,53 @@ function writeSearchIndex() {
   console.log(`chronicle: wrote ${entries.length} search records`);
 }
 
-function writeHistories() {
-  const dir = path.join(root, 'public/stories/history');
-  fs.mkdirSync(dir, { recursive: true });
-  for (const name of storyFiles()) {
-    const slug = name.replace(/\.md$/, '');
-    const file = path.join('public/stories', name);
-    const versions = versionsFromSnapshots(snapshots(file));
-    if (!versions.length) {
-      const raw = fs.readFileSync(path.join(root, file), 'utf8');
-      const only = versionsFromSnapshots([{ sha: 'working-tree', at: new Date(0).toISOString(), raw }]);
-      fs.writeFileSync(path.join(dir, `${slug}.json`), `${JSON.stringify({ slug, versions: only }, null, 2)}\n`);
-      console.warn(`chronicle: ${slug} has no readable git versions; kept the current file only`);
-      continue;
-    }
-    fs.writeFileSync(path.join(dir, `${slug}.json`), `${JSON.stringify({ slug, versions }, null, 2)}\n`);
-    console.log(`chronicle: ${slug} ${versions.length} version${versions.length === 1 ? '' : 's'}`);
+function readCommitted(dir: string, slug: string): HistoryVersion[] | null {
+  const file = path.join(dir, `${slug}.json`);
+  if (!fs.existsSync(file)) return null;
+  try {
+    const data = JSON.parse(fs.readFileSync(file, 'utf8')) as { versions?: HistoryVersion[] };
+    return Array.isArray(data.versions) ? data.versions : null;
+  } catch (error) {
+    console.warn(`chronicle: could not read committed history for ${slug}`);
+    console.warn(error instanceof Error ? error.message : error);
+    return null;
   }
 }
 
-ensureHistory();
+function currentVersion(file: string): HistoryVersion | null {
+  const absolute = path.join(root, file);
+  if (!fs.existsSync(absolute)) return null;
+  const stamp = fs.statSync(absolute).mtime.toISOString();
+  return versionFromMarkdown('current', stamp, fs.readFileSync(absolute, 'utf8'));
+}
+
+function writeHistories() {
+  const dir = path.join(root, 'public/stories/history');
+  fs.mkdirSync(dir, { recursive: true });
+  const repo = insideRepo();
+  if (!repo) console.warn('chronicle: no git repository. Existing history files are left unchanged.');
+  for (const name of storyFiles()) {
+    const slug = name.replace(/\.md$/, '');
+    const file = path.join('public/stories', name);
+    const committed = readCommitted(dir, slug);
+    const fromGit = repo ? versionsFromSnapshots(snapshots(file)) : [];
+    const decision = decideHistory({
+      repo,
+      committed,
+      fromGit,
+      current: currentVersion(file),
+    });
+    if (!decision.write) {
+      console.log(`chronicle: ${slug} kept ${decision.versions.length} committed version${decision.versions.length === 1 ? '' : 's'}`);
+      continue;
+    }
+    fs.writeFileSync(path.join(dir, `${slug}.json`), `${JSON.stringify({ slug, versions: decision.versions }, null, 2)}\n`);
+    console.log(`chronicle: ${slug} wrote ${decision.versions.length} version${decision.versions.length === 1 ? '' : 's'}`);
+  }
+}
+
+const repo = insideRepo();
+if (repo) ensureHistory();
+else console.warn('chronicle: no git repository. Search still rebuilds from the story files.');
 writeSearchIndex();
 writeHistories();

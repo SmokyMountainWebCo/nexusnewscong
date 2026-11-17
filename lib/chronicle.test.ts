@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { parseRelated, parseStoryMarkdown } from './content.ts';
-import { headlineWeight, rankSearch, roomFor, scoreSearch, searchEntry, severityStep, versionsFromSnapshots } from './chronicle.ts';
+import { decideHistory, headlineWeight, rankSearch, roomFor, scoreSearch, searchEntry, severityStep, versionsFromSnapshots } from './chronicle.ts';
 
 assert.equal(roomFor('fact-check', []), 'conspiracy');
 assert.equal(roomFor('market movers', []), 'markets');
@@ -54,5 +54,31 @@ related:
 Body`);
 assert.equal(withRelated.related[0].slug, 'other-story');
 assert.equal(withRelated.related[0].reason, 'same_location');
+
+const committed = [
+  { sha: 'aaa', at: '2026-11-13T00:00:00Z', title: 'First', body: 'First body', updateNote: null, updated: null },
+  { sha: 'bbb', at: '2026-11-14T00:00:00Z', title: 'Second', body: 'Second body', updateNote: 'Revised', updated: null },
+];
+const current = { sha: 'current', at: '2026-11-17T00:00:00Z', title: 'Second', body: 'Second body', updateNote: 'Revised', updated: null };
+const noGit = decideHistory({ repo: false, committed, fromGit: [], current });
+assert.equal(noGit.write, false);
+assert.deepEqual(noGit.versions.map((version) => version.sha), ['aaa', 'bbb']);
+
+const noGitNew = decideHistory({ repo: false, committed: null, fromGit: [], current });
+assert.equal(noGitNew.write, true);
+assert.deepEqual(noGitNew.versions.map((version) => version.sha), ['current']);
+
+const shallow = decideHistory({ repo: true, committed, fromGit: [committed[1]], current });
+assert.equal(shallow.write, false);
+assert.equal(shallow.versions.length, 2);
+
+const extended = decideHistory({
+  repo: true,
+  committed,
+  fromGit: [committed[1], { sha: 'ccc', at: '2026-11-15T00:00:00Z', title: 'Third', body: 'Third body', updateNote: null, updated: null }],
+  current,
+});
+assert.equal(extended.write, true);
+assert.deepEqual(extended.versions.map((version) => version.sha), ['aaa', 'bbb', 'ccc']);
 
 console.log('chronicle tests passed');

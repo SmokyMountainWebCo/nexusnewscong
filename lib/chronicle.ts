@@ -96,6 +96,33 @@ export function versionFromMarkdown(sha: string, at: string, raw: string): Histo
   };
 }
 
+export function mergeHistory(committed: HistoryVersion[], fromGit: HistoryVersion[]): HistoryVersion[] {
+  const bySha = new Map<string, HistoryVersion>();
+  for (const version of committed) bySha.set(version.sha, version);
+  for (const version of fromGit) bySha.set(version.sha, version);
+  return [...bySha.values()].sort((left, right) => left.at.localeCompare(right.at) || left.sha.localeCompare(right.sha));
+}
+
+/** Keep committed revisions when git is missing, shallow, or shorter. Never invent versions. */
+export function decideHistory(input: {
+  repo: boolean;
+  committed: HistoryVersion[] | null;
+  fromGit: HistoryVersion[];
+  current: HistoryVersion | null;
+}): { write: boolean; versions: HistoryVersion[] } {
+  const committed = input.committed ?? [];
+  if (!input.repo || !input.fromGit.length) {
+    if (committed.length) return { write: false, versions: committed };
+    return { write: Boolean(input.current), versions: input.current ? [input.current] : [] };
+  }
+  if (!committed.length) return { write: true, versions: input.fromGit };
+  const merged = mergeHistory(committed, input.fromGit);
+  const known = new Set(committed.map((version) => version.sha));
+  const added = merged.some((version) => !known.has(version.sha));
+  if (!added || merged.length < committed.length) return { write: false, versions: committed };
+  return { write: true, versions: merged };
+}
+
 export function versionsFromSnapshots(snapshots: Array<{ sha: string; at: string; raw: string }>): HistoryVersion[] {
   const chronological = [...snapshots].sort((a, b) => a.at.localeCompare(b.at));
   const versions: HistoryVersion[] = [];
