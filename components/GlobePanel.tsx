@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { GevBridge, type AppliedStatus } from '@/lib/gev/bridge';
 import {
-  DEFAULT_GEV_URL,
   GEV_FOLLOW_KINDS,
   GEV_LAYER_IDS,
   GEV_LAYER_LABELS,
@@ -226,25 +225,9 @@ export default function GlobePanel({ storySlug }: { storySlug?: string | null })
         ) : null}
         {disconnected && (
           <div className="globe__offline" role="status">
-            <p className="globe__offline-kicker">God's Eye View</p>
-            <h3>Globe not connected</h3>
-            <p>
-              The frame at <code>{baseUrl}</code> did not send <code>gev:ready</code>. The desk does not draw a map of its own.
-            </p>
-            <ol>
-              <li>
-                Clone <code>https://github.com/bilawalsidhu/gods-eye-view</code> and use Node 24.14+ or 26.
-              </li>
-              <li>
-                Run <code>npm ci</code> then <code>npm run dev</code>. The app listens on {DEFAULT_GEV_URL}.
-              </li>
-              <li>
-                Set <code>GEV_EMBED_FRAME_ANCESTORS</code> to this site's origin, or <code>*</code>, then restart GEV. Framing is denied otherwise.
-              </li>
-              <li>
-                Point <code>NEXT_PUBLIC_GEV_URL</code> at that origin and rebuild this site. The default is {DEFAULT_GEV_URL}.
-              </li>
-            </ol>
+            <p className="globe__offline-kicker">Globe</p>
+            <h3>The globe couldn&apos;t load</h3>
+            <p>The globe couldn&apos;t load right now. Try refreshing.</p>
           </div>
         )}
       </div>

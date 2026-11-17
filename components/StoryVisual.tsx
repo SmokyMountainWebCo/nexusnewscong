@@ -34,8 +34,8 @@ export default function StoryVisual({
         loading={variant === 'hero' ? 'eager' : 'lazy'}
         fetchPriority={variant === 'hero' ? 'high' : 'auto'}
       />
-      {variant === 'hero' ? (
-        <figcaption>
+      {variant === 'hero' && (image.credit || image.license || image.sourceUrl) ? (
+        <figcaption className="visual__provenance">
           {[image.credit, image.license].filter(Boolean).join(' · ')}
           {image.sourceUrl ? (
             <>

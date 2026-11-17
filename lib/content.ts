@@ -29,6 +29,7 @@ export type StoryCard = {
   imageCredit: string | null;
   imageLicense: string | null;
   imageSourceUrl: string | null;
+  related: RelatedItem[];
 };
 
 export type StoryDoc = {
@@ -58,7 +59,14 @@ export type StoryDoc = {
   imageCredit: string | null;
   imageLicense: string | null;
   imageSourceUrl: string | null;
+  related: RelatedItem[];
   body: string;
+};
+
+export type RelatedItem = {
+  slug: string;
+  reason: string;
+  strength: number | null;
 };
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -213,6 +221,7 @@ export function parseStoryIndex(data: unknown): { generatedAt: string | null; st
       imageCredit: asString(item.image_credit),
       imageLicense: asString(item.image_license),
       imageSourceUrl: asString(item.image_source_url),
+      related: parseRelated(item.related),
     });
   }
   return { generatedAt: asString(record.generated_at), stories };
@@ -261,8 +270,31 @@ export function parseStoryMarkdown(raw: string): StoryDoc {
     imageCredit: asString(data.image_credit),
     imageLicense: asString(data.image_license),
     imageSourceUrl: asString(data.image_source_url),
+    related: parseRelated(data.related),
     body: body.trim(),
   };
+}
+
+const RELATED_REASONS = new Set(['shared_event', 'same_location', 'follow_up']);
+
+export function parseRelated(value: unknown): RelatedItem[] {
+  if (!Array.isArray(value)) return [];
+  const items: RelatedItem[] = [];
+  for (const row of value) {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) continue;
+    const item = row as Record<string, unknown>;
+    const slug = asString(item.slug);
+    if (!slug) continue;
+    const rawReason = asString(item.reason) || '';
+    const reason = rawReason.toLowerCase().replace(/[\s-]+/g, '_');
+    const strength = asScore(item.strength);
+    items.push({
+      slug,
+      reason: RELATED_REASONS.has(reason) ? reason : rawReason || 'related',
+      strength: strength != null && strength >= 1 && strength <= 3 ? Math.round(strength) : null,
+    });
+  }
+  return items;
 }
 
 export function isPublished(doc: StoryDoc | null): boolean {

@@ -1,5 +1,9 @@
 # Static export of the Nexus desk. The older Smoky Mountain snapshot stays in
 # smoky-mountain-site/ and is not this publish directory.
+# Netlify clones are blobless, not shallow, so commit history is available and
+# `git show` can read older story files. The build also writes
+# public/stories/history/. If a checkout is shallow, the chronicle script tries
+# `git fetch --unshallow` and otherwise keeps one version per story.
 [build]
   command = "npm run build"
   publish = "out"

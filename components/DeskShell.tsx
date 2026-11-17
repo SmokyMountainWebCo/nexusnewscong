@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AskNexus from './AskNexus';
+import CommandPalette from './CommandPalette';
 
 const ROOMS = [
   { href: '/', label: 'Summary', match: ['/', '/summary'] },
@@ -41,6 +42,7 @@ export default function DeskShell({ children }: { children: React.ReactNode }) {
           <span>Nexus</span>
         </Link>
         <time className="desk__clock">{time}</time>
+        <CommandPalette />
         <AskNexus />
         <button type="button" className="desk__nav-toggle" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
           Rooms

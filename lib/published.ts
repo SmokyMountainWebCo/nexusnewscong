@@ -33,6 +33,7 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       imageCredit: story.imageCredit,
       imageLicense: story.imageLicense,
       imageSourceUrl: story.imageSourceUrl,
+      related: story.related,
     },
     doc: {
       title: story.title,
@@ -61,6 +62,7 @@ export function storyFromSearch(story: SearchStory): LoadedStory {
       imageCredit: story.imageCredit,
       imageLicense: story.imageLicense,
       imageSourceUrl: story.imageSourceUrl,
+      related: story.related,
       body: story.body,
     },
   };

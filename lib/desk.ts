@@ -1,3 +1,5 @@
+import { parseRelated, type RelatedItem } from './content.ts';
+
 // In-browser desk search over the static publisher files.
 // search.json, claims.json, and the optional briefs.json / sources.json / markets.geojson files.
 
@@ -33,6 +35,7 @@ export type SearchStory = {
   imageCredit: string | null;
   imageLicense: string | null;
   imageSourceUrl: string | null;
+  related: RelatedItem[];
   sourceUrls: string[];
   tags: string[];
   body: string;
@@ -253,6 +256,7 @@ export function parseSearchIndex(data: unknown): SearchStory[] {
       imageCredit: asString(item.image_credit),
       imageLicense: asString(item.image_license),
       imageSourceUrl: asString(item.image_source_url),
+      related: parseRelated(item.related),
       body: asString(item.body) || asString(item.text) || '',
     });
   }

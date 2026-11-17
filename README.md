@@ -66,6 +66,16 @@ Stage 0 never renders a clickable link, even when `source` is a URL. The page sh
 
 Leaflet, react-leaflet, and `public/layers` GeoJSON are not in this desk. Conflict and disaster feed-status notices and the markets map were part of that map and were not brought back. The Ask Nexus agent loop and the Supabase route are gone; search reads the published files.
 
+## Chronicle reading tools
+
+`npm run build` writes `public/search-index.json` from the story index and markdown. The header Search button, and Cmd or Ctrl+K, open a client-side search over that file and open the story.
+
+Each story also gets `public/stories/history/<slug>.json` from `git log --follow` and `git show`. The ticks are those commits. A story with one version says "No revisions yet" and hides the slider. The script does not invent versions. Netlify's clone keeps commit history and downloads file blobs on demand. A shallow clone tries `git fetch --unshallow` and otherwise keeps the current file as the only version.
+
+Focus reading uses the self-hosted Fraunces variable font. Trail entries and source links become margin cards on a wide screen and footnotes on a narrow one. Cards list only the name, link, time, and label that exist. Headline weight follows front-matter `severity`, mapped to 1–5. Fact-checks and debunks stay at normal weight.
+
+`related` is an optional list of `{slug, reason, strength}`. `reason` is `shared_event`, `same_location`, or `follow_up`. `strength` is 1–3. The story page lists those links when the field is present.
+
 ## Scripts
 
 ```bash

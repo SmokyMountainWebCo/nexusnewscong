@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import FactCheckMark from './FactCheckMark';
+import FocusToggle from './FocusToggle';
 import InvestigationBody from './InvestigationBody';
 import MarkdownBody from './MarkdownBody';
 import QuoteTable from './QuoteTable';
+import StoryScrubber from './StoryScrubber';
 import StoryVisual from './StoryVisual';
 import VerificationTrail from './VerificationTrail';
-import { labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel } from '@/lib/content';
+import { headlineWeight, severityStep } from '@/lib/chronicle';
+import { labelize, storyBadge, storyDateline, stripMatchingHeading, updatedLabel, type RelatedItem } from '@/lib/content';
 import { isFactCheckStory, quotesForStory, type SearchStory, type SourcePack } from '@/lib/desk';
 import { resolveInvestigation } from '@/lib/investigation';
 import { resolveStoryImage } from '@/lib/images';
-import { resolveTrail } from '@/lib/trail';
-import type { LoadedStory } from '@/lib/published';
+import { loadStories, type LoadedStory } from '@/lib/published';
+import { resolveTrail, type TrailStep } from '@/lib/trail';
 
 export default function StoryArticle({
   story,
@@ -79,6 +82,10 @@ export default function StoryArticle({
     searchStory,
   );
   const verdict = searchStory?.verdictType || null;
+  const severity = severityStep(doc.severity, doc.eventType || story.card.eventType, verdict);
+  const related = doc.related.length ? doc.related : story.card.related.length ? story.card.related : searchStory?.related || [];
+  const titles = new Map(loadStories().stories.map((item) => [item.card.slug, item.card.title]));
+  const cards = marginCards(sources, trail);
   return (
     <article className="story">
       <StoryVisual image={image} slug={story.card.slug} eventType={doc.eventType || story.card.eventType} verdictType={verdict} title={title} variant="hero" />
@@ -105,7 +112,12 @@ export default function StoryArticle({
       {badge ? <p className={`badge badge--${badge.band}`}>{badge.label}</p> : null}
       {alertNote ? <p className="story__note">{alertNote}</p> : null}
       {searchStory && isFactCheckStory(searchStory) ? <FactCheckMark story={searchStory} /> : null}
-      <h2>{title}</h2>
+      <div className="story__tools">
+        <FocusToggle />
+      </div>
+      <h2 data-motion="headline" data-severity={severity ?? undefined} style={{ ['--headline-weight' as string]: String(headlineWeight(severity)) }}>
+        {title}
+      </h2>
       <p className="story__dateline">
         {[labelize(doc.eventType || story.card.eventType), when, places.join(' · ')].filter(Boolean).join(' — ')}
         {doc.severity != null ? ` — Severity ${doc.severity}/10` : ''}
@@ -139,7 +151,14 @@ export default function StoryArticle({
           </ul>
         </section>
       ) : null}
-      {investigationLayout ? <InvestigationBody view={{ ...investigation, intro: investigation.intro || (!investigation.sections.length ? body : investigation.intro) }} /> : body ? <MarkdownBody source={body} /> : <p>This file has no body yet.</p>}
+      <div className="reading">
+        <div className="reading__column">
+          {investigationLayout ? <InvestigationBody view={{ ...investigation, intro: investigation.intro || (!investigation.sections.length ? body : investigation.intro) }} /> : body ? <MarkdownBody source={body} /> : <p>This file has no body yet.</p>}
+          <RelatedList items={related} titles={titles} />
+          <StoryScrubber slug={story.card.slug} />
+        </div>
+        <MarginNotes cards={cards} />
+      </div>
       {sources.length ? (
         <div className="story__sources">
           <h3>Sources</h3>
@@ -156,5 +175,88 @@ export default function StoryArticle({
       ) : null}
       {doc.briefId ? <p className="story__note">Brief {doc.briefId}</p> : null}
     </article>
+  );
+}
+
+type MarginCard = { label?: string; name?: string; url?: string; asOf?: string; confidence?: string };
+
+function marginCards(sources: Array<{ label: string; url: string }>, trail: TrailStep[]): MarginCard[] {
+  const cards: MarginCard[] = [];
+  for (const step of trail) {
+    const card: MarginCard = {};
+    if (step.label) card.label = step.label;
+    if (step.stage === 0) {
+      if (step.platform) card.name = step.platform;
+    } else if (step.sourceLabel && !step.sourceHref) {
+      card.name = step.sourceLabel;
+    }
+    if (step.stage !== 0 && step.sourceHref) card.url = step.sourceHref;
+    if (step.at) card.asOf = step.at;
+    if (card.label || card.name || card.url || card.asOf) cards.push(card);
+  }
+  for (const source of sources) {
+    cards.push({ name: source.label, url: source.url });
+  }
+  return cards.slice(0, 8);
+}
+
+function CardFields({ card }: { card: MarginCard }) {
+  return (
+    <>
+      {card.label ? <strong>{card.label}</strong> : null}
+      {card.name ? <span>{card.name}</span> : null}
+      {card.asOf ? <span>As of {card.asOf}</span> : null}
+      {card.confidence ? <span>{card.confidence}</span> : null}
+      {card.url ? (
+        <a href={card.url} target="_blank" rel="noopener noreferrer">
+          Source
+        </a>
+      ) : null}
+    </>
+  );
+}
+
+function MarginNotes({ cards }: { cards: MarginCard[] }) {
+  if (!cards.length) return null;
+  return (
+    <>
+      <aside className="margin" aria-label="Margin notes">
+        {cards.map((card, index) => (
+          <article key={index} className="margin__card" data-motion="margin-card" data-state="closed">
+            <CardFields card={card} />
+          </article>
+        ))}
+      </aside>
+      <ol className="footnotes">
+        {cards.map((card, index) => (
+          <li key={index}>
+            <details data-motion="margin-card" data-state="closed">
+              <summary>Note {index + 1}</summary>
+              <CardFields card={card} />
+            </details>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
+function RelatedList({ items, titles }: { items: RelatedItem[]; titles: Map<string, string> }) {
+  if (!items.length) return null;
+  return (
+    <section className="related" aria-label="Related stories">
+      <h3>Related</h3>
+      <ul>
+        {items.map((item) => (
+          <li key={`${item.slug}-${item.reason}`}>
+            <Link href={`/press/${item.slug}/`}>{titles.get(item.slug) || item.slug}</Link>
+            <span>
+              {item.reason.replace(/_/g, ' ')}
+              {item.strength ? ` · ${item.strength}` : ''}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

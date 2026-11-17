@@ -72,6 +72,7 @@ async function loadCorpus(): Promise<DeskCorpus> {
             imageCredit: null,
             imageLicense: null,
             imageSourceUrl: null,
+            related: [],
             body: doc.body,
           };
         } catch {
