@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import DeskShell from '@/components/DeskShell';
+import MotionLayer from '@/components/MotionLayer';
 import './globals.css';
+import './motion.css';
 
 export const metadata: Metadata = {
   title: 'Nexus',
@@ -11,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <MotionLayer />
         <DeskShell>{children}</DeskShell>
       </body>
     </html>

@@ -9,7 +9,7 @@ export default function ClaimList({ claims, catalog, title }: { claims: Claim[];
       {title ? <h3>{title}</h3> : null}
       <ul>
         {claims.map((claim) => (
-          <li key={claim.id} className="nx-claim">
+          <li key={claim.id} className="nx-claim" data-reveal>
             <p>{claim.text}</p>
             <p className="nx-meta">
               {claim.confidence != null ? <span className="nx-confidence">Confidence {claim.confidence}</span> : null}

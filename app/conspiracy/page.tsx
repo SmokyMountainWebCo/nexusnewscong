@@ -20,7 +20,7 @@ export default function ConspiracyPage() {
       {stories.length ? (
         <ul className="stories">
           {stories.map((story) => (
-            <li key={story.slug}>
+            <li key={story.slug} data-reveal>
               <Link className={factCheckCardClass(story)} href={`/press/${story.slug}`}>
                 <FactCheckMark story={story} />
                 <h3>{story.title}</h3>

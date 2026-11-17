@@ -27,7 +27,7 @@ export default function PressPage() {
           const updated = updatedLabel(story.doc?.updated || story.card.updated);
           const image = resolveStoryImage(story.doc, story.card);
           return (
-            <li key={story.card.slug}>
+            <li key={story.card.slug} data-reveal>
               <Link href={`/press/${story.card.slug}`}>
                 <StoryVisual
                   image={image}
